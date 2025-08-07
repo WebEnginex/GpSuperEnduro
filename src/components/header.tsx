@@ -45,9 +45,11 @@ export function Header({ showCountdown = true }: HeaderProps) {
           {/* Titre à gauche */}
           <div className="flex-1 flex justify-start">
             <div className="hidden lg:block">
-              <h1 className="text-white text-2xl font-bold tracking-wide">
-                Supercross <span className="text-red-600">Douai</span>
-              </h1>
+              <Link href="/" className="cursor-pointer">
+                <h1 className="text-white text-2xl font-bold tracking-wide transition-colors duration-300">
+                  Supercross <span className="text-red-600">Douai</span>
+                </h1>
+              </Link>
             </div>
           </div>
 

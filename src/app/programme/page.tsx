@@ -182,16 +182,6 @@ export default function ProgrammePage() {
           <p className="text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
             Découvrez le programme détaillé selon votre placement dans l&apos;enceinte
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center text-lg text-gray-400">
-            <div className="flex items-center justify-center gap-2">
-              <Calendar className="w-5 h-5" />
-              <span>Samedi 4 Octobre 2025</span>
-            </div>
-            <div className="flex items-center justify-center gap-2">
-              <Clock className="w-5 h-5" />
-              <span>13H00 - 18H30</span>
-            </div>
-          </div>
         </div>
       </section>
 
