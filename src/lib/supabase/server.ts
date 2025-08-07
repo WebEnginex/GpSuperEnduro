@@ -12,7 +12,12 @@ export async function createClient() {
         getSession: () => Promise.resolve({ data: { session: null }, error: null }),
         getUser: () => Promise.resolve({ data: { user: null }, error: null })
       }
-    } as any
+    } as {
+      auth: {
+        getSession: () => Promise<{ data: { session: null }, error: null }>,
+        getUser: () => Promise<{ data: { user: null }, error: null }>
+      }
+    }
   }
 
   const cookieStore = await cookies()

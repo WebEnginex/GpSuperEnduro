@@ -86,7 +86,7 @@ export default function AdminLogin() {
             </Alert>
             
             <Auth
-              supabaseClient={supabase}
+              supabaseClient={supabase as import('@supabase/supabase-js').SupabaseClient}
               view="sign_in"
               appearance={{
                 theme: ThemeSupa,
