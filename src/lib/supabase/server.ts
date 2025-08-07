@@ -11,13 +11,15 @@ export async function createClient() {
       auth: {
         getSession: () => Promise.resolve({ data: { session: null }, error: null }),
         getUser: () => Promise.resolve({ data: { user: null }, error: null })
-      }
-    } as {
-      auth: {
-        getSession: () => Promise<{ data: { session: null }, error: null }>,
-        getUser: () => Promise<{ data: { user: null }, error: null }>
-      }
-    }
+      },
+      from: () => ({
+        insert: () => Promise.resolve({ error: null }),
+        select: () => Promise.resolve({ data: [], error: null, count: 0 }),
+        update: () => ({ eq: () => Promise.resolve({ error: null }) }),
+        delete: () => ({ eq: () => Promise.resolve({ error: null }) })
+      })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any
   }
 
   const cookieStore = await cookies()
