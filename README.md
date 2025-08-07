@@ -1,36 +1,134 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SX Tour Douai - Site Web Vitrine
 
-## Getting Started
+## 🏁 Projet Terminé
 
-First, run the development server:
+Site web vitrine professionnel pour l'événement Supercross Douai 2025 avec système d'administration complet.
+
+## 🚀 Fonctionnalités Principales
+
+### Site Public
+- **Page d'accueil** : Présentation de l'événement avec design moderne
+- **Billetterie** : 4 types de billets avec tarifs et réservation en ligne
+- **Contact** : Formulaire de contact connecté à la base de données
+- **Design responsive** : Optimisé pour tous les appareils
+
+### Système d'Administration
+- **Authentification Supabase** : Connexion sécurisée pour les administrateurs
+- **Dashboard analytique** : Statistiques de visites en temps réel
+- **Gestion des messages** : Interface complète pour traiter les demandes de contact
+- **Tracking automatique** : Comptabilisation des visites sans doublons
+
+## 🛠️ Installation et développement
+
+### Prérequis
+- Node.js 18+ 
+- npm, yarn, pnpm ou bun
+
+### Installation
 
 ```bash
+# Cloner le projet
+git clone <your-repo-url>
+cd sx-tour-douai-react
+
+# Installer les dépendances
+npm install
+
+# Lancer le serveur de développement
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur pour voir le résultat.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Scripts disponibles
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev      # Serveur de développement
+npm run build    # Build de production
+npm run start    # Serveur de production
+npm run lint     # Vérification ESLint
+```
 
-## Learn More
+## 📁 Structure du projet
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/                 # App Router (Next.js 13+)
+│   ├── layout.tsx      # Layout principal
+│   ├── page.tsx        # Page d'accueil
+│   └── globals.css     # Styles globaux
+├── components/         # Composants réutilisables
+│   ├── ui/            # Composants shadcn/ui
+│   ├── header.tsx     # Header avec navigation
+│   └── footer.tsx     # Footer
+└── lib/               # Utilitaires et configuration
+    └── utils.ts       # Fonctions utilitaires
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Personnalisation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Couleurs et thème
+Le thème utilise la palette de couleurs **Slate** de shadcn/ui. Vous pouvez la modifier dans :
+- `src/app/globals.css` - Variables CSS personnalisées
+- `tailwind.config.ts` - Configuration Tailwind
 
-## Deploy on Vercel
+### Composants
+Ajoutez de nouveaux composants shadcn/ui :
+```bash
+npx shadcn@latest add [component-name]
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚀 Déploiement sur Vercel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Push votre code sur GitHub**
+
+2. **Connectez votre repo à Vercel**
+   - Visitez [vercel.com](https://vercel.com)
+   - Importez votre projet GitHub
+   - Vercel détectera automatiquement Next.js
+
+3. **Configuration automatique**
+   - Build Command: `npm run build`
+   - Output Directory: `.next`
+   - Install Command: `npm install`
+
+4. **Variables d'environnement** (si nécessaire)
+   - Ajoutez vos variables dans les settings Vercel
+
+## 📱 Responsive Design
+
+Le site est optimisé pour tous les écrans :
+- **Mobile** : < 768px
+- **Tablet** : 768px - 1024px  
+- **Desktop** : > 1024px
+
+## 🔧 Développement
+
+### Ajout de nouvelles pages
+Créez un nouveau fichier dans `src/app/` :
+```tsx
+// src/app/about/page.tsx
+export default function About() {
+  return <div>À propos</div>
+}
+```
+
+### Ajout de composants
+```tsx
+// src/components/my-component.tsx
+export function MyComponent() {
+  return <div>Mon composant</div>
+}
+```
+
+## 📄 Licence
+
+Ce projet est sous licence MIT.
+
+## 🤝 Contribution
+
+Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou un PR.
+
+---
+
+Créé avec ❤️ par [SX Tours](https://sx-tours.fr)

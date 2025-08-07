@@ -1,0 +1,9 @@
+<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="200" fill="#1e293b" rx="10"/>
+  <text x="150" y="80" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="24" font-weight="bold">SX TOUR</text>
+  <text x="150" y="110" text-anchor="middle" fill="#f1f5f9" font-family="Arial, sans-serif" font-size="20" font-weight="bold">DOUAI</text>
+  <text x="150" y="140" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="14">2025</text>
+  <circle cx="60" cy="160" r="15" fill="#ef4444"/>
+  <circle cx="150" cy="160" r="15" fill="#f97316"/>
+  <circle cx="240" cy="160" r="15" fill="#eab308"/>
+</svg>
