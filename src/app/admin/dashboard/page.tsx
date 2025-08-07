@@ -4,13 +4,11 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { getVisitsStats, getMessages, updateMessageStatus, deleteMessage, type Message } from '@/lib/supabase/admin';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import { 
   LayoutDashboard, 
-  Users, 
   MessageSquare, 
   LogOut,
   Loader2,
@@ -19,23 +17,10 @@ import {
   TrendingUp,
   Calendar,
   Mail,
-  Trash2,
-  MoreVertical
+  Trash2
 } from "lucide-react";
 import { User } from '@supabase/supabase-js';
-
-// Composant Alert local temporaire
-const LocalAlert = ({ children, className }: { children: React.ReactNode, className?: string }) => (
-  <div className={`relative w-full rounded-lg border p-4 ${className}`} role="alert">
-    {children}
-  </div>
-);
-
-const LocalAlertDescription = ({ children, className }: { children: React.ReactNode, className?: string }) => (
-  <div className={`text-sm [&_p]:leading-relaxed ${className}`}>
-    {children}
-  </div>
-);
+import type { AuthChangeEvent, Session } from '@supabase/supabase-js';
 
 export default function AdminDashboard() {
   const [user, setUser] = useState<User | null>(null);
@@ -62,7 +47,7 @@ export default function AdminDashboard() {
 
     // Écouter les changements d'authentification
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+      async (event: AuthChangeEvent, session: Session | null) => {
         if (event === 'SIGNED_OUT' || !session?.user) {
           router.push('/admin');
         } else {
