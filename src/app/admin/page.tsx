@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Lock, Mail, Loader2 } from "lucide-react";
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
+import type { AuthChangeEvent, Session } from '@supabase/supabase-js';
 
 // Composant Alert local temporaire
 const Alert = ({ children, className }: { children: React.ReactNode, className?: string }) => (
@@ -40,7 +41,7 @@ export default function AdminLogin() {
 
     // Écouter les changements d'authentification
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+      async (event: AuthChangeEvent, session: Session | null) => {
         if (event === 'SIGNED_IN' && session?.user) {
           router.push('/admin/dashboard');
         }
