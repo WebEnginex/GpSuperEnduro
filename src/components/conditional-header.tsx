@@ -11,6 +11,11 @@ export function ConditionalHeader() {
     return null;
   }
   
-  // Afficher le header sans décompte sur les autres pages
+  // Ne pas afficher le header sur la page de connexion admin
+  if (pathname === '/admin') {
+    return null;
+  }
+  
+  // Afficher le header sans décompte sur les autres pages (y compris dashboard)
   return <Header showCountdown={false} />;
 }

@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Clock, Users, Car, Bike, CheckCircle, MapPin, Utensils } from "lucide-react";
 import Link from "next/link";
 
 export default function Billeterie() {
@@ -39,10 +38,11 @@ export default function Billeterie() {
             rel="noopener noreferrer"
             className="block transform transition-all duration-300 hover:scale-105 h-full"
           >
-            <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col bg-gray-900/50 border-gray-800 hover:bg-gray-800/50">
-              <CardHeader className="pb-4">
-                <CardTitle className="text-cyan-400">
-                  Mezzanine
+            <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col bg-gray-900/50 border-gray-800 hover:bg-gray-800/50 overflow-hidden relative">
+              <div className="absolute top-0 left-0 w-full h-3 rounded-t-2xl bg-cyan-400 z-10" />
+              <CardHeader className="pb-4 pt-8 relative z-20">
+                <CardTitle className="text-cyan-400 flex items-center gap-2">
+                  🏟️ Mezzanine
                 </CardTitle>
                 <CardDescription className="text-gray-300">
                   Une vue imprenable sur l&apos;événement depuis les hauteurs.
@@ -54,22 +54,10 @@ export default function Billeterie() {
                     À partir de <span className="text-3xl text-cyan-400">25€</span>
                   </div>
                   <ul className="space-y-3 text-gray-300 text-sm">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 mt-0.5 text-cyan-400" />
-                      Ouverture des portes à 18H30.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Users className="h-4 w-4 mt-0.5 text-cyan-400" />
-                      Séance de dédicaces à 19H.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 mt-0.5 text-cyan-400" />
-                      Cérémonie d&apos;ouverture à 19H30.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 mt-0.5 text-cyan-400" />
-                      Stands partenaires.
-                    </li>
+                    <li className="flex items-start gap-2">🚪 Ouverture des portes à 18H30.</li>
+                    <li className="flex items-start gap-2">✍️ Séance de dédicaces à 19H.</li>
+                    <li className="flex items-start gap-2">🎉 Cérémonie d&apos;ouverture à 19H30.</li>
+                    <li className="flex items-start gap-2">🛍️ Stands partenaires.</li>
                   </ul>
                 </div>
                 <div className="pt-4">
@@ -88,10 +76,11 @@ export default function Billeterie() {
             rel="noopener noreferrer"
             className="block transform transition-all duration-300 hover:scale-105 h-full"
           >
-            <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col bg-gray-900/50 border-gray-800 hover:bg-gray-800/50">
-              <CardHeader className="pb-4">
-                <CardTitle className="text-green-400">
-                  Tribune
+            <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col bg-gray-900/50 border-gray-800 hover:bg-gray-800/50 overflow-hidden relative">
+              <div className="absolute top-0 left-0 w-full h-3 rounded-t-2xl bg-green-400 z-10" />
+              <CardHeader className="pb-4 pt-8 relative z-20">
+                <CardTitle className="text-green-400 flex items-center gap-2">
+                  🪑 Tribune
                 </CardTitle>
                 <CardDescription className="text-gray-300">
                   Le meilleur compromis entre confort et visibilité.
@@ -103,22 +92,10 @@ export default function Billeterie() {
                     À partir de <span className="text-3xl text-green-400">30€</span>
                   </div>
                   <ul className="space-y-3 text-gray-300 text-sm">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 mt-0.5 text-green-400" />
-                      Ouverture des portes à 18H30.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Users className="h-4 w-4 mt-0.5 text-green-400" />
-                      Séance de dédicaces à 19H.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 mt-0.5 text-green-400" />
-                      Cérémonie d&apos;ouverture à 19H30.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 mt-0.5 text-green-400" />
-                      Stands partenaires.
-                    </li>
+                    <li className="flex items-start gap-2">🚪 Ouverture des portes à 18H30.</li>
+                    <li className="flex items-start gap-2">✍️ Séance de dédicaces à 19H.</li>
+                    <li className="flex items-start gap-2">🎉 Cérémonie d&apos;ouverture à 19H30.</li>
+                    <li className="flex items-start gap-2">🛍️ Stands partenaires.</li>
                   </ul>
                 </div>
                 <div className="pt-4">
@@ -137,10 +114,11 @@ export default function Billeterie() {
             rel="noopener noreferrer"
             className="block transform transition-all duration-300 hover:scale-105 h-full"
           >
-            <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col bg-gray-900/50 border-gray-800 hover:bg-gray-800/50">
-              <CardHeader className="pb-4">
-                <CardTitle className="text-red-400">
-                  Tribune Paddock - Carré Or
+            <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col bg-gray-900/50 border-gray-800 hover:bg-gray-800/50 overflow-hidden relative">
+              <div className="absolute top-0 left-0 w-full h-3 rounded-t-2xl bg-red-400 z-10" />
+              <CardHeader className="pb-4 pt-8 relative z-20">
+                <CardTitle className="text-red-400 flex items-center gap-2">
+                  🏅 Carré Or
                 </CardTitle>
                 <CardDescription className="text-gray-300">
                   Au plus près de l&apos;action, une expérience unique.
@@ -152,30 +130,12 @@ export default function Billeterie() {
                     À partir de <span className="text-3xl text-red-400">50€</span>
                   </div>
                   <ul className="space-y-3 text-gray-300 text-sm">
-                    <li className="flex items-start gap-2">
-                      <Car className="h-4 w-4 mt-0.5 text-red-400" />
-                      Parking au plus proche de l&apos;entrée.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Clock className="h-4 w-4 mt-0.5 text-red-400" />
-                      Ouverture des portes à 13H30.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Users className="h-4 w-4 mt-0.5 text-red-400" />
-                      Séance de dédicaces à 19H.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Bike className="h-4 w-4 mt-0.5 text-red-400" />
-                      Accès illimité au paddock pilotes.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 mt-0.5 text-red-400" />
-                      Accès exclusif aux essais et qualifications.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <MapPin className="h-4 w-4 mt-0.5 text-red-400" />
-                      Accès privilégié au circuit.
-                    </li>
+                    <li className="flex items-start gap-2">🅿️ Parking au plus proche de l&apos;entrée.</li>
+                    <li className="flex items-start gap-2">🚪 Ouverture des portes à 13H30.</li>
+                    <li className="flex items-start gap-2">✍️ Séance de dédicaces à 19H.</li>
+                    <li className="flex items-start gap-2">🏍️ Accès illimité au paddock pilotes.</li>
+                    <li className="flex items-start gap-2">🎫 Accès exclusif aux essais et qualifications.</li>
+                    <li className="flex items-start gap-2">📍 Accès privilégié au circuit.</li>
                   </ul>
                 </div>
                 <div className="pt-4">
@@ -194,10 +154,11 @@ export default function Billeterie() {
             rel="noopener noreferrer"
             className="block transform transition-all duration-300 hover:scale-105 h-full"
           >
-            <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col bg-gray-900/50 border-gray-800 hover:bg-gray-800/50">
-              <CardHeader className="pb-4">
-                <CardTitle className="text-red-400">
-                  Tribune Paddock - VIP
+            <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col bg-gray-900/50 border-gray-800 hover:bg-gray-800/50 overflow-hidden relative">
+              <div className="absolute top-0 left-0 w-full h-3 rounded-t-2xl bg-red-400 z-10" />
+              <CardHeader className="pb-4 pt-8 relative z-20">
+                <CardTitle className="text-red-400 flex items-center gap-2">
+                  👑 VIP
                 </CardTitle>
                 <CardDescription className="text-gray-300">
                   L&apos;expérience ultime avec service premium.
@@ -209,34 +170,13 @@ export default function Billeterie() {
                     À partir de <span className="text-3xl text-red-400">95€</span>
                   </div>
                   <ul className="space-y-3 text-gray-300 text-sm">
-                    <li className="flex items-start gap-2">
-                      <Car className="h-4 w-4 mt-0.5 text-red-400" />
-                      Parking au plus proche de l&apos;entrée.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Clock className="h-4 w-4 mt-0.5 text-red-400" />
-                      Ouverture des portes à 13H30.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Users className="h-4 w-4 mt-0.5 text-red-400" />
-                      Séance de dédicaces à 19H.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Bike className="h-4 w-4 mt-0.5 text-red-400" />
-                      Accès illimité au paddock pilotes.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-4 w-4 mt-0.5 text-red-400" />
-                      Accès exclusif aux essais et qualifications.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <MapPin className="h-4 w-4 mt-0.5 text-red-400" />
-                      Accès privilégié au circuit.
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Utensils className="h-4 w-4 mt-0.5 text-red-400" />
-                      Bar et buffet en espace privatisé.
-                    </li>
+                    <li className="flex items-start gap-2">🅿️ Parking au plus proche de l&apos;entrée.</li>
+                    <li className="flex items-start gap-2">🚪 Ouverture des portes à 13H30.</li>
+                    <li className="flex items-start gap-2">✍️ Séance de dédicaces à 19H.</li>
+                    <li className="flex items-start gap-2">🏍️ Accès illimité au paddock pilotes.</li>
+                    <li className="flex items-start gap-2">🎫 Accès exclusif aux essais et qualifications.</li>
+                    <li className="flex items-start gap-2">📍 Accès privilégié au circuit.</li>
+                    <li className="flex items-start gap-2">🍽️ Bar et buffet en espace privatisé.</li>
                   </ul>
                 </div>
                 <div className="pt-4">

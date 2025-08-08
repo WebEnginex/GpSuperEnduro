@@ -13,6 +13,7 @@ export interface Message {
   created_at: string;
   email?: string;
   subject?: string;
+  phone?: string;
   status: 'unread' | 'read' | 'archived';
 }
 

@@ -193,12 +193,12 @@ export default function Home() {
                 <p className="text-red-100">Spectateurs attendus</p>
               </div>
               <div>
-                <div className="text-4xl font-bold mb-2">25+</div>
+                <div className="text-4xl font-bold mb-2">60+</div>
                 <p className="text-red-100">Pilotes participants</p>
               </div>
               <div>
                 <div className="text-4xl font-bold mb-2">6h</div>
-                <p className="text-red-100">De spectacle non-stop</p>
+                <p className="text-red-100">De spectacle intense</p>
               </div>
               <div>
                 <div className="text-4xl font-bold mb-2">100%</div>

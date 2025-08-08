@@ -1,166 +1,52 @@
 'use client';
 
 import { useState } from 'react';
-import { Clock, Calendar, Trophy, Users, MapPin, Crown, Target, Award } from 'lucide-react';
+import { Clock, Calendar, Trophy, Users, Crown, Target, Award } from 'lucide-react';
+// Type pour les items du programme
+type ProgrammeItem = {
+  time: string;
+  endTime?: string;
+  duration?: string;
+  title: string;
+  description: string;
+  icon: React.ElementType;
+  category: string;
+};
 import { Badge } from "@/components/ui/badge";
 
 export default function ProgrammePage() {
   const [activeTab, setActiveTab] = useState('mezzanine');
 
-  const programmeMezzanine = [
-    {
-      time: "13:00",
-      title: "Ouverture des portes",
-      description: "Accueil du public et installation",
-      icon: Users,
-      category: "Accueil"
-    },
-    {
-      time: "13:30",
-      title: "Essais libres",
-      description: "Sessions d'essais pour toutes les catégories",
-      icon: Clock,
-      category: "Essais"
-    },
-    {
-      time: "14:30",
-      title: "Qualifications SX1",
-      description: "Qualifications de la catégorie Elite",
-      icon: Target,
-      category: "SX1"
-    },
-    {
-      time: "15:00",
-      title: "Qualifications SX2",
-      description: "Qualifications catégorie nationale",
-      icon: Target,
-      category: "SX2"
-    },
-    {
-      time: "15:30",
-      title: "Qualifications SXF",
-      description: "Qualifications catégorie féminine",
-      icon: Target,
-      category: "SXF"
-    },
-    {
-      time: "16:30",
-      title: "Finale SXF",
-      description: "Finale de la catégorie Féminin",
-      icon: Trophy,
-      category: "SXF"
-    },
-    {
-      time: "17:00",
-      title: "Finale SX2",
-      description: "Finale de la catégorie SX2",
-      icon: Trophy,
-      category: "SX2"
-    },
-    {
-      time: "17:30",
-      title: "Finale SX1",
-      description: "Grande finale Elite",
-      icon: Trophy,
-      category: "SX1"
-    },
-    {
-      time: "18:00",
-      title: "Remise des prix",
-      description: "Cérémonie de remise des prix",
-      icon: Award,
-      category: "Cérémonie"
-    }
+
+  const programmePaddock: ProgrammeItem[] = [
+    { time: "14:00", endTime: "14:10", duration: "0:10", title: "Essais libres SX2", description: "Première session d'essais libres catégorie SX2", icon: Clock, category: "SX2" },
+    { time: "14:10", endTime: "14:20", duration: "0:10", title: "Essais libres SX2", description: "Deuxième session d'essais libres catégorie SX2", icon: Clock, category: "SX2" },
+    { time: "14:20", endTime: "14:30", duration: "0:10", title: "Essais libres SX1", description: "Première session d'essais libres catégorie SX1", icon: Clock, category: "SX1" },
+    { time: "14:30", endTime: "14:40", duration: "0:10", title: "Essais libres SX1", description: "Deuxième session d'essais libres catégorie SX1", icon: Clock, category: "SX1" },
+    { time: "14:40", endTime: "14:50", duration: "0:10", title: "Essais libres SX JUNIOR", description: "Session d'essais libres catégorie SX JUNIOR", icon: Clock, category: "SX JUNIOR" },
+    { time: "15:00", endTime: "15:15", duration: "0:15", title: "Essais chronos SX2", description: "Première session d'essais chronométrés SX2", icon: Target, category: "SX2" },
+    { time: "15:15", endTime: "15:30", duration: "0:15", title: "Essais chronos SX2", description: "Deuxième session d'essais chronométrés SX2", icon: Target, category: "SX2" },
+    { time: "15:30", endTime: "15:45", duration: "0:15", title: "Essais chronos SX1", description: "Première session d'essais chronométrés SX1", icon: Target, category: "SX1" },
+    { time: "15:45", endTime: "16:00", duration: "0:15", title: "Essais chronos SX1", description: "Deuxième session d'essais chronométrés SX1", icon: Target, category: "SX1" },
+    { time: "16:00", endTime: "16:15", duration: "0:15", title: "Essais chronos SX JUNIOR", description: "Session d'essais chronométrés SX JUNIOR", icon: Target, category: "SX JUNIOR" },
+    { time: "20:00", endTime: "20:20", duration: "0:20", title: "Cérémonie d'ouverture", description: "Cérémonie d'ouverture du Supercross", icon: Users, category: "Cérémonie" },
+    { time: "20:20", endTime: "20:30", duration: "0:10", title: "SX2 Demi-finale 1", description: "7 min + 1 tour", icon: Trophy, category: "SX2" },
+    { time: "20:30", endTime: "20:40", duration: "0:10", title: "SX2 Demi-finale 2", description: "7 min + 1 tour", icon: Trophy, category: "SX2" },
+    { time: "20:40", endTime: "20:50", duration: "0:10", title: "SX1 Demi-finale 1", description: "7 min + 1 tour", icon: Trophy, category: "SX1" },
+    { time: "20:50", endTime: "21:00", duration: "0:10", title: "SX1 Demi-finale 2", description: "7 min + 1 tour", icon: Trophy, category: "SX1" },
+    { time: "21:15", endTime: "21:35", duration: "0:20", title: "Finale SX JUNIOR", description: "8 min + 1 tour + 1 tour reco + podium", icon: Award, category: "SX JUNIOR" },
+    { time: "21:35", endTime: "21:40", duration: "0:05", title: "Repechage SX2", description: "4 min + 1 tour", icon: Trophy, category: "SX2" },
+    { time: "21:45", endTime: "21:50", duration: "0:05", title: "Repechage SX1", description: "4 min + 1 tour", icon: Trophy, category: "SX1" },
+    { time: "22:00", endTime: "22:20", duration: "0:20", title: "Finale SX2", description: "9 min + 1 tour + tour reco + podium", icon: Award, category: "SX2" },
+    { time: "22:20", endTime: "22:40", duration: "0:20", title: "Finale SX1", description: "9 min + 1 tour + tour reco + podium", icon: Award, category: "SX1" }
   ];
 
-  const programmePaddock = [
-    {
-      time: "12:30",
-      title: "Accueil VIP",
-      description: "Accueil privilégié et installation en tribune Paddock",
-      icon: Crown,
-      category: "VIP"
-    },
-    {
-      time: "13:00",
-      title: "Visite des stands",
-      description: "Accès exclusif aux stands et zone paddock",
-      icon: MapPin,
-      category: "Exclusif"
-    },
-    {
-      time: "13:30",
-      title: "Essais libres",
-      description: "Vue privilégiée sur les essais depuis le paddock",
-      icon: Clock,
-      category: "Essais"
-    },
-    {
-      time: "14:00",
-      title: "Rencontre pilotes",
-      description: "Session de dédicaces et photos avec les pilotes",
-      icon: Users,
-      category: "VIP"
-    },
-    {
-      time: "14:30",
-      title: "Qualifications SX1",
-      description: "Vue imprenable sur les qualifications Elite",
-      icon: Target,
-      category: "SX1"
-    },
-    {
-      time: "15:00",
-      title: "Qualifications SX2",
-      description: "Suivi des qualifications depuis la tribune privilégiée",
-      icon: Target,
-      category: "SX2"
-    },
-    {
-      time: "15:30",
-      title: "Qualifications SXF",
-      description: "Qualifications féminines avec commentaires privés",
-      icon: Target,
-      category: "SXF"
-    },
-    {
-      time: "16:00",
-      title: "Cocktail VIP",
-      description: "Pause rafraîchissements en zone exclusive",
-      icon: Crown,
-      category: "VIP"
-    },
-    {
-      time: "16:30",
-      title: "Finale SXF",
-      description: "Finale féminine avec accès privilégié",
-      icon: Trophy,
-      category: "SXF"
-    },
-    {
-      time: "17:00",
-      title: "Finale SX2",
-      description: "Finale SX2 depuis les meilleures places",
-      icon: Trophy,
-      category: "SX2"
-    },
-    {
-      time: "17:30",
-      title: "Finale SX1",
-      description: "Grande finale Elite avec vue exceptionnelle",
-      icon: Trophy,
-      category: "SX1"
-    },
-    {
-      time: "18:00",
-      title: "Cérémonie VIP",
-      description: "Accès privilégié à la remise des prix",
-      icon: Award,
-      category: "VIP"
-    }
-  ];
-
-  const currentProgramme = activeTab === 'mezzanine' ? programmeMezzanine : programmePaddock;
+  // Pour Mezzanine & Tribune, on affiche le programme paddock à partir de la cérémonie d'ouverture
+  const programmeMezzanineFiltered = programmePaddock.filter(item => {
+    // On garde les items à partir de 20:00 inclus
+    return item.time >= "20:00";
+  });
+  const currentProgramme = activeTab === 'mezzanine' ? programmeMezzanineFiltered : programmePaddock;
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -249,14 +135,19 @@ export default function ProgrammePage() {
                   <div className="flex gap-6 p-6 bg-gray-900/30 border border-gray-800 rounded-xl hover:bg-gray-900/50 hover:border-red-600/30 transition-all duration-300">
                     <div className="flex-shrink-0">
                       <div className={`w-14 h-14 rounded-full flex items-center justify-center transition-colors duration-300 ${
-                        item.category === 'VIP' || item.category === 'Exclusif' 
-                          ? 'bg-gradient-to-br from-yellow-500 to-yellow-600' 
-                          : 'bg-gradient-to-br from-red-600 to-red-700'
+                        item.category === 'VIP' || item.category === 'Exclusif'
+                          ? 'bg-gradient-to-br from-yellow-500 to-yellow-600'
+                          : item.category === 'SX1'
+                            ? 'bg-gradient-to-br from-red-600 to-red-700'
+                            : item.category === 'SX2'
+                              ? 'bg-gradient-to-br from-blue-600 to-blue-700'
+                              : item.category === 'SX JUNIOR'
+                                ? 'bg-gradient-to-br from-green-600 to-green-700'
+                                : 'bg-gradient-to-br from-purple-600 to-purple-700'
                       }`}>
                         <IconComponent className="w-7 h-7 text-white" />
                       </div>
                     </div>
-                    
                     <div className="flex-1 min-w-0">
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
                         <div className="flex-1">
@@ -266,12 +157,22 @@ export default function ProgrammePage() {
                           <p className="text-gray-400 text-sm leading-relaxed">
                             {item.description}
                           </p>
+                          {item.category && (
+                            <span className="inline-block mt-2 px-2 py-1 text-xs rounded-md bg-gray-800 text-gray-300">
+                              {item.category}
+                            </span>
+                          )}
                         </div>
-                        
                         <div className="flex flex-col sm:items-end gap-2">
                           <span className="text-2xl font-bold text-red-500 font-mono">
                             {item.time}
                           </span>
+                          {item.endTime && (
+                            <div className="flex flex-col text-xs text-gray-400">
+                              <span>Fin: {item.endTime}</span>
+                              {item.duration && <span>Durée: {item.duration}</span>}
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>

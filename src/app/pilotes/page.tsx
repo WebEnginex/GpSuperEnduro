@@ -11,116 +11,116 @@ export default function PilotesPage() {
 
   const pilotes125 = [
     {
-      numero: 11,
+      numero: 301,
       prenom: "Liam",
       nom: "BRUNEAU",
-      club: "MX Club Bretagne",
+      club: "",
       image: "/images/pilotes_125/Bruneau_Liam.webp"
     },
     {
-      numero: 12,
+      numero: 370,
       prenom: "Xavier",
       nom: "CAMPS FAURIA",
       club: "Team Provence MX",
       image: "/images/pilotes_125/Camps_Fauria_Xavier.webp"
     },
     {
-      numero: 13,
+      numero: 66,
       prenom: "Yannis",
       nom: "LOPEZ",
-      club: "Racing Club Sud",
+      club: "",
       image: "/images/pilotes_125/Lopez_Yannis.webp"
     },
     {
-      numero: 14,
+      numero: 188,
       prenom: "Ilyes",
       nom: "ORTIZ",
-      club: "Supercross Academy",
+      club: "",
       image: "/images/pilotes_125/Ortiz_Ilyes.webp"
     },
     {
-      numero: 15,
+      numero: 321,
       prenom: "Maho",
       nom: "SIMO",
-      club: "Elite Racing Team",
+      club: "",
       image: "/images/pilotes_125/Simo_Maho.webp"
     }
   ];
 
   const pilotes250 = [
     {
-      numero: 21,
+      numero: 141,
       prenom: "Maxime",
       nom: "DESPREY",
-      club: "Team Factory 250",
+      club: "Union Motocycliste Doloise",
       image: "/images/pilotes_250/Desprey_Maxime.webp"
     },
     {
-      numero: 22,
+      numero: 11,
       prenom: "Calvin",
       nom: "FONVIEILLE",
-      club: "Pro Racing Academy",
+      club: "A.G.S. Puech Rampant",
       image: "/images/pilotes_250/Fonvieille_Calvin.webp"
     },
     {
-      numero: 23,
+      numero: 170,
       prenom: "Yannis",
       nom: "IRSUTI",
-      club: "MX Elite France",
+      club: "MC Chateauneuf les Martigues",
       image: "/images/pilotes_250/Irsuti_Yannis.webp"
     },
     {
-      numero: 24,
+      numero: 22,
       prenom: "Mickaël",
       nom: "LAMARQUE",
-      club: "Team Yamaha 250",
+      club: "Moto Club Montendrais",
       image: "/images/pilotes_250/Lamarque_Mickaël.webp"
     },
     {
-      numero: 25,
+      numero: 225,
       prenom: "Charles",
       nom: "LEFRANÇOIS",
-      club: "Kawasaki Racing",
+      club: "Moto Club La Bosse de Bretagne",
       image: "/images/pilotes_250/Lefrançois_Charles.webp"
     }
   ];
 
   const pilotes450 = [
     {
-      numero: 1,
+      numero: 85,
+      prenom: "Cedric",
+      nom: "SOUBEYRAS",
+      club: "MC Chateauneuf les Martigues",
+      image: "/images/pilotes_450/Soubeyras_Cedric.webp"
+    },
+    {
+      numero: 20,
       prenom: "Gregory",
       nom: "ARANDA",
-      club: "Team Elite 450",
+      club: "Moto Club des Costieres",
       image: "/images/pilotes_450/Aranda_Gregory.webp"
     },
     {
-      numero: 2,
+      numero: 945,
       prenom: "Anthony",
       nom: "BOURDON",
-      club: "Factory Honda Racing",
+      club: "Moto Club Langonnais",
       image: "/images/pilotes_450/Bourdon_Anthony.webp"
     },
     {
-      numero: 3,
+      numero: 137,
       prenom: "Adrien",
       nom: "ESCOFFIER",
-      club: "Supercross Pro Team",
+      club: "Moto Club Pertuis Durance Lubéron",
       image: "/images/pilotes_450/Escoffier_Adrien.webp"
     },
     {
-      numero: 4,
+      numero: 6,
       prenom: "Thomas",
       nom: "RAMETTE",
-      club: "Championship Racing",
+      club: "MC Brienon",
       image: "/images/pilotes_450/Ramette_Thomas.webp"
     },
-    {
-      numero: 5,
-      prenom: "Cedric",
-      nom: "SOUBEYRAS",
-      club: "Pro MX France",
-      image: "/images/pilotes_450/Soubeyras_Cedric.webp"
-    }
   ];
 
   const getCurrentPilotes = () => {
@@ -176,7 +176,7 @@ export default function PilotesPage() {
       <section className="relative bg-black py-16 pt-56 sm:pt-60 lg:pt-64">
         {/* Image de fond avec overlay */}
         <div className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-[url('/images/supercross-bg.jpg')] bg-cover bg-center opacity-20"></div>
+          <div className="w-full h-full bg-cover bg-center opacity-20"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
         </div>
         
@@ -195,69 +195,85 @@ export default function PilotesPage() {
         </div>
       </section>
 
-      {/* Onglets */}
-      <section className="py-12 bg-gray-900/50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row bg-gray-800/50 rounded-2xl p-2 gap-2">
-            <button
-              onClick={() => handleTabChange('125')}
-              className={`flex-1 py-4 px-6 rounded-xl font-semibold transition-all duration-300 ${
-                activeTab === '125'
-                  ? `bg-gradient-to-r ${getTabColor('125')} text-white shadow-lg`
-                  : 'bg-gray-700/30 text-gray-400 hover:text-white hover:bg-gray-700/50'
-              }`}
-            >
-              <div className="flex items-center justify-center gap-3">
-                <div>
-                  <div className="text-lg font-bold">125cc</div>
-                </div>
-              </div>
-            </button>
+      {/* Section de transition avec dégradé */}
+      <section className="relative py-12 bg-gradient-to-b from-black via-gray-900/30 to-gray-900/50">
+        <div className="absolute inset-0  bg-cover bg-center opacity-5"></div>
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Sélecteur de catégories avec design amélioré */}
+          <div className="text-center">
+            <h2 className="text-2xl font-bold mb-8 text-gray-300">
+              Choisissez votre <span className="text-red-400">catégorie</span>
+            </h2>
             
-            <button
-              onClick={() => handleTabChange('250')}
-              className={`flex-1 py-4 px-6 rounded-xl font-semibold transition-all duration-300 ${
-                activeTab === '250'
-                  ? `bg-gradient-to-r ${getTabColor('250')} text-white shadow-lg`
-                  : 'bg-gray-700/30 text-gray-400 hover:text-white hover:bg-gray-700/50'
-              }`}
-            >
-              <div className="flex items-center justify-center gap-3">
-                <div>
+            <div className="max-w-lg mx-auto">
+              <div className="flex flex-col sm:flex-row bg-black/60 backdrop-blur-sm rounded-2xl p-3 gap-3 border border-gray-700/50 shadow-2xl">
+                <button
+                  onClick={() => handleTabChange('125')}
+                  className={`flex-1 py-4 px-6 rounded-xl font-semibold transition-all duration-300 ${
+                    activeTab === '125'
+                      ? `bg-gradient-to-r ${getTabColor('125')} text-white shadow-lg transform scale-105 shadow-green-500/25`
+                      : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50 border border-gray-600/30'
+                  }`}
+                >
+                  <div className="text-lg font-bold">125cc</div>
+                  <div className="text-xs opacity-75 mt-1">Espoir</div>
+                </button>
+                
+                <button
+                  onClick={() => handleTabChange('250')}
+                  className={`flex-1 py-4 px-6 rounded-xl font-semibold transition-all duration-300 ${
+                    activeTab === '250'
+                      ? `bg-gradient-to-r ${getTabColor('250')} text-white shadow-lg transform scale-105 shadow-blue-500/25`
+                      : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50 border border-gray-600/30'
+                  }`}
+                >
                   <div className="text-lg font-bold">250cc</div>
-                </div>
-              </div>
-            </button>
+                  <div className="text-xs opacity-75 mt-1">SX2</div>
+                </button>
 
-            <button
-              onClick={() => handleTabChange('450')}
-              className={`flex-1 py-4 px-6 rounded-xl font-semibold transition-all duration-300 ${
-                activeTab === '450'
-                  ? `bg-gradient-to-r ${getTabColor('450')} text-white shadow-lg`
-                  : 'bg-gray-700/30 text-gray-400 hover:text-white hover:bg-gray-700/50'
-              }`}
-            >
-              <div className="flex items-center justify-center gap-3">
-                <div>
+                <button
+                  onClick={() => handleTabChange('450')}
+                  className={`flex-1 py-4 px-6 rounded-xl font-semibold transition-all duration-300 ${
+                    activeTab === '450'
+                      ? `bg-gradient-to-r ${getTabColor('450')} text-white shadow-lg transform scale-105 shadow-red-500/25`
+                      : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50 border border-gray-600/30'
+                  }`}
+                >
                   <div className="text-lg font-bold">450cc</div>
-                </div>
+                  <div className="text-xs opacity-75 mt-1">SX1</div>
+                </button>
               </div>
-            </button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Pilotes */}
-      <section className="py-16 bg-black">
+      <section className="py-16 bg-gradient-to-b from-gray-900/50 to-black">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* En-tête de la catégorie active */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">
-              Catégorie {activeTab}cc
-            </h2>
-            <p className="text-gray-400 text-lg">
-              {activeTab === '125' && 'Les jeunes talents qui feront le supercross de demain'}
-              {activeTab === '250' && 'Les espoirs français du supercross'}
-              {activeTab === '450' && "L'élite française du supercross"}
+            <div className="inline-flex items-center gap-3 mb-6">
+              <div className={`w-16 h-16 rounded-full bg-gradient-to-r ${getTabColor(activeTab)} flex items-center justify-center shadow-lg`}>
+                <span className="text-white font-bold text-sm">{activeTab}cc</span>
+              </div>
+              <h2 className="text-3xl font-bold">
+                {activeTab === '125' && (
+                  <>Catégorie <span className="text-green-400">Espoir</span></>
+                )}
+                {activeTab === '250' && (
+                  <>Catégorie <span className="text-blue-400">SX2</span></>
+                )}
+                {activeTab === '450' && (
+                  <>Catégorie <span className="text-red-400">SX1</span></>
+                )}
+              </h2>
+            </div>
+            
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              {activeTab === '125' && 'Les jeunes talents de la catégorie Espoir qui représentent l\'avenir du supercross'}
+              {activeTab === '250' && 'La catégorie SX2, l\'antichambre de l\'élite du supercross français'}
+              {activeTab === '450' && "La catégorie SX1, l'élite absolue du supercross français"}
             </p>
           </div>
           
@@ -359,7 +375,7 @@ export default function PilotesPage() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center p-6 bg-gray-900/50 rounded-xl border border-gray-800">
-              <div className="text-4xl font-bold text-red-500 mb-2">15</div>
+              <div className="text-4xl font-bold text-red-500 mb-2">60+</div>
               <h3 className="text-lg font-semibold mb-2">Pilotes confirmés</h3>
               <p className="text-gray-400 text-sm">Répartis sur 3 catégories</p>
             </div>
@@ -371,7 +387,7 @@ export default function PilotesPage() {
             </div>
             
             <div className="text-center p-6 bg-gray-900/50 rounded-xl border border-gray-800">
-              <div className="text-4xl font-bold text-blue-500 mb-2">5h30</div>
+              <div className="text-4xl font-bold text-blue-500 mb-2">6h</div>
               <h3 className="text-lg font-semibold mb-2">Durée totale</h3>
               <p className="text-gray-400 text-sm">De spectacle intense</p>
             </div>
