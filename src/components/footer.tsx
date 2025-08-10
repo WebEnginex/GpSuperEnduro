@@ -34,7 +34,7 @@ export function Footer() {
               </h3>
               <div className="space-y-2 text-slate-300 text-sm">
                 <a 
-                  href="https://maps.app.goo.gl/8ATMBr7goc6hYQE5A"
+                  href="https://www.google.com/maps/dir//Gayant+Expo+Concerts,+Rives+de+Gayant,+59500+Douai"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block hover:text-red-400 transition-colors duration-300 cursor-pointer"

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useScrollPosition } from "@/hooks/useScrollPosition";
 import { useState, useEffect } from "react";
 import { Menu, X, Ticket, Settings } from "lucide-react";
-import Image from "next/image";
+import { CachedImage } from "@/components/media/CachedImage";
 import { createClient } from '@/lib/supabase/client';
 import type { AuthChangeEvent, Session } from '@supabase/supabase-js';
 
@@ -41,16 +41,17 @@ export function Header({ showCountdown = true }: HeaderProps) {
     { href: "/pilotes", label: "Pilotes" },
     { href: "/billeterie", label: "Billeterie" },
     { href: "/contact", label: "Contact" },
+    { href: "/informations", label: "Informations" },
   ];
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
       scrollY > 50 
-        ? 'bg-black/80 backdrop-blur-lg shadow-xl' 
+        ? 'bg-black/95 backdrop-blur-lg shadow-xl border-b border-gray-800/50' 
         : showCountdown ? 'bg-transparent' : 'bg-black/60'
     }`}>
       
-      {/* Image de fond uniquement pour les pages autres que l'accueil et quand pas de scroll */}
+      {/* Image de fond pour les pages autres que l'accueil */}
       {!showCountdown && (
         <div className={`absolute inset-0 z-0 transition-opacity duration-700 ease-in-out ${
           scrollY <= 50 ? 'opacity-100' : 'opacity-0'
@@ -68,9 +69,24 @@ export function Header({ showCountdown = true }: HeaderProps) {
             {/* Titre à gauche - Desktop seulement */}
             <div className="flex-1 flex justify-start">
               <Link href="/" className="cursor-pointer">
-                <h1 className="text-white text-2xl font-bold tracking-wide transition-colors duration-300">
-                  Supercross <span className="text-red-600">Douai</span>
-                </h1>
+                <div className="flex flex-col">
+                  <h1 className="text-white text-2xl font-bold tracking-wide transition-colors duration-300">
+                    Supercross <span className="text-red-600">Douai</span>
+                  </h1>
+                  <div className="flex items-center space-x-2 mt-1">
+                    <CachedImage
+                      src="/images/flags/france.svg"
+                      alt="Drapeau français"
+                      width={20}
+                      height={15}
+                      className="w-5 h-3.5"
+                      priority={true}
+                    />
+                    <span className="text-gray-300 text-sm font-medium">
+                      Championnat de France
+                    </span>
+                  </div>
+                </div>
               </Link>
             </div>
 
@@ -78,21 +94,23 @@ export function Header({ showCountdown = true }: HeaderProps) {
             <div className="flex-1 justify-center flex">
               <div className="flex items-center space-x-8 sm:space-x-10">
                 <div className="flex-shrink-0">
-                  <Image
+                  <CachedImage
                     src="/images/partners/FFMOTO_LOGO.png"
                     alt="FFMOTO"
                     width={100}
                     height={60}
                     className="h-16 sm:h-20 w-auto"
+                    priority={true}
                   />
                 </div>
                 <div className="flex-shrink-0">
-                  <Image
+                  <CachedImage
                     src="/images/partners/Supercross_Championnat_FR.png"
                     alt="Championnat de France Supercross"
                     width={100}
                     height={60}
                     className="h-16 sm:h-20 w-auto"
+                    priority={true}
                   />
                 </div>
               </div>
@@ -156,29 +174,46 @@ export function Header({ showCountdown = true }: HeaderProps) {
               {/* Titre et logos dans le menu mobile */}
               <div className="text-center mb-6">
                 <Link href="/" onClick={() => setMobileMenuOpen(false)}>
-                  <h1 className="text-white text-xl sm:text-2xl font-bold tracking-wide mb-4">
-                    Supercross <span className="text-red-600">Douai</span>
-                  </h1>
+                  <div className="flex flex-col items-center mb-4">
+                    <h1 className="text-white text-xl sm:text-2xl font-bold tracking-wide">
+                      Supercross <span className="text-red-600">Douai</span>
+                    </h1>
+                    <div className="flex items-center space-x-2 mt-2">
+                      <CachedImage
+                        src="/images/flags/france.svg"
+                        alt="Drapeau français"
+                        width={16}
+                        height={12}
+                        className="w-4 h-3"
+                        priority={true}
+                      />
+                      <span className="text-gray-300 text-sm font-medium">
+                        Championnat de France
+                      </span>
+                    </div>
+                  </div>
                 </Link>
                 
                 {/* Logos dans le menu mobile */}
                 <div className="flex items-center justify-center space-x-6 sm:space-x-8">
                   <div className="flex-shrink-0">
-                    <Image
+                    <CachedImage
                       src="/images/partners/FFMOTO_LOGO.png"
                       alt="FFMOTO"
                       width={100}
                       height={60}
                       className="h-14 sm:h-16 w-auto"
+                      priority={true}
                     />
                   </div>
                   <div className="flex-shrink-0">
-                    <Image
+                    <CachedImage
                       src="/images/partners/Supercross_Championnat_FR.png"
                       alt="Championnat de France Supercross"
                       width={100}
                       height={60}
                       className="h-14 sm:h-16 w-auto"
+                      priority={true}
                     />
                   </div>
                 </div>

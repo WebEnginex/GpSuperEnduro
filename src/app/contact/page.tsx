@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { createMessage } from '@/lib/supabase/admin';
 import { Badge } from "@/components/ui/badge";
-import { Loader2, Send, Mail, Phone, MapPin, Clock, Users, Wifi, Car, Bus } from "lucide-react";
+import { Loader2, Send, Mail, MapPin, Clock, Users, Car, Bus } from "lucide-react";
 
 // Composants de formulaire locaux
 const Input = ({ className, ...props }: React.InputHTMLAttributes<HTMLInputElement>) => (
@@ -48,6 +48,17 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText('contact@sxtour-douai.fr');
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch (err) {
+      console.error('Erreur lors de la copie:', err);
+    }
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -76,14 +87,8 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Hero Section */}
+      {/* Section noire sous le header */}
       <section className="relative bg-black py-16 pt-56 sm:pt-60 lg:pt-64">
-        {/* Image de fond avec overlay */}
-        <div className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-[url('/images/supercross-bg.jpg')] bg-cover bg-center opacity-20"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
-        </div>
-        
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Badge variant="secondary" className="mb-4 bg-red-600/20 text-red-400 border-red-600/30">
             Supercross Douai 2025
@@ -97,10 +102,10 @@ export default function Contact() {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Formulaire de Contact */}
+      {/* Section avec dégradé pour le contenu */}
+      <section className="py-16 bg-gradient-to-b from-black via-gray-900/30 to-gray-900/50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12">{/* Formulaire de Contact */}
             <div className="order-2 lg:order-1">
               <div className="bg-gray-900/50 rounded-xl border border-gray-800 p-8">
                 <h2 className="text-2xl font-bold text-white mb-6">
@@ -216,18 +221,20 @@ export default function Contact() {
                       </div>
                       <div>
                         <h3 className="font-semibold text-white">Email</h3>
-                        <p className="text-gray-300">contact@sxtour-douai.fr</p>
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={copyEmail}
+                            className="text-gray-300 hover:text-white transition-colors cursor-pointer"
+                          >
+                            contact@sxtour-douai.fr
+                          </button>
+                          {emailCopied && (
+                            <span className="text-green-400 text-sm">Copié !</span>
+                          )}
+                        </div>
                       </div>
                     </div>
-                    <div className="flex items-start gap-4">
-                      <div className="bg-red-600/20 p-3 rounded-lg">
-                        <Phone className="h-5 w-5 text-red-400" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-white">Téléphone</h3>
-                        <p className="text-gray-300">03 27 XX XX XX</p>
-                      </div>
-                    </div>
+                    
                     <div className="flex items-start gap-4">
                       <div className="bg-red-600/20 p-3 rounded-lg">
                         <MapPin className="h-5 w-5 text-red-400" />
@@ -249,11 +256,18 @@ export default function Contact() {
                     Horaires d&apos;Ouverture
                   </h2>
                   <div className="space-y-4">
-                    <div className="flex items-center gap-4">
-                      <Clock className="h-5 w-5 text-red-400" />
+                    <div className="flex items-start gap-4">
+                      <Clock className="h-5 w-5 text-red-400 mt-1" />
                       <div>
-                        <p className="font-semibold text-white">Jour de l&apos;événement</p>
-                        <p className="text-gray-300">09h00 - 18h00</p>
+                        <p className="font-semibold text-white">Tribune Paddock Carré Or & VIP</p>
+                        <p className="text-gray-300">13h30</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <Clock className="h-5 w-5 text-red-400 mt-1" />
+                      <div>
+                        <p className="font-semibold text-white">Mezzanine & Tribune</p>
+                        <p className="text-gray-300">18h30</p>
                       </div>
                     </div>
                   </div>
@@ -264,51 +278,82 @@ export default function Contact() {
                   <h2 className="text-2xl font-bold text-white mb-6">
                     Services Disponibles
                   </h2>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="flex items-center gap-2">
-                      <Users className="h-4 w-4 text-red-400" />
-                      <span className="text-sm text-gray-300">Groupes</span>
+                  
+                  {/* Accès & Mobilité */}
+                  <div className="mb-6">
+                    <h3 className="text-sm font-semibold text-gray-400 mb-3 uppercase tracking-wide">Accès & Mobilité</h3>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="flex items-center gap-2">
+                        <Car className="h-4 w-4 text-red-400" />
+                        <span className="text-sm text-gray-300">Parking</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Bus className="h-4 w-4 text-red-400" />
+                        <span className="text-sm text-gray-300">Transport</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="text-red-400">♿</div>
+                        <span className="text-sm text-gray-300">PMR</span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Wifi className="h-4 w-4 text-red-400" />
-                      <span className="text-sm text-gray-300">WiFi gratuit</span>
+                  </div>
+
+                  {/* Restauration */}
+                  <div className="mb-6">
+                    <h3 className="text-sm font-semibold text-gray-400 mb-3 uppercase tracking-wide">Restauration</h3>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="flex items-center gap-2">
+                        <div className="text-red-400">🍺</div>
+                        <span className="text-sm text-gray-300">Bar</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="text-red-400">🍟</div>
+                        <span className="text-sm text-gray-300">Friterie</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="text-red-400">🥪</div>
+                        <span className="text-sm text-gray-300">Snack</span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Car className="h-4 w-4 text-red-400" />
-                      <span className="text-sm text-gray-300">Parking</span>
+                  </div>
+
+                  {/* Réservations */}
+                  <div className="mb-6">
+                    <h3 className="text-sm font-semibold text-gray-400 mb-3 uppercase tracking-wide">Réservations</h3>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="flex items-center gap-2">
+                        <Users className="h-4 w-4 text-red-400" />
+                        <span className="text-sm text-gray-300">Groupes</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="text-red-400">💼</div>
+                        <span className="text-sm text-gray-300">CSE</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="text-red-400">👶</div>
+                        <span className="text-sm text-gray-300">Enfants</span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Bus className="h-4 w-4 text-red-400" />
-                      <span className="text-sm text-gray-300">Transport</span>
+                  </div>
+
+                  {/* Section VIP */}
+                  <div className="pt-4 border-t border-gray-700">
+                    <div className="bg-gradient-to-r from-yellow-600/20 to-yellow-500/20 rounded-lg border border-yellow-500/30 p-4">
+                      <div className="flex items-center gap-2">
+                        <div className="text-yellow-400">⭐</div>
+                        <span className="font-semibold text-yellow-400">Expérience VIP</span>
+                      </div>
+                      <p className="text-sm text-gray-300 mt-1">🍾 Bar buffet exclusif</p>
                     </div>
                   </div>
                 </div>
 
-                {/* FAQ Rapide */}
-                <div className="bg-gray-900/30 rounded-xl border border-gray-800 p-8">
-                  <h2 className="text-xl font-bold text-white mb-4">
-                    Questions Fréquentes
-                  </h2>
-                  <div className="space-y-3">
-                    <div>
-                      <h4 className="font-semibold text-white text-sm">Puis-je modifier ma réservation ?</h4>
-                      <p className="text-gray-300 text-sm">Oui, jusqu&apos;à 48h avant l&apos;événement.</p>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-white text-sm">Où récupérer mes billets ?</h4>
-                      <p className="text-gray-300 text-sm">À l&apos;accueil le jour J ou par email.</p>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-white text-sm">L&apos;événement a-t-il lieu par tous les temps ?</h4>
-                      <p className="text-gray-300 text-sm">Oui, l&apos;événement est maintenu sauf conditions extrêmes.</p>
-                    </div>
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

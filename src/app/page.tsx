@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useVisitTracker } from "@/hooks/useVisitTracker";
 import { Header } from "@/components/header";
 import { SimpleCountdown } from "@/components/simple-countdown";
+import { CachedImage } from "@/components/media/CachedImage";
+import { CachedVideo } from "@/components/media/CachedVideo";
 
 export default function Home() {
   // Tracker les visites automatiquement
@@ -19,26 +21,26 @@ export default function Home() {
         {/* Vidéo en arrière-plan */}
         <div className="absolute inset-0 z-0">
         {/* Vidéo Desktop */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
+        <CachedVideo
+          src="/videos/SXTour2025.webm"
+          autoPlay={true}
+          muted={true}
+          loop={true}
+          controls={false}
           className="hidden md:block w-full h-full object-cover"
-        >
-          <source src="/videos/SXTour2025.webm" type="video/webm" />
-        </video>
+          priority={true}
+        />
         
         {/* Vidéo Mobile/Tablette */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
+        <CachedVideo
+          src="/videos/SXTour2025-mobile.webm"
+          autoPlay={true}
+          muted={true}
+          loop={true}
+          controls={false}
           className="block md:hidden w-full h-full object-cover"
-        >
-          <source src="/videos/SXTour2025-mobile.webm" type="video/webm" />
-        </video>
+          priority={true}
+        />
         
         {/* Overlay sombre pour améliorer la lisibilité */}
         <div className="absolute inset-0 bg-black/50"></div>
@@ -127,12 +129,36 @@ export default function Home() {
         <section className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto text-center">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
-              SX Tour
+              Supercross de
               <span className="text-red-600 dark:text-red-400"> Douai</span>
             </h1>
             
+            <div className="mb-4">
+              <div className="flex items-center justify-center space-x-3">
+                <CachedImage
+                  src="/images/flags/france.svg"
+                  alt="Drapeau français"
+                  width={24}
+                  height={18}
+                  className="w-6 h-4"
+                  priority={true}
+                />
+                <p className="text-lg sm:text-xl text-red-600 dark:text-red-400 font-semibold">
+                  Championnat de France 2025
+                </p>
+                <CachedImage
+                  src="/images/flags/france.svg"
+                  alt="Drapeau français"
+                  width={24}
+                  height={18}
+                  className="w-6 h-4"
+                  priority={true}
+                />
+              </div>
+            </div>
+            
             <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-300 max-w-4xl mx-auto leading-relaxed mb-12">
-              L&apos;événement supercross le plus spectaculaire de France vous attend à Gayant Expo Concerts le 4 octobre 2025 !
+              L&apos;événement supercross le plus spectaculaire du Nord de la France vous attend à Gayant Expo Concerts le Samedi 4 octobre 2025 !
             </p>
 
             {/* Boutons d'action */}

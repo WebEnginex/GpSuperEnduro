@@ -12,7 +12,9 @@ export const CACHE_CONFIG = {
     { url: '/images/background/supercross-bg.webp', type: 'image' as const },
     { url: '/images/logo-sx-tour.svg', type: 'image' as const },
     { url: '/images/logo-championnat-fr.svg', type: 'image' as const },
-    { url: '/images/affiche/affiche_supercross_douai.webp', type: 'image' as const }
+    { url: '/images/affiche/affiche_supercross_douai.webp', type: 'image' as const },
+    { url: '/images/flags/france.svg', type: 'image' as const },
+    { url: '/images/marques/yamaha.svg', type: 'image' as const }
   ],
   
   // Médias à précharger pour la page pilotes

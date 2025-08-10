@@ -3,123 +3,149 @@
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
-import Image from 'next/image';
+import { CachedImage } from '@/components/media/CachedImage';
+import { MARQUES, type MarqueId } from '@/lib/data/marques';
+
+// Interface pour les pilotes avec marque
+interface Pilote {
+  numero: number;
+  prenom: string;
+  nom: string;
+  club: string;
+  image: string;
+  marque: MarqueId;
+}
 
 export default function PilotesPage() {
   const [activeTab, setActiveTab] = useState('125');
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const pilotes125 = [
+  const pilotes125: Pilote[] = [
     {
       numero: 301,
       prenom: "Liam",
       nom: "BRUNEAU",
       club: "",
-      image: "/images/pilotes_125/Bruneau_Liam.webp"
+      image: "/images/pilotes_125/Bruneau_Liam.webp",
+      marque: "ktm"
     },
     {
       numero: 370,
       prenom: "Xavier",
       nom: "CAMPS FAURIA",
-      club: "Team Provence MX",
-      image: "/images/pilotes_125/Camps_Fauria_Xavier.webp"
-    },
-    {
-      numero: 66,
-      prenom: "Yannis",
-      nom: "LOPEZ",
       club: "",
-      image: "/images/pilotes_125/Lopez_Yannis.webp"
-    },
-    {
-      numero: 188,
-      prenom: "Ilyes",
-      nom: "ORTIZ",
-      club: "",
-      image: "/images/pilotes_125/Ortiz_Ilyes.webp"
+      image: "/images/pilotes_125/Camps_Fauria_Xavier.webp",
+      marque: "gasgas"
     },
     {
       numero: 321,
       prenom: "Maho",
       nom: "SIMO",
       club: "",
-      image: "/images/pilotes_125/Simo_Maho.webp"
-    }
+      image: "/images/pilotes_125/Simo_Maho.webp",
+      marque: "yamaha"
+    },
+    {
+      numero: 188,
+      prenom: "Ilyes",
+      nom: "ORTIZ",
+      club: "",
+      image: "/images/pilotes_125/Ortiz_Ilyes.webp",
+      marque: "ktm"
+    },
+    {
+      numero: 66,
+      prenom: "Yannis",
+      nom: "LOPEZ",
+      club: "",
+      image: "/images/pilotes_125/Lopez_Yannis.webp",
+      marque: "husqvarna"
+    },
   ];
 
-  const pilotes250 = [
+  const pilotes250: Pilote[] = [
     {
       numero: 141,
       prenom: "Maxime",
       nom: "DESPREY",
       club: "Union Motocycliste Doloise",
-      image: "/images/pilotes_250/Desprey_Maxime.webp"
+      image: "/images/pilotes_250/Desprey_Maxime.webp",
+      marque: "yamaha"
     },
     {
       numero: 11,
       prenom: "Calvin",
       nom: "FONVIEILLE",
       club: "A.G.S. Puech Rampant",
-      image: "/images/pilotes_250/Fonvieille_Calvin.webp"
-    },
-    {
-      numero: 170,
-      prenom: "Yannis",
-      nom: "IRSUTI",
-      club: "MC Chateauneuf les Martigues",
-      image: "/images/pilotes_250/Irsuti_Yannis.webp"
-    },
-    {
-      numero: 22,
-      prenom: "Mickaël",
-      nom: "LAMARQUE",
-      club: "Moto Club Montendrais",
-      image: "/images/pilotes_250/Lamarque_Mickaël.webp"
+      image: "/images/pilotes_250/Fonvieille_Calvin.webp",
+      marque: "ktm"
     },
     {
       numero: 225,
       prenom: "Charles",
       nom: "LEFRANÇOIS",
       club: "Moto Club La Bosse de Bretagne",
-      image: "/images/pilotes_250/Lefrançois_Charles.webp"
-    }
+      image: "/images/pilotes_250/Lefrançois_Charles.webp",
+      marque: "honda"
+    },
+    {
+      numero: 170,
+      prenom: "Yannis",
+      nom: "IRSUTI",
+      club: "MC Chateauneuf les Martigues",
+      image: "/images/pilotes_250/Irsuti_Yannis.webp",
+      marque: "stark"
+    },
+    {
+      numero: 22,
+      prenom: "Mickaël",
+      nom: "LAMARQUE",
+      club: "Moto Club Montendrais",
+      image: "/images/pilotes_250/Lamarque_Mickaël.webp",
+      marque: "ktm"
+    },
   ];
 
-  const pilotes450 = [
+  const pilotes450: Pilote[] = [
     {
       numero: 85,
       prenom: "Cedric",
       nom: "SOUBEYRAS",
       club: "MC Chateauneuf les Martigues",
-      image: "/images/pilotes_450/Soubeyras_Cedric.webp"
+      image: "/images/pilotes_450/Soubeyras_Cedric.webp",
+      marque: "kawasaki"
     },
     {
       numero: 20,
       prenom: "Gregory",
       nom: "ARANDA",
       club: "Moto Club des Costieres",
-      image: "/images/pilotes_450/Aranda_Gregory.webp"
+      image: "/images/pilotes_450/Aranda_Gregory.webp",
+      marque: "yamaha"
     },
     {
       numero: 945,
       prenom: "Anthony",
       nom: "BOURDON",
       club: "Moto Club Langonnais",
-      image: "/images/pilotes_450/Bourdon_Anthony.webp"
+      image: "/images/pilotes_450/Bourdon_Anthony.webp",
+      marque: "kawasaki"
     },
     {
       numero: 137,
       prenom: "Adrien",
       nom: "ESCOFFIER",
       club: "Moto Club Pertuis Durance Lubéron",
-      image: "/images/pilotes_450/Escoffier_Adrien.webp"
+      image: "/images/pilotes_450/Escoffier_Adrien.webp",
+      marque: "yamaha"
     },
     {
       numero: 6,
       prenom: "Thomas",
       nom: "RAMETTE",
       club: "MC Brienon",
-      image: "/images/pilotes_450/Ramette_Thomas.webp"
+      image: "/images/pilotes_450/Ramette_Thomas.webp",
+      marque: "suzuki"
     },
   ];
 
@@ -172,14 +198,8 @@ export default function PilotesPage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Hero Section */}
+      {/* Section noire sous le header */}
       <section className="relative bg-black py-16 pt-56 sm:pt-60 lg:pt-64">
-        {/* Image de fond avec overlay */}
-        <div className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-cover bg-center opacity-20"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
-        </div>
-        
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Badge variant="secondary" className="mb-4 bg-red-600/20 text-red-400 border-red-600/30">
             Supercross Douai 2025
@@ -190,14 +210,11 @@ export default function PilotesPage() {
           <p className="text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
             Découvrez les talents exceptionnels qui s&apos;affronteront lors du championnat
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center text-lg text-gray-400">            
-          </div>
         </div>
       </section>
 
       {/* Section de transition avec dégradé */}
       <section className="relative py-12 bg-gradient-to-b from-black via-gray-900/30 to-gray-900/50">
-        <div className="absolute inset-0  bg-cover bg-center opacity-5"></div>
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Sélecteur de catégories avec design amélioré */}
           <div className="text-center">
@@ -216,7 +233,7 @@ export default function PilotesPage() {
                   }`}
                 >
                   <div className="text-lg font-bold">125cc</div>
-                  <div className="text-xs opacity-75 mt-1">Espoir</div>
+                  <div className="text-xs opacity-75 mt-1">Junior</div>
                 </button>
                 
                 <button
@@ -228,7 +245,7 @@ export default function PilotesPage() {
                   }`}
                 >
                   <div className="text-lg font-bold">250cc</div>
-                  <div className="text-xs opacity-75 mt-1">SX2</div>
+                  <div className="text-xs opacity-75 mt-1">SX 250</div>
                 </button>
 
                 <button
@@ -240,7 +257,7 @@ export default function PilotesPage() {
                   }`}
                 >
                   <div className="text-lg font-bold">450cc</div>
-                  <div className="text-xs opacity-75 mt-1">SX1</div>
+                  <div className="text-xs opacity-75 mt-1">SX 450</div>
                 </button>
               </div>
             </div>
@@ -259,13 +276,13 @@ export default function PilotesPage() {
               </div>
               <h2 className="text-3xl font-bold">
                 {activeTab === '125' && (
-                  <>Catégorie <span className="text-green-400">Espoir</span></>
+                  <>Catégorie <span className="text-green-400">Junior</span></>
                 )}
                 {activeTab === '250' && (
-                  <>Catégorie <span className="text-blue-400">SX2</span></>
+                  <>Catégorie <span className="text-blue-400">SX 250</span></>
                 )}
                 {activeTab === '450' && (
-                  <>Catégorie <span className="text-red-400">SX1</span></>
+                  <>Catégorie <span className="text-red-400">SX 450</span></>
                 )}
               </h2>
             </div>
@@ -300,43 +317,63 @@ export default function PilotesPage() {
             )}
 
             {/* Pilotes Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {getVisiblePilotes().map((pilote, index) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">{getVisiblePilotes().map((pilote, index) => (
                 <div key={index} className="group w-full">
-                  <div className="relative aspect-[3/4] bg-gray-900 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300 w-full h-auto">
+                  <div className="relative aspect-[3/4] bg-gray-900 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300 w-full h-auto border border-gray-800 hover:border-red-500/50">
                     {/* Image du pilote */}
                     <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden">
-                      <Image
+                      <CachedImage
                         src={pilote.image}
                         alt={`${pilote.prenom} ${pilote.nom}`}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-500"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-110 transition-transform duration-500 w-full h-full"
+                        priority={index < 6} // Prioriser les 6 premiers pilotes
+                      />
+                      {/* Gradient overlay pour améliorer la lisibilité */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"></div>
+                    </div>
+
+                    {/* Logo de la marque en haut à gauche - taille encore augmentée */}
+                    <div className="absolute top-4 left-4">
+                      <CachedImage
+                        src={MARQUES[pilote.marque].logo}
+                        alt={MARQUES[pilote.marque].nom}
+                        width={60}
+                        height={60}
+                        className="object-contain w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 drop-shadow-lg"
                       />
                     </div>
 
-                    {/* Numéro en haut à droite */}
-                    <div className="absolute top-4 right-4 text-red-500 font-bold text-2xl">
-                      #{pilote.numero}
+                    {/* Numéro style motocross en haut à droite - police Racing */}
+                    <div className="absolute top-4 right-4">
+                      <span className="text-white font-bold text-2xl tracking-wider drop-shadow-lg font-racing" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
+                        {pilote.numero}
+                      </span>
                     </div>
 
-                    {/* Informations en bas à gauche */}
-                    <div className="absolute bottom-4 left-4 space-y-1">
-                      <div className="space-y-0.5">
-                        <div className="text-white font-medium text-lg">
-                          {pilote.prenom}
+                    {/* Informations organisées en bas */}
+                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/95 to-transparent">
+                      <div className="space-y-2">
+                        {/* Nom et prénom avec police Racing */}
+                        <div>
+                          <div className="text-white font-bold text-lg leading-tight tracking-wide drop-shadow-lg font-racing" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
+                            {pilote.prenom}
+                          </div>
+                          <div className="text-red-400 font-bold text-xl leading-tight tracking-wide drop-shadow-lg font-racing" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
+                            {pilote.nom}
+                          </div>
                         </div>
-                        <div className="text-red-500 font-bold text-xl">
-                          {pilote.nom}
-                        </div>
-                        <div className="text-white/80 text-sm">
-                          {pilote.club}
-                        </div>
+                        
+                        {/* Club sans style de liste */}
+                        {pilote.club && (
+                          <div className="text-gray-300 text-sm font-medium">
+                            {pilote.club}
+                          </div>
+                        )}
                       </div>
                     </div>
 
                     {/* Overlay au hover */}
-                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
                 </div>
               ))}

@@ -5,11 +5,10 @@ import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Loader2, ArrowLeft } from "lucide-react";
+import { Mail, Loader2 } from "lucide-react";
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import type { AuthChangeEvent, Session } from '@supabase/supabase-js';
-import Link from 'next/link';
 
 // Composant Alert local temporaire
 const Alert = ({ children, className }: { children: React.ReactNode, className?: string }) => (
@@ -66,45 +65,24 @@ export default function AdminLogin() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Background avec pattern */}
-      <div className="absolute inset-0 z-0">
-        <div className="w-full h-full bg-[url('/images/supercross-bg.jpg')] bg-cover bg-center opacity-10"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/90 to-black"></div>
-      </div>
-
-      {/* Header simple pour l'admin */}
-      <div className="relative z-10 border-b border-gray-800/50 bg-black/50 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-3 text-white hover:text-red-400 transition-colors">
-              <ArrowLeft className="w-5 h-5" />
-              <span className="text-lg font-semibold">Retour au site</span>
-            </Link>
-            <div className="flex items-center gap-2">
-              <h1 className="text-xl font-bold">
-                Supercross <span className="text-red-600">Douai</span>
-              </h1>
-            </div>
-          </div>
+      {/* Section noire sous le header */}
+      <section className="relative bg-black py-16 pt-56 sm:pt-60 lg:pt-64">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <Badge variant="secondary" className="mb-4 bg-red-600/20 text-red-400 border-red-600/30">
+            Espace Administrateur
+          </Badge>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
+            <span className="text-red-600">Administration</span> Douai
+          </h1>
+          <p className="text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
+            Accès sécurisé à l&apos;espace de gestion
+          </p>
         </div>
-      </div>
+      </section>
 
-      {/* Contenu principal */}
-      <div className="relative z-10 flex items-center justify-center min-h-[calc(100vh-80px)] p-4">
-        <div className="w-full max-w-md">
-          {/* En-tête avec badge */}
-          <div className="text-center mb-8">
-            <Badge variant="secondary" className="mb-6 bg-red-600/20 text-red-400 border-red-600/30">
-              Espace Administrateur
-            </Badge>
-            <h2 className="text-3xl font-bold mb-2">
-              <span className="text-red-600">Administration</span>
-            </h2>
-            <p className="text-gray-400 text-lg">
-              Accès réservé aux administrateurs SX Tour Douai
-            </p>
-          </div>
-
+      {/* Section de connexion avec dégradé */}
+      <section className="py-16 bg-gradient-to-b from-black via-gray-900/30 to-gray-900/50">
+        <div className="max-w-md mx-auto px-4 sm:px-6 lg:px-8">
           {/* Carte de connexion */}
           <Card className="bg-gray-900/50 border-gray-800/50 backdrop-blur-sm shadow-2xl">
             <CardContent className="p-8">
@@ -173,7 +151,7 @@ export default function AdminLogin() {
             <p>© 2025 Supercross Douai - Tous droits réservés</p>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

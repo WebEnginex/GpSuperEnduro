@@ -6,14 +6,8 @@ import Link from "next/link";
 export default function Billeterie() {
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Hero Section */}
+      {/* Section noire sous le header */}
       <section className="relative bg-black py-16 pt-56 sm:pt-60 lg:pt-64">
-        {/* Image de fond avec overlay */}
-        <div className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-[url('/images/supercross-bg.jpg')] bg-cover bg-center opacity-20"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
-        </div>
-        
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Badge variant="secondary" className="mb-4 bg-red-600/20 text-red-400 border-red-600/30">
             Supercross Douai 2025
@@ -27,11 +21,10 @@ export default function Billeterie() {
         </div>
       </section>
 
-      {/* Tarifs Section */}
-      <section className="py-16 bg-gray-900/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-          {/* Mezzanine */}
+      {/* Tarifs Section avec dégradé */}
+      <section className="py-16 bg-gradient-to-b from-black via-gray-900/30 to-gray-900/50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">{/* Mezzanine */}
           <Link 
             href="https://www.billetweb.fr/championnat-de-france-de-supercross-2025" 
             target="_blank" 
