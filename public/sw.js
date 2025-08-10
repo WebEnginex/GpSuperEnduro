@@ -4,8 +4,7 @@ const MEDIA_CACHE = 'sx-tour-media-cache';
 
 // Fichiers à mettre en cache immédiatement
 const STATIC_ASSETS = [
-  '/images/logo-sx-tour.svg',
-  '/images/logo-championnat-fr.svg'
+  
 ];
 
 // Médias lourds à mettre en cache à la demande

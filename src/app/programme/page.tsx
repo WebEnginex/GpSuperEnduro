@@ -102,8 +102,8 @@ export default function ProgrammePage() {
     ? currentProgramme 
     : currentProgramme.filter(item => {
         const categoryCC = getCategoryCC(item.category);
-        // Toujours afficher les cérémonies (category "other") + les filtres sélectionnés
-        return categoryCC === 'other' || activeFilters.includes(categoryCC);
+        // Afficher uniquement les catégories sélectionnées (exclure les cérémonies et autres)
+        return activeFilters.includes(categoryCC);
       });
 
   return (
