@@ -11,6 +11,7 @@ interface CachedImageProps {
   width?: number;
   height?: number;
   priority?: boolean;
+  loadingBackground?: string; // Nouvelle prop pour personnaliser le fond de chargement
   onLoad?: () => void;
   onError?: (error: string) => void;
 }
@@ -22,6 +23,7 @@ export function CachedImage({
   width, 
   height, 
   priority = false,
+  loadingBackground = 'bg-gray-100', // Valeur par défaut
   onLoad,
   onError 
 }: CachedImageProps) {
@@ -58,7 +60,7 @@ export function CachedImage({
       {/* Indicateur de chargement */}
       {(isLoading || !imageLoaded) && (
         <div 
-          className={`absolute inset-0 flex items-center justify-center bg-gray-100 ${className}`}
+          className={`absolute inset-0 flex items-center justify-center ${loadingBackground} ${className}`}
           style={{ width, height }}
         >
           <Loader2 className="h-6 w-6 animate-spin text-gray-400" />

@@ -2,8 +2,8 @@ export const CACHE_CONFIG = {
   // Taille maximale du cache (en MB)
   MAX_CACHE_SIZE: 150,
   
-  // Durée de vie du cache (en jours) - 30 jours pour être tranquille jusqu'à octobre
-  CACHE_DURATION: 30,
+  // Durée de vie du cache (en jours) - 60 jours (2 mois) pour stockage long terme
+  CACHE_DURATION: 60,
   
   // Médias à précharger au démarrage
   CRITICAL_MEDIA: [

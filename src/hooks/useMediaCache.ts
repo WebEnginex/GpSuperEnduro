@@ -22,6 +22,9 @@ export function useMediaCache(url: string, type: MediaType, options: UseMediaCac
     const loadMedia = async () => {
       if (!url) return;
       
+      if (process.env.NODE_ENV === 'development') {
+        console.log(`🔄 [useMediaCache] Loading: ${url}`);
+      }
       setIsLoading(true);
       setError(null);
 
@@ -31,7 +34,13 @@ export function useMediaCache(url: string, type: MediaType, options: UseMediaCac
         switch (strategy) {
           case 'cache-first':
           default:
+            if (process.env.NODE_ENV === 'development') {
+              console.log(`📱 [useMediaCache] Cache-first strategy for: ${url}`);
+            }
             mediaSrc = await MediaCacheService.getOrFetchMedia(url, type);
+            if (process.env.NODE_ENV === 'development') {
+              console.log(`✅ [useMediaCache] Got src for ${url}:`, mediaSrc.startsWith('blob:') ? 'BLOB (cached)' : 'ORIGINAL URL');
+            }
             break;
           // Autres stratégies peuvent être ajoutées ici
         }

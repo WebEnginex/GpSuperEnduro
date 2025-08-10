@@ -101,6 +101,7 @@ export function Header({ showCountdown = true }: HeaderProps) {
                     height={60}
                     className="h-16 sm:h-20 w-auto"
                     priority={true}
+                    loadingBackground="bg-transparent"
                   />
                 </div>
                 <div className="flex-shrink-0">
@@ -111,6 +112,7 @@ export function Header({ showCountdown = true }: HeaderProps) {
                     height={60}
                     className="h-16 sm:h-20 w-auto"
                     priority={true}
+                    loadingBackground="bg-transparent"
                   />
                 </div>
               </div>
@@ -204,6 +206,7 @@ export function Header({ showCountdown = true }: HeaderProps) {
                       height={60}
                       className="h-14 sm:h-16 w-auto"
                       priority={true}
+                      loadingBackground="bg-transparent"
                     />
                   </div>
                   <div className="flex-shrink-0">
@@ -214,6 +217,7 @@ export function Header({ showCountdown = true }: HeaderProps) {
                       height={60}
                       className="h-14 sm:h-16 w-auto"
                       priority={true}
+                      loadingBackground="bg-transparent"
                     />
                   </div>
                 </div>

@@ -5,6 +5,9 @@ import { DevLogger } from '../utils/logger';
 export class MediaCacheService {
   private static readonly MAX_CACHE_SIZE_MB = 150; // Limite à 150MB
   private static readonly CACHE_DURATION_DAYS = 7;
+  
+  // Cache des promesses pour éviter les téléchargements multiples
+  private static readonly pendingDownloads = new Map<string, Promise<string>>();
 
   // Récupérer un média depuis le cache ou le télécharger
   static async getOrFetchMedia(url: string, type: MediaType): Promise<string> {
@@ -20,30 +23,50 @@ export class MediaCacheService {
         return URL.createObjectURL(cachedMedia.data);
       }
 
-      // Si pas en cache, télécharger
-      DevLogger.info(`Téléchargement du media: ${url}`);
-      const response = await fetch(url);
-      
-      if (!response.ok) {
-        throw new Error(`Erreur HTTP: ${response.status}`);
+      // Vérifier si un téléchargement est déjà en cours
+      if (this.pendingDownloads.has(url)) {
+        DevLogger.info(`Téléchargement déjà en cours pour: ${url}`);
+        return await this.pendingDownloads.get(url)!;
       }
 
-      const blob = await response.blob();
+      // Si pas en cache, télécharger
+      const downloadPromise = this.downloadAndCache(url, type, startTime);
+      this.pendingDownloads.set(url, downloadPromise);
       
-      // Sauvegarder dans le cache
-      await MediaOperations.saveMedia(url, blob, type);
-      DevLogger.cache('STORE', url, blob.size);
-      
-      // Nettoyer le cache si nécessaire
-      await this.cleanCacheIfNeeded();
-      
-      DevLogger.performance('Cache Miss + Download', startTime);
-      return URL.createObjectURL(blob);
+      try {
+        const result = await downloadPromise;
+        return result;
+      } finally {
+        // Nettoyer la promesse en cours
+        this.pendingDownloads.delete(url);
+      }
     } catch (error) {
       DevLogger.error(`Erreur lors du chargement de ${url}:`, error);
       // Retourner l'URL originale en cas d'erreur
       return url;
     }
+  }
+
+  // Méthode privée pour télécharger et mettre en cache
+  private static async downloadAndCache(url: string, type: MediaType, startTime: number): Promise<string> {
+    DevLogger.info(`Téléchargement du media: ${url}`);
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(`Erreur HTTP: ${response.status}`);
+    }
+
+    const blob = await response.blob();
+    
+    // Sauvegarder dans le cache
+    await MediaOperations.saveMedia(url, blob, type);
+    DevLogger.cache('STORE', url, blob.size);
+    
+    // Nettoyer le cache si nécessaire
+    await this.cleanCacheIfNeeded();
+    
+    DevLogger.performance('Cache Miss + Download', startTime);
+    return URL.createObjectURL(blob);
   }
 
   // Précharger des médias en arrière-plan

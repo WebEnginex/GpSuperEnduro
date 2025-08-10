@@ -6,6 +6,7 @@ import { Header } from "@/components/header";
 import { SimpleCountdown } from "@/components/simple-countdown";
 import { CachedImage } from "@/components/media/CachedImage";
 import { CachedVideo } from "@/components/media/CachedVideo";
+import { CacheDebugger } from "@/components/CacheDebugger";
 
 export default function Home() {
   // Tracker les visites automatiquement
@@ -263,6 +264,8 @@ export default function Home() {
           </div>
         </section>
       </div>
+      {/* Debug temporaire */}
+      <CacheDebugger />
     </>
   );
 }

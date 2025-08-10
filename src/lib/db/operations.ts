@@ -112,7 +112,19 @@ export class MediaOperations {
 
   // Vérifier si un fichier existe dans le cache
   static async hasMedia(url: string): Promise<boolean> {
-    const count = await db.mediaFiles.where('url').equals(url).count();
-    return count > 0;
+    const media = await db.mediaFiles.where('url').equals(url).first();
+    
+    if (!media) {
+      return false;
+    }
+    
+    // Vérifier si le fichier n'est pas expiré
+    if (media.expiresAt < new Date()) {
+      // Supprimer le fichier expiré
+      await this.deleteMedia(media.id!);
+      return false;
+    }
+    
+    return true;
   }
 }
