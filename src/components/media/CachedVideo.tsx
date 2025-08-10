@@ -13,6 +13,7 @@ interface CachedVideoProps {
   muted?: boolean;
   loop?: boolean;
   controls?: boolean;
+  hideControls?: boolean; // Nouvelle prop pour masquer complètement les contrôles
   poster?: string;
   priority?: boolean;
   onLoad?: () => void;
@@ -28,6 +29,7 @@ export function CachedVideo({
   muted = true,
   loop = false,
   controls = true,
+  hideControls = false, // Par défaut, les contrôles ne sont pas masqués
   poster,
   priority = false,
   onLoad,
@@ -86,8 +88,8 @@ export function CachedVideo({
         </div>
       )}
       
-      {/* Bouton play/pause custom si pas de controls */}
-      {!controls && videoLoaded && (
+      {/* Bouton play/pause custom si pas de controls et hideControls est false */}
+      {!controls && !hideControls && videoLoaded && (
         <button
           onClick={togglePlay}
           className="absolute inset-0 z-20 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors"

@@ -27,6 +27,7 @@ export default function Home() {
           muted={true}
           loop={true}
           controls={false}
+          hideControls={true}
           className="hidden md:block w-full h-full object-cover"
           priority={true}
         />
@@ -38,6 +39,7 @@ export default function Home() {
           muted={true}
           loop={true}
           controls={false}
+          hideControls={true}
           className="block md:hidden w-full h-full object-cover"
           priority={true}
         />
