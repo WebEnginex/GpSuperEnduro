@@ -55,6 +55,14 @@ export function CachedImage({
   const isBackgroundImage = src.includes('background');
   const finalObjectFit = isBackgroundImage ? 'cover' : (responsiveObjectFit ? (isMobile ? 'cover' : 'contain') : objectFit);
 
+  // Force l'affichage direct pour les images de background sur mobile si le cache échoue
+  useEffect(() => {
+    if (isBackgroundImage && !cachedSrc && !fallbackSrc && isMobile) {
+      console.log(`📱 [CachedImage] Mobile background: forcing direct URL fallback`);
+      setFallbackSrc(src.split('?')[0]); // URL sans paramètres de version
+    }
+  }, [isBackgroundImage, cachedSrc, fallbackSrc, isMobile, src]);
+
   // Détecter si on est sur mobile/tablette pour l'objectFit responsive
   useEffect(() => {
     if (responsiveObjectFit) {
@@ -81,6 +89,22 @@ export function CachedImage({
       setShowPlaceholder(false);
     }
   }, [isLoading]);
+
+  // Logs pour debug uniquement pour les images de background
+  useEffect(() => {
+    if (isBackgroundImage) {
+      console.log(`🖼️ [CachedImage] Background image state:`, {
+        cachedSrc: !!cachedSrc,
+        fallbackSrc: !!fallbackSrc,
+        error,
+        isLoading,
+        finalSrc: cachedSrc || fallbackSrc,
+        priority,
+        isMobile,
+        url: src
+      });
+    }
+  }, [cachedSrc, fallbackSrc, error, isLoading, src, priority, isMobile, isBackgroundImage]);
 
   const handleImageLoad = () => {
     setImageLoaded(true);

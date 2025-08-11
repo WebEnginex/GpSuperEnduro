@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useVisitTracker } from "@/hooks/useVisitTracker";
 import { Header } from "@/components/header";
 import { SimpleCountdown } from "@/components/simple-countdown";
+import { BackgroundImage } from "@/components/media/BackgroundImage";
 import { CachedImage } from "@/components/media/CachedImage";
 import { DebugPanel } from "@/components/DebugPanel";
 
@@ -22,28 +23,12 @@ export default function Home() {
       <Header showCountdown={true} />
 
       {/* Section principale avec image de fond */}
-      <div 
-        className="relative min-h-screen h-screen w-full overflow-hidden"
-        style={{ 
-          minHeight: '100vh', 
-          height: '100vh',
-          width: '100vw',
-          maxWidth: '100%',
-          background: 'linear-gradient(to bottom right, rgb(17, 24, 39), rgb(30, 41, 59), rgb(17, 24, 39))'
-        }}
+      <BackgroundImage
+        src="/images/background/supercross-sxtour-bg.webp?v=2025011"
+        alt="Supercross de Douai"
+        className="min-h-screen h-screen w-full overflow-hidden relative"
       >
-        {/* Image de fond pour toutes les tailles d'écran - priorité haute pour le cache */}
-        <div className="absolute inset-0 z-0 w-full h-full">
-          <CachedImage
-            src="/images/background/supercross-sxtour-bg.webp?v=2025011"
-            alt="Supercross de Douai"
-            className="w-full h-full"
-            priority={true}
-            loadingBackground="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900"
-            objectFit="cover"
-            responsiveObjectFit={false}
-          />
-        </div>        {/* Overlay sombre pour améliorer la lisibilité */}
+        {/* Overlay sombre pour améliorer la lisibilité */}
         <div className="absolute inset-0 bg-black/50 z-10 w-full h-full"></div>
 
         {/* Contenu superposé */}
@@ -123,7 +108,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </BackgroundImage>
 
       {/* Section de contenu après la vidéo */}
       <div className="bg-white dark:bg-slate-900">

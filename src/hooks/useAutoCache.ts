@@ -93,7 +93,10 @@ export function useAutoMediaCache(url: string, type: MediaType, options: UseAuto
     const criticalUrlBase = criticalUrl.split('?')[0];
     return urlBase === criticalUrlBase;
   });
-  const finalDisableCache = disableCache && !isCriticalImage;
+
+  // Pour les images de background, être moins restrictif même en cas de problème de cache
+  const isBackgroundImage = url.includes('background');
+  const finalDisableCache = disableCache && !isCriticalImage && !isBackgroundImage;
 
   return useMediaCache(url, type, {
     ...options,
