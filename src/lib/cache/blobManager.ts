@@ -12,7 +12,9 @@ class BlobURLManager {
     
     if (existingEntry) {
       existingEntry.refCount++;
-      console.log(`🔗 [BlobManager] Réutilisation blob URL pour ${originalUrl} (refs: ${existingEntry.refCount})`);
+      if (process.env.NODE_ENV === 'development') {
+        console.log(`🔗 [BlobManager] Réutilisation blob URL pour ${originalUrl} (refs: ${existingEntry.refCount})`);
+      }
       return existingEntry.blobUrl;
     }
 
@@ -23,7 +25,9 @@ class BlobURLManager {
       originalUrl
     });
     
-    console.log(`🆕 [BlobManager] Nouvelle blob URL pour ${originalUrl}`);
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`🆕 [BlobManager] Nouvelle blob URL pour ${originalUrl}`);
+    }
     return blobUrl;
   }
 
@@ -38,12 +42,16 @@ class BlobURLManager {
     }
 
     entry.refCount--;
-    console.log(`📉 [BlobManager] Libération référence pour ${originalUrl} (refs restantes: ${entry.refCount})`);
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`📉 [BlobManager] Libération référence pour ${originalUrl} (refs restantes: ${entry.refCount})`);
+    }
 
     if (entry.refCount <= 0) {
       URL.revokeObjectURL(entry.blobUrl);
       this.urlRefs.delete(originalUrl);
-      console.log(`🗑️ [BlobManager] URL blob révoquée pour ${originalUrl}`);
+      if (process.env.NODE_ENV === 'development') {
+        console.log(`🗑️ [BlobManager] URL blob révoquée pour ${originalUrl}`);
+      }
     }
   }
 
@@ -65,7 +73,9 @@ class BlobURLManager {
    * Nettoyer toutes les URLs blob (pour le debug)
    */
   static cleanup(): void {
-    console.log(`🧹 [BlobManager] Nettoyage de ${this.urlRefs.size} URLs blob`);
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`🧹 [BlobManager] Nettoyage de ${this.urlRefs.size} URLs blob`);
+    }
     for (const [, entry] of this.urlRefs.entries()) {
       URL.revokeObjectURL(entry.blobUrl);
     }
