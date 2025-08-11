@@ -40,10 +40,22 @@ export default function Home() {
           muted={true}
           loop={true}
           controls={false}
-          hideControls={true}
+          hideControls={false} // Permettre l'affichage du bouton play si autoplay échoue
           className="block md:hidden w-full h-full object-cover"
           priority={true}
         />
+        
+        {/* Image de fallback pour mobile si la vidéo ne se charge pas */}
+        <div className="block md:hidden w-full h-full bg-black absolute inset-0 -z-10">
+          <CachedImage
+            src="/images/background/supercross-bg.webp"
+            alt="Supercross de Douai"
+            width={1920}
+            height={1080}
+            className="w-full h-full object-cover opacity-50"
+            priority={true}
+          />
+        </div>
         
         {/* Overlay sombre pour améliorer la lisibilité */}
         <div className="absolute inset-0 bg-black/50"></div>
@@ -56,15 +68,7 @@ export default function Home() {
           {/* Compte à rebours centré */}
           <div className="text-center mb-12">
             <div className="flex justify-center">
-              <div className="hidden lg:block">
-                <SimpleCountdown />
-              </div>
-              <div className="lg:hidden">
-                <div className="text-white text-center">
-                  <p className="text-lg font-semibold mb-2">Samedi 4 Octobre 2025</p>
-                  <p className="text-sm opacity-80">13H30 - 18H30</p>
-                </div>
-              </div>
+              <SimpleCountdown />
             </div>
           </div>
         </main>

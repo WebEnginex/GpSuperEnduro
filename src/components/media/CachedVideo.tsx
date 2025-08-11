@@ -1,8 +1,8 @@
 'use client';
 
 import { useMediaCache } from '@/hooks/useMediaCache';
-import { useState, useRef } from 'react';
-import { Loader2, Play, Pause } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { Loader2, Play } from 'lucide-react';
 
 interface CachedVideoProps {
   src: string;
@@ -43,6 +43,25 @@ export function CachedVideo({
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(autoPlay);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Tentative de lecture automatique après un délai sur mobile
+  useEffect(() => {
+    if (autoPlay && videoRef.current && videoLoaded) {
+      const playVideo = async () => {
+        try {
+          await videoRef.current?.play();
+          setIsPlaying(true);
+        } catch (error) {
+          console.log('Autoplay prevented:', error);
+          setIsPlaying(false);
+        }
+      };
+      
+      // Délai pour laisser le temps au DOM de se stabiliser
+      const timer = setTimeout(playVideo, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [autoPlay, videoLoaded]);
 
   const handleVideoLoad = () => {
     setVideoLoaded(true);
@@ -89,16 +108,14 @@ export function CachedVideo({
       )}
       
       {/* Bouton play/pause custom si pas de controls et hideControls est false */}
-      {!controls && !hideControls && videoLoaded && (
+      {!controls && !hideControls && videoLoaded && !isPlaying && (
         <button
           onClick={togglePlay}
-          className="absolute inset-0 z-20 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors"
+          className="absolute inset-0 z-20 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors group"
         >
-          {isPlaying ? (
-            <Pause className="h-12 w-12 text-white" />
-          ) : (
-            <Play className="h-12 w-12 text-white" />
-          )}
+          <div className="bg-black/60 rounded-full p-4 group-hover:bg-black/80 transition-colors">
+            <Play className="h-8 w-8 sm:h-12 sm:w-12 text-white ml-1" />
+          </div>
         </button>
       )}
       
@@ -120,6 +137,7 @@ export function CachedVideo({
           onError={handleVideoError}
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
+          playsInline={true}
         />
       )}
     </div>

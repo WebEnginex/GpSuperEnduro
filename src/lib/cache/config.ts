@@ -10,8 +10,8 @@ export const CACHE_CONFIG = {
     { url: '/videos/SXTour2025.webm', type: 'video' as const },
     { url: '/videos/SXTour2025-mobile.webm', type: 'video' as const },
     { url: '/images/background/supercross-bg.webp', type: 'image' as const },
-    { url: '/images/logo-sx-tour.svg', type: 'image' as const },
-    { url: '/images/logo-championnat-fr.svg', type: 'image' as const },
+    { url: '/images/partners/FFMOTO_LOGO.png', type: 'image' as const },
+    { url: '/images/partners/Supercross_Championnat_FR.png', type: 'image' as const },
     { url: '/images/affiche/affiche_supercross_douai.webp', type: 'image' as const },
     { url: '/images/flags/france.svg', type: 'image' as const },
     { url: '/images/marques/yamaha.svg', type: 'image' as const }

@@ -50,29 +50,38 @@ export class MediaCacheService {
   // Méthode privée pour télécharger et mettre en cache
   private static async downloadAndCache(url: string, type: MediaType, startTime: number): Promise<string> {
     DevLogger.info(`Téléchargement du media: ${url}`);
-    const response = await fetch(url);
     
-    if (!response.ok) {
-      throw new Error(`Erreur HTTP: ${response.status}`);
-    }
+    try {
+      const response = await fetch(url);
+      
+      if (!response.ok) {
+        DevLogger.warn(`Fichier non trouvé (${response.status}): ${url}`);
+        throw new Error(`Erreur HTTP: ${response.status} pour ${url}`);
+      }
 
-    const blob = await response.blob();
-    
-    // Sauvegarder dans le cache
-    await MediaOperations.saveMedia(url, blob, type);
-    DevLogger.cache('STORE', url, blob.size);
-    
-    // Nettoyer le cache si nécessaire
-    await this.cleanCacheIfNeeded();
-    
-    DevLogger.performance('Cache Miss + Download', startTime);
-    return URL.createObjectURL(blob);
+      const blob = await response.blob();
+      
+      // Sauvegarder dans le cache
+      await MediaOperations.saveMedia(url, blob, type);
+      DevLogger.cache('STORE', url, blob.size);
+      
+      // Nettoyer le cache si nécessaire
+      await this.cleanCacheIfNeeded();
+      
+      DevLogger.performance('Cache Miss + Download', startTime);
+      return URL.createObjectURL(blob);
+    } catch (error) {
+      DevLogger.error(`Échec téléchargement ${url}:`, error);
+      throw error; // Re-lancer l'erreur pour que getOrFetchMedia puisse la gérer
+    }
   }
 
   // Précharger des médias en arrière-plan
   static async preloadMedia(urls: { url: string; type: MediaType }[]): Promise<void> {
     DevLogger.info(`Préchargement de ${urls.length} médias...`);
     const startTime = Date.now();
+    let successCount = 0;
+    let errorCount = 0;
     
     const promises = urls.map(async ({ url, type }) => {
       try {
@@ -80,17 +89,21 @@ export class MediaCacheService {
         if (!exists) {
           await this.getOrFetchMedia(url, type);
           DevLogger.cache('PRELOAD', url);
+          successCount++;
         } else {
           DevLogger.cache('SKIP (already cached)', url);
+          successCount++;
         }
       } catch (error) {
+        errorCount++;
         DevLogger.error(`Erreur préchargement ${url}:`, error);
+        // Continuer avec les autres fichiers même si celui-ci échoue
       }
     });
 
     await Promise.allSettled(promises);
     DevLogger.performance('Préchargement terminé', startTime);
-    DevLogger.success(`Préchargement de ${urls.length} médias terminé`);
+    DevLogger.success(`Préchargement terminé: ${successCount} succès, ${errorCount} erreurs`);
   }
 
   // Nettoyer le cache si la limite est dépassée

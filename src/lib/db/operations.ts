@@ -30,8 +30,8 @@ export class MediaOperations {
         return undefined;
       }
       
-      // Mettre à jour la date de dernier accès
-      await db.mediaFiles.update(media.id!, { lastAccessed: new Date() });
+      // NE PLUS mettre à jour lastAccessed à chaque lecture pour éviter les écritures inutiles
+      // La date sera mise à jour seulement lors du nettoyage si nécessaire
     }
     
     return media;
@@ -57,34 +57,47 @@ export class MediaOperations {
 
   // Nettoyer le cache (supprimer les plus anciens si limite dépassée)
   static async cleanOldFiles(maxSizeMB: number = 100): Promise<number> {
-    const stats = await this.getCacheStats();
     const maxSizeBytes = maxSizeMB * 1024 * 1024;
     
-    if (stats.totalSize <= maxSizeBytes) {
+    // Calculer la taille totale plus efficacement
+    let totalSize = 0;
+    await db.mediaFiles.each(file => {
+      totalSize += file.size;
+    });
+    
+    if (totalSize <= maxSizeBytes) {
       return 0;
     }
     
-    // Récupérer les fichiers triés par date d'accès (plus ancien en premier)
-    const files = await db.mediaFiles.orderBy('lastAccessed').toArray();
-    let currentSize = stats.totalSize;
-    let deletedCount = 0;
+    // Récupérer seulement les IDs et tailles, triés par date d'accès
+    const filesToCheck = await db.mediaFiles
+      .orderBy('lastAccessed')
+      .toArray();
     
-    for (const file of files) {
+    let currentSize = totalSize;
+    const idsToDelete: number[] = [];
+    
+    for (const file of filesToCheck) {
       if (currentSize <= maxSizeBytes) break;
       
-      await this.deleteMedia(file.id!);
+      idsToDelete.push(file.id!);
       currentSize -= file.size;
-      deletedCount++;
     }
     
-    return deletedCount;
+    // Supprimer en une seule opération
+    if (idsToDelete.length > 0) {
+      await db.mediaFiles.bulkDelete(idsToDelete);
+    }
+    
+    return idsToDelete.length;
   }
 
-  // Obtenir les statistiques du cache
+  // Obtenir les statistiques du cache (version ultra-optimisée)
   static async getCacheStats(): Promise<CacheStats> {
-    const files = await db.mediaFiles.toArray();
+    // Compter seulement
+    const fileCount = await db.mediaFiles.count();
     
-    if (files.length === 0) {
+    if (fileCount === 0) {
       return {
         totalSize: 0,
         fileCount: 0,
@@ -93,14 +106,24 @@ export class MediaOperations {
       };
     }
     
-    const totalSize = files.reduce((sum, file) => sum + file.size, 0);
-    const dates = files.map(file => file.lastAccessed);
+    // Pour la taille, on utilise une transaction optimisée
+    const totalSize = await db.transaction('r', db.mediaFiles, async () => {
+      let sum = 0;
+      await db.mediaFiles.each(file => {
+        sum += file.size;
+      });
+      return sum;
+    });
+    
+    // Pour les dates, récupérer seulement les extrêmes
+    const oldestFile = await db.mediaFiles.orderBy('lastAccessed').first();
+    const newestFile = await db.mediaFiles.orderBy('lastAccessed').last();
     
     return {
       totalSize,
-      fileCount: files.length,
-      oldestFile: new Date(Math.min(...dates.map(d => d.getTime()))),
-      newestFile: new Date(Math.max(...dates.map(d => d.getTime())))
+      fileCount,
+      oldestFile: oldestFile?.lastAccessed || null,
+      newestFile: newestFile?.lastAccessed || null
     };
   }
 

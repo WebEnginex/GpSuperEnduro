@@ -35,42 +35,42 @@ export function SimpleCountdown() {
 
   return (
     <div className="text-center">
-      <p className="text-white/90 text-lg mb-3 font-medium">
+      <p className="text-white/90 text-sm sm:text-lg mb-2 sm:mb-3 font-medium">
         Début de l&apos;événement dans :
       </p>
-      <div className="flex justify-center items-center gap-4">
+      <div className="flex justify-center items-center gap-2 sm:gap-4">
         {/* Jours */}
         <div className="text-center">
-          <div className="text-red-600 text-4xl md:text-5xl font-bold">
+          <div className="text-red-600 text-2xl sm:text-4xl md:text-5xl font-bold">
             {timeLeft.days.toString().padStart(2, '0')}
           </div>
-          <div className="text-white/70 text-sm mt-1 tracking-wider">
+          <div className="text-white/70 text-xs sm:text-sm mt-1 tracking-wider">
             Jours
           </div>
         </div>
         
         {/* Séparateur */}
-        <div className="text-white text-3xl md:text-4xl font-bold mx-2">·</div>
+        <div className="text-white text-xl sm:text-3xl md:text-4xl font-bold mx-1 sm:mx-2">·</div>
         
         {/* Heures */}
         <div className="text-center">
-          <div className="text-red-600 text-4xl md:text-5xl font-bold">
+          <div className="text-red-600 text-2xl sm:text-4xl md:text-5xl font-bold">
             {timeLeft.hours.toString().padStart(2, '0')}
           </div>
-          <div className="text-white/70 text-sm mt-1 tracking-wider">
+          <div className="text-white/70 text-xs sm:text-sm mt-1 tracking-wider">
             Heures
           </div>
         </div>
         
         {/* Séparateur */}
-        <div className="text-white text-3xl md:text-4xl font-bold mx-2">·</div>
+        <div className="text-white text-xl sm:text-3xl md:text-4xl font-bold mx-1 sm:mx-2">·</div>
         
         {/* Minutes */}
         <div className="text-center">
-          <div className="text-red-600 text-4xl md:text-5xl font-bold">
+          <div className="text-red-600 text-2xl sm:text-4xl md:text-5xl font-bold">
             {timeLeft.minutes.toString().padStart(2, '0')}
           </div>
-          <div className="text-white/70 text-sm mt-1 tracking-wider">
+          <div className="text-white/70 text-xs sm:text-sm mt-1 tracking-wider">
             Minutes
           </div>
         </div>

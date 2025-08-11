@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Mail, Loader2 } from "lucide-react";
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
+import { Header } from '@/components/header';
 import type { AuthChangeEvent, Session } from '@supabase/supabase-js';
 
 // Composant Alert local temporaire
@@ -65,6 +66,9 @@ export default function AdminLogin() {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      {/* Header réutilisable */}
+      <Header showCountdown={false} />
+      
       {/* Section noire sous le header */}
       <section className="relative bg-black py-16 pt-56 sm:pt-60 lg:pt-64">
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

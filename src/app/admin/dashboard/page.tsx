@@ -7,6 +7,7 @@ import { getVisitsStats, getMessages, updateMessageStatus, deleteMessage, type M
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Header } from '@/components/header';
 import { 
   LayoutDashboard, 
   MessageSquare, 
@@ -156,18 +157,22 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white pt-48 lg:pt-52">
-      {/* Header spécifique au dashboard */}
-      <div className="bg-gray-900/50 border-b border-gray-800/50 shadow-sm backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-4 lg:py-6">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2 lg:p-3 bg-red-600/20 rounded-lg border border-red-600/30">
-                <LayoutDashboard className="h-5 w-5 lg:h-6 lg:w-6 text-red-400" />
-              </div>
-              <div>
-                <h1 className="text-xl lg:text-2xl font-bold text-white">
-                  Dashboard <span className="text-red-400">Admin</span>
+    <div className="min-h-screen bg-black text-white">
+      {/* Header réutilisable */}
+      <Header showCountdown={false} />
+      
+      <div className="pt-48 lg:pt-52">
+        {/* Header spécifique au dashboard */}
+        <div className="bg-gray-900/50 border-b border-gray-800/50 shadow-sm backdrop-blur-sm">
+          <div className="container mx-auto px-4 py-4 lg:py-6">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="p-2 lg:p-3 bg-red-600/20 rounded-lg border border-red-600/30">
+                  <LayoutDashboard className="h-5 w-5 lg:h-6 lg:w-6 text-red-400" />
+                </div>
+                <div>
+                  <h1 className="text-xl lg:text-2xl font-bold text-white">
+                    Dashboard <span className="text-red-400">Admin</span>
                 </h1>
                 <p className="text-xs lg:text-sm text-gray-400">
                   SX Tour Douai 2025
@@ -655,6 +660,7 @@ export default function AdminDashboard() {
       )}
 
       {/* Notification de copie globale - supprimée car maintenant inline */}
+      </div>
     </div>
   );
 }
