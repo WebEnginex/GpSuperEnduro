@@ -24,8 +24,10 @@ export function useMediaCache(url: string, type: MediaType, options: UseMediaCac
     const loadMedia = async () => {
       if (!url) return;
       
-      if (process.env.NODE_ENV === 'development') {
-        console.log(`🔄 [useMediaCache] Loading: ${url}`);
+      // Logs pour tous les environnements si c'est l'image de background
+      const isBackground = url.includes('background');
+      if (isBackground || process.env.NODE_ENV === 'development') {
+        console.log(`🔄 [useMediaCache] Loading: ${url}, cache disabled: ${disableCache}`);
       }
       
       setError(null);
@@ -35,7 +37,7 @@ export function useMediaCache(url: string, type: MediaType, options: UseMediaCac
 
         // Si le cache est désactivé ou en cas de problème, utiliser directement l'URL
         if (disableCache) {
-          if (process.env.NODE_ENV === 'development') {
+          if (isBackground || process.env.NODE_ENV === 'development') {
             console.log(`🚫 [useMediaCache] Cache disabled for: ${url}`);
           }
           mediaSrc = url;
@@ -46,10 +48,13 @@ export function useMediaCache(url: string, type: MediaType, options: UseMediaCac
         } else {
           // Essayer de récupérer depuis le cache
           try {
+            if (isBackground || process.env.NODE_ENV === 'development') {
+              console.log(`📦 [useMediaCache] Trying cache for: ${url}`);
+            }
             const cachedMedia = await MediaCacheService.getOrFetchMedia(url, type);
             if (mounted) {
               mediaSrc = cachedMedia;
-              if (process.env.NODE_ENV === 'development') {
+              if (isBackground || process.env.NODE_ENV === 'development') {
                 console.log(`✅ [useMediaCache] Got media for ${url}:`, cachedMedia.startsWith('blob:') ? 'CACHED (blob)' : 'DIRECT URL');
               }
               setSrc(mediaSrc);

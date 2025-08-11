@@ -14,15 +14,27 @@ export class MediaCacheService {
   // Récupérer un média depuis le cache ou le télécharger
   static async getOrFetchMedia(url: string, type: MediaType): Promise<string> {
     const startTime = Date.now();
+    const isBackground = url.includes('background');
     
     try {
+      if (isBackground) {
+        console.log(`🎨 [MediaCache] Getting background image: ${url}`);
+      }
+      
       // Vérifier d'abord dans le cache
       const cachedMedia = await MediaOperations.getMedia(url);
       
       if (cachedMedia) {
+        if (isBackground) {
+          console.log(`🎯 [MediaCache] Background found in cache, size: ${cachedMedia.size} bytes`);
+        }
         DevLogger.cache('HIT', url, cachedMedia.size);
         DevLogger.performance('Cache Hit', startTime);
         return BlobURLManager.getOrCreateBlobURL(url, cachedMedia.data);
+      }
+
+      if (isBackground) {
+        console.log(`📥 [MediaCache] Background not in cache, downloading...`);
       }
 
       // Vérifier si un téléchargement est déjà en cours
@@ -51,20 +63,37 @@ export class MediaCacheService {
 
   // Méthode privée pour télécharger et mettre en cache
   private static async downloadAndCache(url: string, type: MediaType, startTime: number): Promise<string> {
-    DevLogger.info(`Téléchargement du media: ${url}`);
+    const isBackground = url.includes('background');
+    
+    if (isBackground) {
+      console.log(`🌐 [MediaCache] Downloading background from: ${url}`);
+    } else {
+      DevLogger.info(`Téléchargement du media: ${url}`);
+    }
     
     try {
       const response = await fetch(url);
       
       if (!response.ok) {
+        const errorMsg = `Erreur HTTP: ${response.status} pour ${url}`;
+        if (isBackground) {
+          console.error(`❌ [MediaCache] Background download failed:`, errorMsg);
+        }
         DevLogger.warn(`Fichier non trouvé (${response.status}): ${url}`);
-        throw new Error(`Erreur HTTP: ${response.status} pour ${url}`);
+        throw new Error(errorMsg);
       }
 
       const blob = await response.blob();
       
+      if (isBackground) {
+        console.log(`✅ [MediaCache] Background downloaded, size: ${blob.size} bytes, type: ${blob.type}`);
+      }
+      
       // Sauvegarder dans le cache
       await MediaOperations.saveMedia(url, blob, type);
+      if (isBackground) {
+        console.log(`💾 [MediaCache] Background saved to IndexedDB`);
+      }
       DevLogger.cache('STORE', url, blob.size);
       
       // Nettoyer les anciennes versions si l'URL contient un paramètre de version
@@ -75,9 +104,17 @@ export class MediaCacheService {
       // Nettoyer le cache si nécessaire
       await this.cleanCacheIfNeeded();
       
+      const blobUrl = BlobURLManager.getOrCreateBlobURL(url, blob);
+      if (isBackground) {
+        console.log(`🔗 [MediaCache] Background blob URL created:`, blobUrl.substring(0, 50) + '...');
+      }
+      
       DevLogger.performance('Cache Miss + Download', startTime);
-      return BlobURLManager.getOrCreateBlobURL(url, blob);
+      return blobUrl;
     } catch (error) {
+      if (isBackground) {
+        console.error(`💥 [MediaCache] Background download error:`, error);
+      }
       DevLogger.error(`Échec téléchargement ${url}:`, error);
       throw error; // Re-lancer l'erreur pour que getOrFetchMedia puisse la gérer
     }

@@ -88,7 +88,13 @@ export function useAutoMediaCache(url: string, type: MediaType, options: UseAuto
     '/images/flags/france.svg'
   ];
 
-  const isCriticalImage = criticalImages.includes(url);
+  // Vérifier si l'URL correspond à une image critique (même avec paramètres de version)
+  const isCriticalImage = criticalImages.some(criticalUrl => {
+    // Comparaison exacte ou comparaison sans paramètres de version
+    return url === criticalUrl || 
+           (url.includes('?v=') && criticalUrl.includes('?v=') && 
+            url.split('?')[0] === criticalUrl.split('?')[0]);
+  });
   const finalDisableCache = disableCache && !isCriticalImage;
 
   return useMediaCache(url, type, {

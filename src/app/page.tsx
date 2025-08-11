@@ -5,7 +5,6 @@ import { useVisitTracker } from "@/hooks/useVisitTracker";
 import { Header } from "@/components/header";
 import { SimpleCountdown } from "@/components/simple-countdown";
 import { CachedImage } from "@/components/media/CachedImage";
-import { SimpleImage } from "@/components/media/SimpleImage";
 import { DebugPanel } from "@/components/DebugPanel";
 
 // Import du test en développement seulement
@@ -35,24 +34,14 @@ export default function Home() {
       >
         {/* Image de fond pour toutes les tailles d'écran - priorité haute pour le cache */}
         <div className="absolute inset-0 z-0 w-full h-full">
-          {process.env.NODE_ENV === 'production' ? (
-            // En production, utilisation de SimpleImage pour éviter les problèmes de cache
-            <SimpleImage
-              src="/images/background/supercross-sxtour-bg.webp"
-              alt="Supercross de Douai"
-              className="w-full h-full"
-              loadingBackground="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900"
-            />
-          ) : (
-            // En développement, utilisation de CachedImage avec versioning
-            <CachedImage
-              src="/images/background/supercross-sxtour-bg.webp?v=2025011"
-              alt="Supercross de Douai"
-              className="w-full h-full responsive-background-image"
-              priority={true}
-              loadingBackground="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900"
-            />
-          )}
+          <CachedImage
+            src="/images/background/supercross-sxtour-bg.webp?v=2025011"
+            alt="Supercross de Douai"
+            className="w-full h-full"
+            priority={true}
+            loadingBackground="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900"
+            responsiveObjectFit={true}
+          />
         </div>        {/* Overlay sombre pour améliorer la lisibilité */}
         <div className="absolute inset-0 bg-black/50 z-10 w-full h-full"></div>
 

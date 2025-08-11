@@ -41,6 +41,15 @@ export function CachedImage({
   const [imageLoaded, setImageLoaded] = useState(false);
   const [showPlaceholder, setShowPlaceholder] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [fallbackSrc, setFallbackSrc] = useState<string | null>(null);
+
+  // Fallback pour l'image de background si le cache échoue
+  useEffect(() => {
+    if (error && src.includes('background') && !fallbackSrc) {
+      console.log(`🔄 [CachedImage] Background cache failed, trying direct URL`);
+      setFallbackSrc(src.split('?')[0]); // URL sans paramètres de version
+    }
+  }, [error, src, fallbackSrc]);
 
   // Détecter si on est sur mobile/tablette pour l'objectFit responsive
   useEffect(() => {
@@ -73,15 +82,26 @@ export function CachedImage({
     setImageLoaded(true);
     setShowPlaceholder(false);
     onLoad?.();
+    
+    // Log pour le background
+    if (src.includes('background')) {
+      console.log(`🖼️ [CachedImage] Background image loaded successfully`);
+    }
   };
 
   const handleImageError = () => {
     const errorMsg = error || 'Erreur de chargement de l\'image';
     setShowPlaceholder(false);
+    
+    // Log pour le background
+    if (src.includes('background')) {
+      console.error(`❌ [CachedImage] Background image failed to load:`, errorMsg);
+    }
+    
     onError?.(errorMsg);
   };
 
-  if (error && !cachedSrc) {
+  if (error && !cachedSrc && !fallbackSrc) {
     return (
       <div 
         className={`flex items-center justify-center bg-gray-200 text-gray-500 ${className}`}
@@ -91,6 +111,9 @@ export function CachedImage({
       </div>
     );
   }
+
+  // Utiliser cachedSrc en priorité, sinon fallbackSrc
+  const finalSrc = cachedSrc || fallbackSrc;
 
   return (
     <div className={`relative ${className}`} style={width && height ? { width, height } : { width: '100%', height: '100%' }}>
@@ -111,10 +134,10 @@ export function CachedImage({
       )}
       
       {/* Image */}
-      {cachedSrc && (
+      {finalSrc && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={cachedSrc}
+          src={finalSrc}
           alt={alt}
           className={`absolute inset-0 transition-opacity duration-500`}
           style={{
