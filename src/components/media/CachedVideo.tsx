@@ -1,6 +1,6 @@
 'use client';
 
-import { useMediaCache } from '@/hooks/useMediaCache';
+import { useAutoMediaCache } from '@/hooks/useAutoCache';
 import { useState, useRef, useEffect } from 'react';
 import { Loader2, Play } from 'lucide-react';
 
@@ -35,7 +35,7 @@ export function CachedVideo({
   onLoad,
   onError 
 }: CachedVideoProps) {
-  const { src: cachedSrc, isLoading, error } = useMediaCache(src, 'video', {
+  const { src: cachedSrc, isLoading, error } = useAutoMediaCache(src, 'video', {
     strategy: 'cache-first',
     preload: priority
   });

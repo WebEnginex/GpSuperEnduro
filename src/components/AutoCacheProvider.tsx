@@ -1,8 +1,6 @@
 'use client';
 
-import { useAutoCache } from '@/hooks/useAutoCache';
-
+// Composant désactivé - remplacé par useAutoMediaCache dans les composants individuels
 export function AutoCacheProvider() {
-  useAutoCache();
-  return null; // Ce composant ne rend rien mais active le cache automatique
+  return null; // Ce composant ne fait plus rien
 }

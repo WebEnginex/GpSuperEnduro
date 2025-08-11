@@ -1,6 +1,6 @@
 'use client';
 
-import { useMediaCache } from '@/hooks/useMediaCache';
+import { useAutoMediaCache } from '@/hooks/useAutoCache';
 import { useState } from 'react';
 import { Loader2 } from 'lucide-react';
 
@@ -27,7 +27,7 @@ export function CachedImage({
   onLoad,
   onError 
 }: CachedImageProps) {
-  const { src: cachedSrc, isLoading, error } = useMediaCache(src, 'image', {
+  const { src: cachedSrc, isLoading, error } = useAutoMediaCache(src, 'image', {
     strategy: 'cache-first',
     preload: priority
   });
