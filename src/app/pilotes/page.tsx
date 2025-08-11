@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 import { CachedImage } from '@/components/media/CachedImage';
@@ -19,6 +19,8 @@ interface Pilote {
 export default function PilotesPage() {
   const [activeTab, setActiveTab] = useState('125');
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   const pilotes125: Pilote[] = [
     {
@@ -167,33 +169,94 @@ export default function PilotesPage() {
     }
   };
 
-  // Slider configuration
+  // Slider configuration responsive
   const currentPilotes = getCurrentPilotes();
-  const itemsPerPage = {
-    mobile: 1,
-    tablet: 2,
-    desktop: 3
-  };
   
-  // Reset slide when changing tab
+  // Fonction pour déterminer le nombre d'éléments par page selon la taille d'écran
+  const getItemsPerPage = () => {
+    if (typeof window === 'undefined') return 3; // SSR fallback
+    const width = window.innerWidth;
+    if (width < 640) return 1; // mobile: 1 pilote
+    if (width < 1024) return 2; // tablet: 2 pilotes
+    return 3; // desktop: 3 pilotes
+  };
+
+  const [itemsPerPage, setItemsPerPage] = useState(3);
+
+  // Écouter les changements de taille d'écran
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsPerPage(getItemsPerPage());
+    };
+    
+    // Initialiser
+    handleResize();
+    
+    // Écouter les redimensionnements
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+  // Reset slide when changing tab or itemsPerPage changes
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, [activeTab, itemsPerPage]);
+
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
     setCurrentSlide(0);
   };
 
-  const maxSlides = Math.ceil(currentPilotes.length / itemsPerPage.desktop);
+  const maxSlides = Math.ceil(currentPilotes.length / itemsPerPage);
+  
+  // S'assurer que currentSlide est dans les limites
+  useEffect(() => {
+    if (currentSlide >= maxSlides && maxSlides > 0) {
+      setCurrentSlide(0);
+    }
+  }, [currentSlide, maxSlides]);
   
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % maxSlides);
+    setCurrentSlide((prev) => {
+      const newSlide = (prev + 1) % maxSlides;
+      console.log(`Next slide: ${prev} -> ${newSlide} (max: ${maxSlides}, items: ${itemsPerPage})`);
+      return newSlide;
+    });
   };
   
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + maxSlides) % maxSlides);
+    setCurrentSlide((prev) => {
+      const newSlide = (prev - 1 + maxSlides) % maxSlides;
+      console.log(`Prev slide: ${prev} -> ${newSlide} (max: ${maxSlides}, items: ${itemsPerPage})`);
+      return newSlide;
+    });
   };
 
-  const getVisiblePilotes = () => {
-    const startIndex = currentSlide * itemsPerPage.desktop;
-    return currentPilotes.slice(startIndex, startIndex + itemsPerPage.desktop);
+  // Support tactile pour le swipe
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && maxSlides > 1) {
+      nextSlide();
+    }
+    if (isRightSwipe && maxSlides > 1) {
+      prevSlide();
+    }
   };
 
   return (
@@ -292,6 +355,13 @@ export default function PilotesPage() {
               {activeTab === '250' && 'La catégorie SX2, l\'antichambre de l\'élite du supercross français'}
               {activeTab === '450' && "La catégorie SX1, l'élite absolue du supercross français"}
             </p>
+            
+            {/* Indication de navigation pour mobile */}
+            <div className="mt-4 md:hidden">
+              <p className="text-gray-500 text-sm">
+                👈 Glissez pour naviguer entre les pilotes 👉
+              </p>
+            </div>
           </div>
           
           {/* Slider Container */}
@@ -316,84 +386,123 @@ export default function PilotesPage() {
               </>
             )}
 
-            {/* Pilotes Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">{getVisiblePilotes().map((pilote, index) => (
-                <div key={index} className="group w-full">
-                  <div className="relative aspect-[3/4] bg-gray-900 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300 w-full h-auto border border-gray-800 hover:border-red-500/50">
-                    {/* Image du pilote */}
-                    <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden">
-                      <CachedImage
-                        src={pilote.image}
-                        alt={`${pilote.prenom} ${pilote.nom}`}
-                        className="object-cover group-hover:scale-110 transition-transform duration-500 w-full h-full"
-                        priority={index < 6} // Prioriser les 6 premiers pilotes
-                      />
-                      {/* Gradient overlay pour améliorer la lisibilité */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"></div>
-                    </div>
+            {/* Pilotes Carousel */}
+            <div 
+              className="overflow-hidden"
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+            >
+              <div 
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{ 
+                  transform: `translateX(-${currentSlide * 100}%)`,
+                }}
+              >
+                {Array.from({ length: maxSlides }).map((_, slideIndex) => {
+                  const slideStartIndex = slideIndex * itemsPerPage;
+                  const slidePilotes = currentPilotes.slice(slideStartIndex, slideStartIndex + itemsPerPage);
+                  
+                  return (
+                    <div 
+                      key={slideIndex} 
+                      className="w-full flex-shrink-0 min-w-full"
+                    >
+                      <div className={`grid gap-6 lg:gap-8 px-2 ${
+                        itemsPerPage === 1 ? 'grid-cols-1' :
+                        itemsPerPage === 2 ? 'grid-cols-2' :
+                        'grid-cols-3'
+                      }`}>
+                        {slidePilotes.map((pilote, index) => (
+                          <div key={slideStartIndex + index} className="group w-full">
+                            <div className="relative aspect-[3/4] bg-gray-900 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300 w-full h-auto border border-gray-800 hover:border-red-500/50">
+                              {/* Image du pilote */}
+                              <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden">
+                                <CachedImage
+                                  src={pilote.image}
+                                  alt={`${pilote.prenom} ${pilote.nom}`}
+                                  className="object-cover group-hover:scale-110 transition-transform duration-500 w-full h-full"
+                                  priority={slideStartIndex + index < 6}
+                                />
+                                {/* Gradient overlay pour améliorer la lisibilité */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"></div>
+                              </div>
 
-                    {/* Logo de la marque en haut à gauche - taille encore augmentée */}
-                    <div className="absolute top-4 left-4">
-                      <CachedImage
-                        src={MARQUES[pilote.marque].logo}
-                        alt={MARQUES[pilote.marque].nom}
-                        width={60}
-                        height={60}
-                        className="object-contain w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 drop-shadow-lg"
-                      />
-                    </div>
+                              {/* Logo de la marque en haut à gauche */}
+                              <div className="absolute top-4 left-4">
+                                <CachedImage
+                                  src={MARQUES[pilote.marque].logo}
+                                  alt={MARQUES[pilote.marque].nom}
+                                  width={60}
+                                  height={60}
+                                  className="object-contain w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 drop-shadow-lg"
+                                />
+                              </div>
 
-                    {/* Numéro style motocross en haut à droite - police Racing */}
-                    <div className="absolute top-4 right-4">
-                      <span className="text-white font-bold text-2xl tracking-wider drop-shadow-lg font-racing" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
-                        {pilote.numero}
-                      </span>
-                    </div>
+                              {/* Numéro style motocross en haut à droite */}
+                              <div className="absolute top-4 right-4">
+                                <span className="text-white font-bold text-2xl tracking-wider drop-shadow-lg font-racing" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
+                                  {pilote.numero}
+                                </span>
+                              </div>
 
-                    {/* Informations organisées en bas */}
-                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/95 to-transparent">
-                      <div className="space-y-2">
-                        {/* Nom et prénom avec police Racing */}
-                        <div>
-                          <div className="text-white font-bold text-lg leading-tight tracking-wide drop-shadow-lg font-racing" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
-                            {pilote.prenom}
+                              {/* Informations organisées en bas */}
+                              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/95 to-transparent">
+                                <div className="space-y-2">
+                                  {/* Nom et prénom avec police Racing */}
+                                  <div>
+                                    <div className="text-white font-bold text-lg leading-tight tracking-wide drop-shadow-lg font-racing" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
+                                      {pilote.prenom}
+                                    </div>
+                                    <div className="text-red-400 font-bold text-xl leading-tight tracking-wide drop-shadow-lg font-racing" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
+                                      {pilote.nom}
+                                    </div>
+                                  </div>
+                                  
+                                  {/* Club */}
+                                  {pilote.club && (
+                                    <div className="text-gray-300 text-sm font-medium">
+                                      {pilote.club}
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+
+                              {/* Overlay au hover */}
+                              <div className="absolute inset-0 bg-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            </div>
                           </div>
-                          <div className="text-red-400 font-bold text-xl leading-tight tracking-wide drop-shadow-lg font-racing" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
-                            {pilote.nom}
-                          </div>
-                        </div>
-                        
-                        {/* Club sans style de liste */}
-                        {pilote.club && (
-                          <div className="text-gray-300 text-sm font-medium">
-                            {pilote.club}
-                          </div>
-                        )}
+                        ))}
                       </div>
                     </div>
-
-                    {/* Overlay au hover */}
-                    <div className="absolute inset-0 bg-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </div>
-                </div>
-              ))}
+                  );
+                })}
+              </div>
             </div>
 
-            {/* Indicators */}
+            {/* Indicators avec compteur */}
             {maxSlides > 1 && (
-              <div className="flex justify-center mt-8 space-x-2">
-                {Array.from({ length: maxSlides }).map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentSlide(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      currentSlide === index 
-                        ? 'bg-red-500 scale-110' 
-                        : 'bg-gray-600 hover:bg-gray-500'
-                    }`}
-                    aria-label={`Aller à la slide ${index + 1}`}
-                  />
-                ))}
+              <div className="flex justify-center items-center mt-8 space-x-4">
+                {/* Compteur sur mobile */}
+                <div className="md:hidden text-gray-400 text-sm">
+                  {currentSlide + 1} / {maxSlides}
+                </div>
+                
+                {/* Points indicateurs */}
+                <div className="flex space-x-2">
+                  {Array.from({ length: maxSlides }).map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                        currentSlide === index 
+                          ? 'bg-red-500 scale-110' 
+                          : 'bg-gray-600 hover:bg-gray-500'
+                      }`}
+                      aria-label={`Aller à la slide ${index + 1}`}
+                    />
+                  ))}
+                </div>
               </div>
             )}
           </div>
