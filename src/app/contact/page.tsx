@@ -106,7 +106,7 @@ export default function Contact() {
       <section className="py-16 bg-gradient-to-b from-black via-gray-900/30 to-gray-900/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">{/* Formulaire de Contact */}
-            <div className="order-2 lg:order-1">
+            <div className="order-1 lg:order-1">
               <div className="bg-gray-900/50 rounded-xl border border-gray-800 p-8">
                 <h2 className="text-2xl font-bold text-white mb-6">
                   Envoyez-nous un message
@@ -207,7 +207,7 @@ export default function Contact() {
             </div>
 
             {/* Informations de Contact */}
-            <div className="order-1 lg:order-2">
+            <div className="order-2 lg:order-2">
               <div className="space-y-8">
                 {/* Contact Principal */}
                 <div className="bg-gray-900/50 rounded-xl border border-gray-800 p-8">

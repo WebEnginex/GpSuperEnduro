@@ -300,13 +300,13 @@ export default function ProgrammePage() {
             <div className="text-center p-6 bg-gray-900/50 rounded-xl border border-gray-800">
               <Clock className="w-10 h-10 mx-auto mb-4 text-red-500" />
               <h3 className="text-lg font-semibold mb-2">Durée</h3>
-              <p className="text-gray-400">5h30 de spectacle</p>
+              <p className="text-gray-400">6h00 de spectacle</p>
             </div>
             
             <div className="text-center p-6 bg-gray-900/50 rounded-xl border border-gray-800">
               <Users className="w-10 h-10 mx-auto mb-4 text-red-500" />
               <h3 className="text-lg font-semibold mb-2">Pilotes</h3>
-              <p className="text-gray-400">Plus de 25 riders</p>
+              <p className="text-gray-400">Plus de 60 pilotes</p>
             </div>
             
             <div className="text-center p-6 bg-gray-900/50 rounded-xl border border-gray-800">
