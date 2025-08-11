@@ -23,22 +23,54 @@ export function useAutoMediaCache(url: string, type: MediaType, options: UseAuto
         return;
       }
       
-      // 2. Détection mobile/iOS qui peuvent avoir des problèmes
-      const userAgent = navigator.userAgent.toLowerCase();
-      const isMobile = /android|iphone|ipad|ipod|blackberry|windows phone/.test(userAgent);
-      const isIOS = /iphone|ipad|ipod/.test(userAgent);
+      // 2. Test d'accès à IndexedDB pour détecter les restrictions
+      const testIndexedDB = () => {
+        try {
+          const testRequest = indexedDB.open('test-db', 1);
+          testRequest.onerror = () => {
+            console.warn('IndexedDB access restricted, disabling cache');
+            setShouldDisableCache(true);
+          };
+          testRequest.onsuccess = () => {
+            indexedDB.deleteDatabase('test-db');
+            // IndexedDB fonctionne, gardons le cache activé
+          };
+        } catch (error) {
+          console.warn('IndexedDB test failed, disabling cache:', error);
+          setShouldDisableCache(true);
+        }
+      };
       
-      // 3. Détection de Safari qui peut avoir des problèmes avec IndexedDB
-      const isSafari = /safari/.test(userAgent) && !/chrome/.test(userAgent);
-      
-      // 4. Vérification de la mémoire disponible (si supporté)
+      // 3. Vérification de la mémoire disponible uniquement si très faible
       const lowMemory = 'deviceMemory' in navigator && 
         (navigator as { deviceMemory?: number }).deviceMemory && 
-        (navigator as { deviceMemory?: number }).deviceMemory! < 2;
+        (navigator as { deviceMemory?: number }).deviceMemory! < 1; // Seuil plus restrictif
       
-      if (isMobile || isIOS || isSafari || lowMemory) {
-        console.log('Mobile/Safari/Low memory detected, disabling cache for better compatibility');
+      // 4. Détection du mode privé/incognito
+      const isPrivateMode = () => {
+        try {
+          // Test spécifique pour Safari en mode privé
+          if ('webkitRequestFileSystem' in window) {
+            (window as Window & { webkitRequestFileSystem?: (type: number, size: number, successCallback: () => void, errorCallback: () => void) => void }).webkitRequestFileSystem?.(0, 1, 
+              () => {}, 
+              () => {
+                console.warn('Private mode detected, disabling cache');
+                setShouldDisableCache(true);
+              }
+            );
+          }
+        } catch {
+          // Ignorer les erreurs de détection du mode privé
+        }
+      };
+      
+      if (lowMemory) {
+        console.log('Very low memory detected, disabling cache');
         setShouldDisableCache(true);
+      } else {
+        // Tester IndexedDB seulement si pas de mémoire faible
+        testIndexedDB();
+        isPrivateMode();
       }
     };
     

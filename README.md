@@ -6,3 +6,5 @@ a faire :
 
 - Améliorer page connexion (ajouter un le header) FAIT
 
+- Site SxTour affiche la page Tickets au lieu de Billeterie
+

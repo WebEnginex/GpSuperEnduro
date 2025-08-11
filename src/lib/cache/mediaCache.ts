@@ -1,6 +1,7 @@
 import { MediaOperations } from '../db/operations';
 import { MediaType } from '../db/models';
 import { DevLogger } from '../utils/logger';
+import { BlobURLManager } from './blobManager';
 
 export class MediaCacheService {
   private static readonly MAX_CACHE_SIZE_MB = 150; // Limite à 150MB
@@ -20,7 +21,7 @@ export class MediaCacheService {
       if (cachedMedia) {
         DevLogger.cache('HIT', url, cachedMedia.size);
         DevLogger.performance('Cache Hit', startTime);
-        return URL.createObjectURL(cachedMedia.data);
+        return BlobURLManager.getOrCreateBlobURL(url, cachedMedia.data);
       }
 
       // Vérifier si un téléchargement est déjà en cours
@@ -69,7 +70,7 @@ export class MediaCacheService {
       await this.cleanCacheIfNeeded();
       
       DevLogger.performance('Cache Miss + Download', startTime);
-      return URL.createObjectURL(blob);
+      return BlobURLManager.getOrCreateBlobURL(url, blob);
     } catch (error) {
       DevLogger.error(`Échec téléchargement ${url}:`, error);
       throw error; // Re-lancer l'erreur pour que getOrFetchMedia puisse la gérer

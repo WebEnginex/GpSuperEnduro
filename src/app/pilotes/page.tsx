@@ -282,7 +282,7 @@ export default function PilotesPage() {
           {/* Sélecteur de catégories avec design amélioré */}
           <div className="text-center">
             <h2 className="text-2xl font-bold mb-8 text-gray-300">
-              Choisissez votre <span className="text-red-400">catégorie</span>
+              Choisissez la <span className="text-red-400">catégorie</span>
             </h2>
             
             <div className="max-w-lg mx-auto">
@@ -351,8 +351,8 @@ export default function PilotesPage() {
             </div>
             
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              {activeTab === '125' && 'Les jeunes talents de la catégorie Espoir qui représentent l\'avenir du supercross'}
-              {activeTab === '250' && 'La catégorie SX2, l\'antichambre de l\'élite du supercross français'}
+              {activeTab === '125' && 'Les jeunes talents de la catégorie Junior qui représentent l\'avenir du supercross'}
+              {activeTab === '250' && 'La catégorie SX2, la voie vers l\'élite du supercross français'}
               {activeTab === '450' && "La catégorie SX1, l'élite absolue du supercross français"}
             </p>
             
@@ -423,6 +423,7 @@ export default function PilotesPage() {
                                   alt={`${pilote.prenom} ${pilote.nom}`}
                                   className="object-cover group-hover:scale-110 transition-transform duration-500 w-full h-full"
                                   priority={slideStartIndex + index < 6}
+                                  loadingBackground="bg-gray-800"
                                 />
                                 {/* Gradient overlay pour améliorer la lisibilité */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"></div>
@@ -436,6 +437,7 @@ export default function PilotesPage() {
                                   width={60}
                                   height={60}
                                   className="object-contain w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 drop-shadow-lg"
+                                  loadingBackground="bg-transparent"
                                 />
                               </div>
 

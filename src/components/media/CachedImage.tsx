@@ -1,7 +1,7 @@
 'use client';
 
 import { useAutoMediaCache } from '@/hooks/useAutoCache';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Loader2 } from 'lucide-react';
 
 interface CachedImageProps {
@@ -23,7 +23,7 @@ export function CachedImage({
   width, 
   height, 
   priority = false,
-  loadingBackground = 'bg-gray-100', // Valeur par défaut
+  loadingBackground = 'bg-transparent', // Fond transparent par défaut
   onLoad,
   onError 
 }: CachedImageProps) {
@@ -33,14 +33,30 @@ export function CachedImage({
   });
   
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [showPlaceholder, setShowPlaceholder] = useState(false);
+
+  // Afficher le placeholder seulement après un délai
+  useEffect(() => {
+    if (isLoading) {
+      const timer = setTimeout(() => {
+        setShowPlaceholder(true);
+      }, 200); // Attendre 200ms avant d'afficher le placeholder
+      
+      return () => clearTimeout(timer);
+    } else {
+      setShowPlaceholder(false);
+    }
+  }, [isLoading]);
 
   const handleImageLoad = () => {
     setImageLoaded(true);
+    setShowPlaceholder(false);
     onLoad?.();
   };
 
   const handleImageError = () => {
     const errorMsg = error || 'Erreur de chargement de l\'image';
+    setShowPlaceholder(false);
     onError?.(errorMsg);
   };
 
@@ -57,8 +73,8 @@ export function CachedImage({
 
   return (
     <div className="relative">
-      {/* Indicateur de chargement */}
-      {(isLoading || !imageLoaded) && (
+      {/* Indicateur de chargement seulement après délai et si vraiment en cours de chargement */}
+      {isLoading && showPlaceholder && (
         <div 
           className={`absolute inset-0 flex items-center justify-center ${loadingBackground} ${className}`}
           style={{ width, height }}

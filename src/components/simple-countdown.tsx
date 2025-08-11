@@ -41,7 +41,7 @@ export function SimpleCountdown() {
       <div className="flex justify-center items-center gap-2 sm:gap-4">
         {/* Jours */}
         <div className="text-center">
-          <div className="text-red-600 text-2xl sm:text-4xl md:text-5xl font-bold">
+          <div className="text-white text-2xl sm:text-4xl md:text-5xl font-bold">
             {timeLeft.days.toString().padStart(2, '0')}
           </div>
           <div className="text-white/70 text-xs sm:text-sm mt-1 tracking-wider">
@@ -54,7 +54,7 @@ export function SimpleCountdown() {
         
         {/* Heures */}
         <div className="text-center">
-          <div className="text-red-600 text-2xl sm:text-4xl md:text-5xl font-bold">
+          <div className="text-white text-2xl sm:text-4xl md:text-5xl font-bold">
             {timeLeft.hours.toString().padStart(2, '0')}
           </div>
           <div className="text-white/70 text-xs sm:text-sm mt-1 tracking-wider">
@@ -67,7 +67,7 @@ export function SimpleCountdown() {
         
         {/* Minutes */}
         <div className="text-center">
-          <div className="text-red-600 text-2xl sm:text-4xl md:text-5xl font-bold">
+          <div className="text-white text-2xl sm:text-4xl md:text-5xl font-bold">
             {timeLeft.minutes.toString().padStart(2, '0')}
           </div>
           <div className="text-white/70 text-xs sm:text-sm mt-1 tracking-wider">

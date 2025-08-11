@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { MediaCacheService } from '@/lib/cache/mediaCache';
 import { MediaType } from '@/lib/db/models';
+import { BlobURLManager } from '@/lib/cache/blobManager';
 
 interface UseMediaCacheOptions {
   strategy?: 'cache-first' | 'network-first' | 'stale-while-revalidate';
@@ -26,7 +27,7 @@ export function useMediaCache(url: string, type: MediaType, options: UseMediaCac
       if (process.env.NODE_ENV === 'development') {
         console.log(`🔄 [useMediaCache] Loading: ${url}`);
       }
-      setIsLoading(true);
+      
       setError(null);
 
       try {
@@ -38,43 +39,35 @@ export function useMediaCache(url: string, type: MediaType, options: UseMediaCac
             console.log(`🚫 [useMediaCache] Cache disabled for: ${url}`);
           }
           mediaSrc = url;
-        } else {
-          switch (strategy) {
-            case 'cache-first':
-            default:
-              if (process.env.NODE_ENV === 'development') {
-                console.log(`📱 [useMediaCache] Cache-first strategy for: ${url}`);
-              }
-              // Timeout de 10 secondes pour le cache
-              const cachePromise = MediaCacheService.getOrFetchMedia(url, type);
-              const timeoutPromise = new Promise<string>((_, reject) => 
-                setTimeout(() => reject(new Error('Cache timeout')), 10000)
-              );
-              
-              try {
-                mediaSrc = await Promise.race([cachePromise, timeoutPromise]);
-                if (process.env.NODE_ENV === 'development') {
-                  console.log(`✅ [useMediaCache] Got src for ${url}:`, mediaSrc.startsWith('blob:') ? 'BLOB (cached)' : 'ORIGINAL URL');
-                }
-              } catch (cacheError) {
-                console.warn(`⚠️ [useMediaCache] Cache failed for ${url}, fallback to direct URL:`, cacheError);
-                mediaSrc = url; // Fallback vers l'URL directe
-              }
-              break;
-            // Autres stratégies peuvent être ajoutées ici
+          if (mounted) {
+            setSrc(mediaSrc);
+            setIsLoading(false);
           }
-        }
-
-        if (mounted) {
-          setSrc(mediaSrc);
+        } else {
+          // Essayer de récupérer depuis le cache
+          try {
+            const cachedMedia = await MediaCacheService.getOrFetchMedia(url, type);
+            if (mounted) {
+              mediaSrc = cachedMedia;
+              if (process.env.NODE_ENV === 'development') {
+                console.log(`✅ [useMediaCache] Got media for ${url}:`, cachedMedia.startsWith('blob:') ? 'CACHED (blob)' : 'DIRECT URL');
+              }
+              setSrc(mediaSrc);
+              setIsLoading(false);
+            }
+          } catch (cacheError) {
+            console.warn(`⚠️ [useMediaCache] Cache failed for ${url}, fallback to direct URL:`, cacheError);
+            if (mounted) {
+              mediaSrc = url; // Fallback vers l'URL directe
+              setSrc(mediaSrc);
+              setIsLoading(false);
+            }
+          }
         }
       } catch (err) {
         if (mounted) {
           setError(err instanceof Error ? err.message : 'Erreur de chargement');
           setSrc(url); // Fallback vers l'URL originale
-        }
-      } finally {
-        if (mounted) {
           setIsLoading(false);
         }
       }
@@ -96,10 +89,10 @@ export function useMediaCache(url: string, type: MediaType, options: UseMediaCac
   useEffect(() => {
     return () => {
       if (src && src.startsWith('blob:')) {
-        URL.revokeObjectURL(src);
+        BlobURLManager.releaseBlobURL(url);
       }
     };
-  }, [src]);
+  }, [src, url]);
 
   return {
     src,

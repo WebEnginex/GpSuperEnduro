@@ -143,7 +143,7 @@ export function Header({ showCountdown = true }: HeaderProps) {
           <div className="lg:hidden w-full flex justify-center items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-3 text-white hover:text-red-400 transition-colors duration-300 flex items-center justify-center"
+              className="p-4 text-white hover:text-red-400 transition-all duration-300 flex items-center justify-center bg-black/30 hover:bg-black/50 backdrop-blur-sm rounded-xl border border-white/20 hover:border-red-400/50 shadow-lg hover:shadow-xl"
             >
               {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>

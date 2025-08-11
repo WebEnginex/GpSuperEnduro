@@ -5,8 +5,13 @@ import { useVisitTracker } from "@/hooks/useVisitTracker";
 import { Header } from "@/components/header";
 import { SimpleCountdown } from "@/components/simple-countdown";
 import { CachedImage } from "@/components/media/CachedImage";
-import { CachedVideo } from "@/components/media/CachedVideo";
 import { CacheDebugger } from "@/components/CacheDebugger";
+import { IndexedDBStatus } from "@/components/IndexedDBStatus";
+
+// Import du test en développement seulement
+if (process.env.NODE_ENV === 'development') {
+  import("@/utils/testCache");
+}
 
 export default function Home() {
   // Tracker les visites automatiquement
@@ -17,64 +22,50 @@ export default function Home() {
       {/* Header réutilisable */}
       <Header showCountdown={true} />
 
-      {/* Contenu principal */}
-      <div className="relative h-screen overflow-hidden">
-        {/* Vidéo en arrière-plan */}
-        <div className="absolute inset-0 z-0">
-        {/* Vidéo Desktop */}
-        <CachedVideo
-          src="/videos/SXTour2025.webm"
-          autoPlay={true}
-          muted={true}
-          loop={true}
-          controls={false}
-          hideControls={true}
-          className="hidden md:block w-full h-full object-cover"
-          priority={true}
-        />
-        
-        {/* Vidéo Mobile/Tablette */}
-        <CachedVideo
-          src="/videos/SXTour2025-mobile.webm"
-          autoPlay={true}
-          muted={true}
-          loop={true}
-          controls={false}
-          hideControls={false} // Permettre l'affichage du bouton play si autoplay échoue
-          className="block md:hidden w-full h-full object-cover"
-          priority={true}
-        />
-        
-        {/* Image de fallback pour mobile si la vidéo ne se charge pas */}
-        <div className="block md:hidden w-full h-full bg-black absolute inset-0 -z-10">
+      {/* Section principale avec image de fond */}
+      <div className="relative min-h-screen h-screen w-full overflow-hidden" style={{ minHeight: '100vh', height: '100vh' }}>
+        {/* Image de fond pour toutes les tailles d'écran */}
+        <div className="absolute inset-0 z-0 w-full h-full">
           <CachedImage
             src="/images/background/supercross-bg.webp"
             alt="Supercross de Douai"
             width={1920}
             height={1080}
-            className="w-full h-full object-cover opacity-50"
+            className="w-full h-full object-cover min-h-screen"
             priority={true}
           />
         </div>
         
         {/* Overlay sombre pour améliorer la lisibilité */}
-        <div className="absolute inset-0 bg-black/50"></div>
-      </div>
+        <div className="absolute inset-0 bg-black/50 z-10 w-full h-full"></div>
 
-      {/* Contenu principal */}
-      <div className="relative z-10 h-screen flex flex-col pt-32">
-        {/* Section en bas de la vidéo */}
-        <main className="flex-1 flex flex-col justify-end px-4 sm:px-6 lg:px-8 pb-8">
+        {/* Contenu superposé */}
+        <div className="relative z-20 w-full h-full min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 pt-24 sm:pt-20 md:pt-16 lg:pt-0">
           {/* Compte à rebours centré */}
           <div className="text-center mb-12">
-            <div className="flex justify-center">
-              <SimpleCountdown />
-            </div>
+            <SimpleCountdown />
           </div>
-        </main>
 
-        {/* Indicateur de scroll en bas à droite */}
-        <div className="absolute bottom-8 right-8">
+          {/* Boutons d'action sur le background */}
+          <div className="flex gap-6 justify-center flex-col sm:flex-row max-w-lg mx-auto">
+            <Link 
+              href="/billeterie"
+              className="inline-flex items-center justify-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl text-lg"
+            >
+              Billeterie officielle
+            </Link>
+            
+            <Link 
+              href="/contact"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-gray-100 text-gray-900 border-2 border-white hover:border-gray-200 font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl text-lg"
+            >
+              Nous contacter
+            </Link>
+          </div>
+        </div>
+
+        {/* Indicateur de scroll centré en bas */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30">
           <div className="text-center">
             <p className="text-white/80 text-sm mb-4 font-medium">
               Découvrez
@@ -94,7 +85,7 @@ export default function Home() {
               {/* Triple chevron moderne */}
               <div className="flex flex-col mt-4 space-y-1">
                 <svg 
-                  className="w-8 h-3 text-white/60 animate-bounce" 
+                  className="w-6 h-2 sm:w-8 sm:h-3 text-white/60 animate-bounce" 
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24"
@@ -103,16 +94,17 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
                 </svg>
                 <svg 
-                  className="w-8 h-3 text-white/40 animate-bounce" 
+                  className="w-6 h-2 sm:w-8 sm:h-3 text-white/40 animate-bounce" 
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24"
                   style={{ animationDelay: '0.2s' }}
-                >
+
+>
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
                 </svg>
                 <svg 
-                  className="w-8 h-3 text-white/20 animate-bounce" 
+                  className="w-6 h-2 sm:w-8 sm:h-3 text-white/20 animate-bounce" 
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24"
@@ -124,10 +116,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        {/* Footer spacer */}
-        <div className="py-8"></div>
-      </div>
       </div>
 
       {/* Section de contenu après la vidéo */}
@@ -149,6 +137,7 @@ export default function Home() {
                   height={18}
                   className="w-6 h-4"
                   priority={true}
+                  loadingBackground="bg-transparent"
                 />
                 <p className="text-lg sm:text-xl text-red-600 dark:text-red-400 font-semibold">
                   Championnat de France 2025
@@ -160,30 +149,14 @@ export default function Home() {
                   height={18}
                   className="w-6 h-4"
                   priority={true}
+                  loadingBackground="bg-transparent"
                 />
               </div>
             </div>
             
-            <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-300 max-w-4xl mx-auto leading-relaxed mb-12">
+            <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-300 max-w-4xl mx-auto leading-relaxed mb-16">
               L&apos;événement supercross le plus spectaculaire du Nord de la France vous attend à Gayant Expo Concerts le Samedi 4 octobre 2025 !
             </p>
-
-            {/* Boutons d'action */}
-            <div className="flex gap-4 justify-center flex-col sm:flex-row max-w-md mx-auto mb-16">
-              <Link 
-                href="/billeterie"
-                className="flex-1 inline-flex items-center justify-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl text-lg"
-              >
-                Réserver mes billets
-              </Link>
-              
-              <Link 
-                href="/contact"
-                className="flex-1 inline-flex items-center justify-center px-8 py-4 bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-white border-2 border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500 font-semibold rounded-full transition-all duration-300 hover:scale-105 text-lg"
-              >
-                En savoir plus
-              </Link>
-            </div>
 
             {/* Informations événement */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -270,6 +243,7 @@ export default function Home() {
       </div>
       {/* Debug temporaire */}
       <CacheDebugger />
+      <IndexedDBStatus />
     </>
   );
 }
