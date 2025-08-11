@@ -5,9 +5,7 @@ import { useVisitTracker } from "@/hooks/useVisitTracker";
 import { Header } from "@/components/header";
 import { SimpleCountdown } from "@/components/simple-countdown";
 import { CachedImage } from "@/components/media/CachedImage";
-import { CacheDebugger } from "@/components/CacheDebugger";
-import { IndexedDBStatus } from "@/components/IndexedDBStatus";
-import { DeviceDebugger } from "@/components/DeviceDebugger";
+import { DebugPanel } from "@/components/DebugPanel";
 
 // Import du test en développement seulement
 if (process.env.NODE_ENV === 'development') {
@@ -19,36 +17,31 @@ export default function Home() {
   useVisitTracker();
 
   return (
-    <>
+    <div className="w-full overflow-x-hidden">
       {/* Header réutilisable */}
       <Header showCountdown={true} />
 
       {/* Section principale avec image de fond */}
       <div 
-        className="relative min-h-screen h-screen w-full overflow-hidden bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900"
+        className="relative min-h-screen h-screen w-full overflow-hidden"
         style={{ 
           minHeight: '100vh', 
           height: '100vh',
-          backgroundImage: 'url(/images/background/supercross-bg.webp)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
+          width: '100vw',
+          maxWidth: '100%',
+          background: 'linear-gradient(to bottom right, rgb(17, 24, 39), rgb(30, 41, 59), rgb(17, 24, 39))'
         }}
       >
         {/* Image de fond pour toutes les tailles d'écran - priorité haute pour le cache */}
         <div className="absolute inset-0 z-0 w-full h-full">
           <CachedImage
-            src="/images/background/supercross-bg.webp"
+            src="/images/background/supercross-sxtour-bg.webp"
             alt="Supercross de Douai"
-            width={1920}
-            height={1080}
-            className="w-full h-full object-cover min-h-screen"
+            className="w-full h-full responsive-background-image"
             priority={true}
-            loadingBackground="bg-transparent"
+            loadingBackground="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900"
           />
-        </div>
-        
-        {/* Overlay sombre pour améliorer la lisibilité */}
+        </div>        {/* Overlay sombre pour améliorer la lisibilité */}
         <div className="absolute inset-0 bg-black/50 z-10 w-full h-full"></div>
 
         {/* Contenu superposé */}
@@ -253,10 +246,8 @@ export default function Home() {
           </div>
         </section>
       </div>
-      {/* Debug temporaire */}
-      <CacheDebugger />
-      <IndexedDBStatus />
-      <DeviceDebugger />
-    </>
+      {/* Panel de debug pour le développement */}
+      <DebugPanel />
+    </div>
   );
 }

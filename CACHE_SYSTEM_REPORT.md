@@ -35,7 +35,7 @@
  * IMAGES COUVERTES PAR LE CACHE:
  * 
  * ✅ Page d'accueil:
- *    - Background principal (supercross-bg.webp)
+ *    - Background principal (supercross-sxtour-bg.webp)
  *    - Drapeaux France (france.svg) x2
  * 
  * ✅ Header (toutes pages):

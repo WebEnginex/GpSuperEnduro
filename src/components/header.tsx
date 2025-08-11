@@ -56,7 +56,7 @@ export function Header({ showCountdown = true }: HeaderProps) {
         <div className={`absolute inset-0 z-0 transition-opacity duration-700 ease-in-out ${
           scrollY <= 50 ? 'opacity-100' : 'opacity-0'
         }`}>
-          <div className="w-full h-full bg-[url('/images/background/supercross-bg.webp')] bg-cover bg-center opacity-30"></div>
+          <div className="w-full h-full bg-[url('/images/background/supercross-sxtour-bg.webp')] bg-cover bg-center opacity-30"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80"></div>
         </div>
       )}

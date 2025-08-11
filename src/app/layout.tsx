@@ -42,8 +42,9 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${bebasNeue.variable} ${racingSansOne.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${bebasNeue.variable} ${racingSansOne.variable} antialiased overflow-x-hidden`}
         suppressHydrationWarning
+        style={{ margin: 0, padding: 0, width: '100%', minHeight: '100vh' }}
       >
         <CacheInitializer />
         <BackgroundPreloader />

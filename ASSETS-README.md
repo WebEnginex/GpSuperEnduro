@@ -30,7 +30,7 @@ Veuillez ajouter les fichiers suivants dans le dossier `public/images/` :
 
 ## ⚠️ DEPRECATED - Vidéos de fond requises (Plus utilisées)
 
-**Note : Remplacées par l'image de background statique `/images/background/supercross-bg.webp`**
+**Note : Remplacées par l'image de background statique `/images/background/supercross-sxtour-bg.webp`**
 
 ~~Veuillez ajouter les fichiers suivants dans le dossier `public/videos/` :~~
 

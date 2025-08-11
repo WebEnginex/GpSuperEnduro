@@ -14,6 +14,9 @@ interface CachedImageProps {
   loadingBackground?: string; // Nouvelle prop pour personnaliser le fond de chargement
   onLoad?: () => void;
   onError?: (error: string) => void;
+  objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down'; // Nouvelle prop pour objectFit
+  objectPosition?: string; // Nouvelle prop pour objectPosition
+  responsiveObjectFit?: boolean; // Nouvelle prop pour activer l'objectFit responsive
 }
 
 export function CachedImage({ 
@@ -25,7 +28,10 @@ export function CachedImage({
   priority = false,
   loadingBackground = 'bg-transparent', // Fond transparent par défaut
   onLoad,
-  onError 
+  onError,
+  objectFit = 'cover', // Valeur par défaut
+  objectPosition = 'center center', // Valeur par défaut
+  responsiveObjectFit = false // Valeur par défaut
 }: CachedImageProps) {
   const { src: cachedSrc, isLoading, error } = useAutoMediaCache(src, 'image', {
     strategy: 'cache-first',
@@ -34,6 +40,21 @@ export function CachedImage({
   
   const [imageLoaded, setImageLoaded] = useState(false);
   const [showPlaceholder, setShowPlaceholder] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Détecter si on est sur mobile/tablette pour l'objectFit responsive
+  useEffect(() => {
+    if (responsiveObjectFit) {
+      const checkIsMobile = () => {
+        setIsMobile(window.innerWidth < 1024); // lg breakpoint de Tailwind
+      };
+      
+      checkIsMobile();
+      window.addEventListener('resize', checkIsMobile);
+      
+      return () => window.removeEventListener('resize', checkIsMobile);
+    }
+  }, [responsiveObjectFit]);
 
   // Afficher le placeholder seulement après un délai
   useEffect(() => {
@@ -72,12 +93,18 @@ export function CachedImage({
   }
 
   return (
-    <div className="relative">
+    <div className={`relative ${className}`} style={width && height ? { width, height } : { width: '100%', height: '100%' }}>
+      {/* Background de fallback toujours visible */}
+      <div 
+        className={`absolute inset-0 ${loadingBackground}`}
+        style={width && height ? { width, height } : { width: '100%', height: '100%' }}
+      />
+      
       {/* Indicateur de chargement seulement après délai et si vraiment en cours de chargement */}
       {isLoading && showPlaceholder && (
         <div 
-          className={`absolute inset-0 flex items-center justify-center ${loadingBackground} ${className}`}
-          style={{ width, height }}
+          className="absolute inset-0 flex items-center justify-center z-10"
+          style={width && height ? { width, height } : { width: '100%', height: '100%' }}
         >
           <Loader2 className="h-6 w-6 animate-spin text-gray-400" />
         </div>
@@ -89,9 +116,14 @@ export function CachedImage({
         <img
           src={cachedSrc}
           alt={alt}
-          className={`${className} ${imageLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
-          width={width}
-          height={height}
+          className={`absolute inset-0 transition-opacity duration-500`}
+          style={{
+            opacity: imageLoaded ? 1 : 0,
+            width: '100%',
+            height: '100%',
+            objectFit: responsiveObjectFit ? (isMobile ? 'cover' : 'contain') : objectFit,
+            objectPosition: objectPosition
+          }}
           onLoad={handleImageLoad}
           onError={handleImageError}
           loading={priority ? 'eager' : 'lazy'}

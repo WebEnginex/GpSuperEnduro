@@ -9,7 +9,7 @@ export function BackgroundPreloader() {
       try {
         // Précharger l'image de background en priorité absolue
         await MediaCacheService.preloadMedia([
-          { url: '/images/background/supercross-bg.webp', type: 'image' }
+          { url: '/images/background/supercross-sxtour-bg.webp', type: 'image' }
         ]);
         
         if (process.env.NODE_ENV === 'development') {

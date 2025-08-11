@@ -7,7 +7,7 @@ export const CACHE_CONFIG = {
   
   // Médias à précharger au démarrage
   CRITICAL_MEDIA: [
-    { url: '/images/background/supercross-bg.webp', type: 'image' as const },
+    { url: '/images/background/supercross-sxtour-bg.webp', type: 'image' as const },
     { url: '/images/partners/FFMOTO_LOGO.png', type: 'image' as const },
     { url: '/images/partners/Supercross_Championnat_FR.png', type: 'image' as const },
     { url: '/images/affiche/affiche_supercross_douai.webp', type: 'image' as const },

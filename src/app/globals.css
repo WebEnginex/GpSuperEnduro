@@ -117,9 +117,28 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    box-sizing: border-box;
   }
+  
+  html {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+  }
+  
+  /* Assurer que tous les conteneurs respectent la largeur d'écran */
+  #__next,
+  main {
+    width: 100%;
+    overflow-x: hidden;
   }
 }
 
@@ -296,4 +315,30 @@
 .animate-active-glow-paddock {
   animation: active-glow-paddock 3s ease-in-out infinite;
   position: relative;
+}
+
+/* Classes pour l'image de fond responsive */
+.bg-image-responsive {
+  object-fit: cover;
+  object-position: center center;
+}
+
+@media (min-width: 1024px) {
+  .bg-image-responsive {
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 1023px) {
+  .bg-image-responsive {
+    object-fit: cover;
+    object-position: center top;
+  }
+}
+
+@media (max-width: 767px) {
+  .bg-image-responsive {
+    object-fit: cover;
+    object-position: center center;
+  }
 }

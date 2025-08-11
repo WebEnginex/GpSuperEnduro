@@ -49,5 +49,19 @@ export async function testIndexedDBCache() {
 
 // Exposer globalement pour debug
 if (typeof window !== 'undefined') {
-  (window as Window & { testCache?: () => Promise<boolean> }).testCache = testIndexedDBCache;
+  (window as Window & { 
+    testCache?: () => Promise<boolean>;
+    MediaOperations?: typeof MediaOperations;
+    MediaCacheService?: typeof MediaCacheService;
+    BlobURLManager?: unknown;
+  }).testCache = testIndexedDBCache;
+  
+  // Exposer les services pour les tests
+  (window as Window & { MediaOperations?: typeof MediaOperations }).MediaOperations = MediaOperations;
+  (window as Window & { MediaCacheService?: typeof MediaCacheService }).MediaCacheService = MediaCacheService;
+  
+  // Importer BlobURLManager et l'exposer
+  import('@/lib/cache/blobManager').then(({ BlobURLManager }) => {
+    (window as Window & { BlobURLManager?: unknown }).BlobURLManager = BlobURLManager;
+  });
 }
