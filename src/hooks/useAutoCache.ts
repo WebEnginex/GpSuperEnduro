@@ -79,8 +79,19 @@ export function useAutoMediaCache(url: string, type: MediaType, options: UseAuto
 
   const disableCache = options.forceDisableCache || shouldDisableCache;
 
+  // Images critiques qui doivent toujours essayer le cache même sur mobile
+  const criticalImages = [
+    '/images/background/supercross-bg.webp',
+    '/images/partners/FFMOTO_LOGO.png',
+    '/images/partners/Supercross_Championnat_FR.png',
+    '/images/flags/france.svg'
+  ];
+
+  const isCriticalImage = criticalImages.includes(url);
+  const finalDisableCache = disableCache && !isCriticalImage;
+
   return useMediaCache(url, type, {
     ...options,
-    disableCache
+    disableCache: finalDisableCache
   });
 }

@@ -5,6 +5,7 @@ import { ConditionalHeader } from "@/components/conditional-header";
 import { Footer } from "@/components/footer";
 import { CacheInitializer } from "@/components/CacheInitializer";
 import { AutoCacheProvider } from "@/components/AutoCacheProvider";
+import { BackgroundPreloader } from "@/components/BackgroundPreloader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,6 +46,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <CacheInitializer />
+        <BackgroundPreloader />
         <AutoCacheProvider />
         <ConditionalHeader />
         <main>{children}</main>

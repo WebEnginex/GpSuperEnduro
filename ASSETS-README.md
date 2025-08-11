@@ -1,4 +1,16 @@
-# Assets nécessaires pour la page d'accueil
+# Assets nécessair## ⚠️ DEPRECATED - Vidéos Hero (Plus utilisées)
+
+**Note : Les vidéos hero ont été remplacées par une image de background statique pour de meilleures performances.**
+
+~~Veuillez ajouter les fichiers suivants dans le dossier `public/videos/` :~~
+
+### ~~1. Vidéo Desktop~~ (SUPPRIMÉ)
+- ~~**Fichiers** :~~
+  - ~~`hero-desktop.mp4` (format principal)~~
+  - ~~`hero-desktop.webm` (format alternatif pour une meilleure compatibilité)~~
+- ~~**Dimensions recommandées** : 1920x1080px (Full HD)~~
+- ~~**Durée** : 10-30 secondes (la vidéo boucle automatiquement)~~
+- ~~**Description** : Vidéo d'action supercross pour écrans desktop~~page d'accueil
 
 ## Logos requis
 
@@ -16,29 +28,31 @@ Veuillez ajouter les fichiers suivants dans le dossier `public/images/` :
 - **Format** : PNG avec fond transparent
 - **Description** : Logo officiel du Championnat de France de Supercross
 
-## Vidéos de fond requises
+## ⚠️ DEPRECATED - Vidéos de fond requises (Plus utilisées)
 
-Veuillez ajouter les fichiers suivants dans le dossier `public/videos/` :
+**Note : Remplacées par l'image de background statique `/images/background/supercross-bg.webp`**
 
-### 1. Vidéo Desktop
-- **Fichiers** : 
-  - `hero-desktop.mp4` (format principal)
-  - `hero-desktop.webm` (format alternatif pour une meilleure compatibilité)
-- **Dimensions recommandées** : 1920x1080px (Full HD)
-- **Durée** : 10-30 secondes (la vidéo boucle automatiquement)
-- **Description** : Vidéo d'action supercross pour écrans desktop
+~~Veuillez ajouter les fichiers suivants dans le dossier `public/videos/` :~~
 
-### 2. Vidéo Mobile/Tablette
-- **Fichiers** :
-  - `hero-mobile.mp4` (format principal)
-  - `hero-mobile.webm` (format alternatif)
-- **Dimensions recommandées** : 720x1280px (format portrait optimisé mobile)
-- **Durée** : 10-30 secondes (la vidéo boucle automatiquement)
-- **Description** : Vidéo optimisée pour les écrans mobiles et tablettes
+### ~~1. Vidéo Desktop~~ (SUPPRIMÉ)
+- ~~**Fichiers** :~~
+  - ~~`hero-desktop.mp4` (format principal)~~
+  - ~~`hero-desktop.webm` (format alternatif pour une meilleure compatibilité)~~
+- ~~**Dimensions recommandées** : 1920x1080px (Full HD)~~
+- ~~**Durée** : 10-30 secondes (la vidéo boucle automatiquement)~~
+- ~~**Description** : Vidéo d'action supercross pour écrans desktop~~
 
-## Images poster (optionnel mais recommandé)
+### ~~2. Vidéo Mobile/Tablette~~ (SUPPRIMÉ)
+- ~~**Fichiers** :~~
+  - ~~`hero-mobile.mp4` (format principal)~~
+  - ~~`hero-mobile.webm` (format alternatif)~~
+- ~~**Dimensions recommandées** : 720x1280px (format portrait optimisé mobile)~~
+- ~~**Durée** : 10-30 secondes (la vidéo boucle automatiquement)~~
+- ~~**Description** : Vidéo optimisée pour les écrans mobiles et tablettes~~
 
-Ces images s'affichent pendant le chargement de la vidéo :
+## ⚠️ DEPRECATED - Images poster (Plus nécessaires)
+
+~~Ces images s'affichent pendant le chargement de la vidéo :~~
 
 - **Fichier** : `hero-poster.jpg` (pour desktop)
 - **Fichier** : `hero-poster-mobile.jpg` (pour mobile)

@@ -7,6 +7,7 @@ import { SimpleCountdown } from "@/components/simple-countdown";
 import { CachedImage } from "@/components/media/CachedImage";
 import { CacheDebugger } from "@/components/CacheDebugger";
 import { IndexedDBStatus } from "@/components/IndexedDBStatus";
+import { DeviceDebugger } from "@/components/DeviceDebugger";
 
 // Import du test en développement seulement
 if (process.env.NODE_ENV === 'development') {
@@ -23,8 +24,18 @@ export default function Home() {
       <Header showCountdown={true} />
 
       {/* Section principale avec image de fond */}
-      <div className="relative min-h-screen h-screen w-full overflow-hidden" style={{ minHeight: '100vh', height: '100vh' }}>
-        {/* Image de fond pour toutes les tailles d'écran */}
+      <div 
+        className="relative min-h-screen h-screen w-full overflow-hidden bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900"
+        style={{ 
+          minHeight: '100vh', 
+          height: '100vh',
+          backgroundImage: 'url(/images/background/supercross-bg.webp)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
+        {/* Image de fond pour toutes les tailles d'écran - priorité haute pour le cache */}
         <div className="absolute inset-0 z-0 w-full h-full">
           <CachedImage
             src="/images/background/supercross-bg.webp"
@@ -33,6 +44,7 @@ export default function Home() {
             height={1080}
             className="w-full h-full object-cover min-h-screen"
             priority={true}
+            loadingBackground="bg-transparent"
           />
         </div>
         
@@ -244,6 +256,7 @@ export default function Home() {
       {/* Debug temporaire */}
       <CacheDebugger />
       <IndexedDBStatus />
+      <DeviceDebugger />
     </>
   );
 }
