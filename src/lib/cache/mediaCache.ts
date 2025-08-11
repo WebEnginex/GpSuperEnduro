@@ -2,6 +2,7 @@ import { MediaOperations } from '../db/operations';
 import { MediaType } from '../db/models';
 import { DevLogger } from '../utils/logger';
 import { BlobURLManager } from './blobManager';
+import { db } from '../db/index';
 
 export class MediaCacheService {
   private static readonly MAX_CACHE_SIZE_MB = 150; // Limite à 150MB
@@ -65,6 +66,11 @@ export class MediaCacheService {
       // Sauvegarder dans le cache
       await MediaOperations.saveMedia(url, blob, type);
       DevLogger.cache('STORE', url, blob.size);
+      
+      // Nettoyer les anciennes versions si l'URL contient un paramètre de version
+      if (url.includes('?v=')) {
+        await this.cleanOldVersions(url);
+      }
       
       // Nettoyer le cache si nécessaire
       await this.cleanCacheIfNeeded();
@@ -146,6 +152,28 @@ export class MediaCacheService {
   static async clearAllCache(): Promise<void> {
     await MediaOperations.clearCache();
     DevLogger.success(`Cache complètement vidé`);
+  }
+
+  // Nettoyer les anciennes versions d'un fichier (cache busting)
+  static async cleanOldVersions(baseUrl: string): Promise<void> {
+    try {
+      // Récupérer tous les fichiers qui commencent par l'URL de base
+      const allFiles = await db.mediaFiles.where('url').startsWith(baseUrl.split('?')[0]).toArray();
+      
+      // Filtrer pour garder seulement l'ancienne version (sans paramètre de version)
+      const oldVersions = allFiles.filter((file: { url: string; id?: number }) => 
+        file.url === baseUrl.split('?')[0] || // Version sans paramètre
+        (file.url.includes('?v=') && file.url !== baseUrl) // Anciennes versions avec paramètres
+      );
+      
+      if (oldVersions.length > 0) {
+        const idsToDelete = oldVersions.map((file: { id?: number }) => file.id!);
+        await db.mediaFiles.bulkDelete(idsToDelete);
+        DevLogger.success(`${oldVersions.length} anciennes versions supprimées pour ${baseUrl}`);
+      }
+    } catch (error) {
+      DevLogger.error('Erreur lors du nettoyage des anciennes versions:', error);
+    }
   }
 
   // Formater la taille des fichiers

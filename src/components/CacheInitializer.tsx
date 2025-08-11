@@ -14,6 +14,9 @@ export function CacheInitializer() {
         // Nettoyer les fichiers expirés au démarrage
         await MediaCacheService.cleanExpiredFiles();
         
+        // Nettoyer les anciennes versions du background (cache busting)
+        await MediaCacheService.cleanOldVersions('/images/background/supercross-sxtour-bg.webp?v=2025011');
+        
         // Afficher les stats actuelles
         const initialStats = await MediaCacheService.getCacheInfo();
         DevLogger.stats(initialStats);
