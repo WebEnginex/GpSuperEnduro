@@ -51,6 +51,10 @@ export function CachedImage({
     }
   }, [error, src, fallbackSrc]);
 
+  // Pour l'image de background, toujours utiliser 'cover' pour remplir l'écran
+  const isBackgroundImage = src.includes('background');
+  const finalObjectFit = isBackgroundImage ? 'cover' : (responsiveObjectFit ? (isMobile ? 'cover' : 'contain') : objectFit);
+
   // Détecter si on est sur mobile/tablette pour l'objectFit responsive
   useEffect(() => {
     if (responsiveObjectFit) {
@@ -144,7 +148,7 @@ export function CachedImage({
             opacity: imageLoaded ? 1 : 0,
             width: '100%',
             height: '100%',
-            objectFit: responsiveObjectFit ? (isMobile ? 'cover' : 'contain') : objectFit,
+            objectFit: finalObjectFit,
             objectPosition: objectPosition
           }}
           onLoad={handleImageLoad}

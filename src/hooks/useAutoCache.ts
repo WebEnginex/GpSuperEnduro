@@ -81,19 +81,17 @@ export function useAutoMediaCache(url: string, type: MediaType, options: UseAuto
 
   // Images critiques qui doivent toujours essayer le cache même sur mobile
   const criticalImages = [
-    '/images/background/supercross-sxtour-bg.webp?v=2025011',
-    '/images/background/supercross-sxtour-bg.webp', // Fallback pour l'ancienne version
+    '/images/background/supercross-sxtour-bg.webp',
     '/images/partners/FFMOTO_LOGO.png',
     '/images/partners/Supercross_Championnat_FR.png',
     '/images/flags/france.svg'
   ];
 
-  // Vérifier si l'URL correspond à une image critique (même avec paramètres de version)
+  // Vérifier si l'URL correspond à une image critique (sans tenir compte des paramètres de version)
   const isCriticalImage = criticalImages.some(criticalUrl => {
-    // Comparaison exacte ou comparaison sans paramètres de version
-    return url === criticalUrl || 
-           (url.includes('?v=') && criticalUrl.includes('?v=') && 
-            url.split('?')[0] === criticalUrl.split('?')[0]);
+    const urlBase = url.split('?')[0]; // Enlever les paramètres de version
+    const criticalUrlBase = criticalUrl.split('?')[0];
+    return urlBase === criticalUrlBase;
   });
   const finalDisableCache = disableCache && !isCriticalImage;
 

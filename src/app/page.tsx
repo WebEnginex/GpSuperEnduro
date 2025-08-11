@@ -40,7 +40,8 @@ export default function Home() {
             className="w-full h-full"
             priority={true}
             loadingBackground="bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900"
-            responsiveObjectFit={true}
+            objectFit="cover"
+            responsiveObjectFit={false}
           />
         </div>        {/* Overlay sombre pour améliorer la lisibilité */}
         <div className="absolute inset-0 bg-black/50 z-10 w-full h-full"></div>
