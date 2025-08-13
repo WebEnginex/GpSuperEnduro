@@ -43,6 +43,13 @@ export function CachedImage({
   const [isMobile, setIsMobile] = useState(false);
   const [fallbackSrc, setFallbackSrc] = useState<string | null>(null);
 
+  // Réinitialiser l'état quand la source change
+  useEffect(() => {
+    setImageLoaded(false);
+    setShowPlaceholder(false);
+    setFallbackSrc(null);
+  }, [src]);
+
   // Fallback pour l'image de background si le cache échoue
   useEffect(() => {
     if (error && src.includes('background') && !fallbackSrc) {

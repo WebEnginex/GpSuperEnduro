@@ -14,6 +14,18 @@ export function BrandLogo({ src, alt, className = '' }: BrandLogoProps) {
   const [directSrc, setDirectSrc] = useState<string | null>(null);
   const [isMobileDevice, setIsMobileDevice] = useState(false);
 
+  // Réinitialiser l'état quand la source change
+  useEffect(() => {
+    setHasError(false);
+    setDirectSrc(null);
+    
+    // En production, forcer l'utilisation directe pour éviter les problèmes de cache
+    if (process.env.NODE_ENV === 'production') {
+      console.log(`🏷️ [BrandLogo] Production: forcing direct URL for: ${src}`);
+      setDirectSrc(src);
+    }
+  }, [src]);
+
   // Détecter le type d'appareil
   useEffect(() => {
     const checkMobileDevice = () => {

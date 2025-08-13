@@ -14,6 +14,22 @@ export function PilotImage({ src, alt, className = '', priority = false }: Pilot
   const [hasError, setHasError] = useState(false);
   const [directSrc, setDirectSrc] = useState<string | null>(null);
 
+  // Réinitialiser l'état quand la source change
+  useEffect(() => {
+    setHasError(false);
+    setDirectSrc(null);
+    
+    // En production, forcer l'utilisation directe pour éviter les problèmes de cache
+    if (process.env.NODE_ENV === 'production') {
+      const timer = setTimeout(() => {
+        console.log(`🏃‍♂️ [PilotImage] Production: forcing direct URL for: ${src}`);
+        setDirectSrc(src);
+      }, 100); // Délai très court en production
+      
+      return () => clearTimeout(timer);
+    }
+  }, [src]);
+
   // En production, activer le fallback plus rapidement pour les images de pilotes
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {

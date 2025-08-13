@@ -3,9 +3,10 @@
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
-import { BrandLogo } from '@/components/media/BrandLogo';
+import { SmartBrandLogo } from '@/components/media/SmartBrandLogo';
+import { SmartPilotImage } from '@/components/media/SmartPilotImage';
 import { BrandLogosPreloader } from '@/components/media/BrandLogosPreloader';
-import { PilotImage } from '@/components/media/PilotImage';
+import { useCacheCleaner } from '@/hooks/useCacheCleaner';
 import { MARQUES, type MarqueId } from '@/lib/data/marques';
 
 // Interface pour les pilotes avec marque
@@ -23,6 +24,9 @@ export default function PilotesPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  // Hook pour nettoyer le cache lors du changement de catégorie
+  useCacheCleaner(activeTab);
 
   const pilotes125: Pilote[] = [
     {
@@ -202,6 +206,7 @@ export default function PilotesPage() {
   // Reset slide when changing tab or itemsPerPage changes
   useEffect(() => {
     setCurrentSlide(0);
+    console.log(`🔄 [PilotesPage] Category changed to: ${activeTab}`);
   }, [activeTab, itemsPerPage]);
 
   const handleTabChange = (tab: string) => {
@@ -392,12 +397,14 @@ export default function PilotesPage() {
 
             {/* Pilotes Carousel */}
             <div 
+              key={`carousel-${activeTab}`}
               className="overflow-hidden"
               onTouchStart={onTouchStart}
               onTouchMove={onTouchMove}
               onTouchEnd={onTouchEnd}
             >
               <div 
+                key={`slider-${activeTab}`}
                 className="flex transition-transform duration-500 ease-in-out"
                 style={{ 
                   transform: `translateX(-${currentSlide * 100}%)`,
@@ -409,7 +416,7 @@ export default function PilotesPage() {
                   
                   return (
                     <div 
-                      key={slideIndex} 
+                      key={`${activeTab}-slide-${slideIndex}`} 
                       className="w-full flex-shrink-0 min-w-full"
                     >
                       <div className={`grid gap-6 lg:gap-8 px-2 ${
@@ -418,11 +425,12 @@ export default function PilotesPage() {
                         'grid-cols-3'
                       }`}>
                         {slidePilotes.map((pilote, index) => (
-                          <div key={slideStartIndex + index} className="group w-full">
+                          <div key={`${activeTab}-${pilote.numero}-${slideStartIndex + index}`} className="group w-full">
                             <div className="relative aspect-[3/4] bg-gray-900 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300 w-full h-auto border border-gray-800 hover:border-red-500/50">
                               {/* Image du pilote */}
                               <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden">
-                                <PilotImage
+                                <SmartPilotImage
+                                  key={`pilot-${activeTab}-${pilote.numero}`}
                                   src={pilote.image}
                                   alt={`${pilote.prenom} ${pilote.nom}`}
                                   className="object-cover group-hover:scale-110 transition-transform duration-500 w-full h-full"
@@ -435,7 +443,8 @@ export default function PilotesPage() {
                               {/* Logo de la marque en haut à gauche */}
                               <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20">
                                 <div className="brand-logo-container">
-                                  <BrandLogo
+                                  <SmartBrandLogo
+                                    key={`brand-${activeTab}-${pilote.numero}`}
                                     src={MARQUES[pilote.marque].logo}
                                     alt={MARQUES[pilote.marque].nom}
                                     className="brand-logo"
