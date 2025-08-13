@@ -1,8 +1,5 @@
 'use client';
 
-import { BrandLogo } from './BrandLogo';
-import { ProductionBrandLogo } from './ProductionBrandLogo';
-
 interface SmartBrandLogoProps {
   src: string;
   alt: string;
@@ -10,23 +7,18 @@ interface SmartBrandLogoProps {
 }
 
 export function SmartBrandLogo({ src, alt, className = '' }: SmartBrandLogoProps) {
-  // En production, utiliser la version sans cache pour éviter les problèmes
-  if (process.env.NODE_ENV === 'production') {
-    return (
-      <ProductionBrandLogo
+  // Utiliser la même logique simple qui fonctionne en développement
+  
+  return (
+    <div className={`w-12 h-8 relative ${className}`}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         src={src}
         alt={alt}
-        className={className}
+        className="w-full h-full object-contain"
+        onLoad={() => console.log(`✅ [SmartBrandLogo] Loaded: ${src}`)}
+        onError={() => console.error(`❌ [SmartBrandLogo] Failed: ${src}`)}
       />
-    );
-  }
-
-  // En développement, utiliser la version avec cache
-  return (
-    <BrandLogo
-      src={src}
-      alt={alt}
-      className={className}
-    />
+    </div>
   );
 }

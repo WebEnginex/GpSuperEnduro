@@ -6,6 +6,9 @@ import { Badge } from "@/components/ui/badge";
 import { SmartBrandLogo } from '@/components/media/SmartBrandLogo';
 import { SmartPilotImage } from '@/components/media/SmartPilotImage';
 import { BrandLogosPreloader } from '@/components/media/BrandLogosPreloader';
+import { PiloteDiagnostic } from '@/components/PiloteDiagnostic';
+import { DebugOverlay } from '@/components/DebugOverlay';
+import { MarqueDebugPanel } from '@/components/MarqueDebugPanel';
 import { useCacheCleaner } from '@/hooks/useCacheCleaner';
 import { MARQUES, type MarqueId } from '@/lib/data/marques';
 
@@ -443,12 +446,20 @@ export default function PilotesPage() {
                               {/* Logo de la marque en haut à gauche */}
                               <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20">
                                 <div className="brand-logo-container">
-                                  <SmartBrandLogo
-                                    key={`brand-${activeTab}-${pilote.numero}`}
-                                    src={MARQUES[pilote.marque].logo}
-                                    alt={MARQUES[pilote.marque].nom}
-                                    className="brand-logo"
-                                  />
+                                  {pilote.marque && MARQUES[pilote.marque] ? (
+                                    <SmartBrandLogo
+                                      key={`brand-${activeTab}-${pilote.numero}`}
+                                      src={MARQUES[pilote.marque].logo}
+                                      alt={MARQUES[pilote.marque].nom}
+                                      className="brand-logo"
+                                    />
+                                  ) : (
+                                    <div className="w-12 h-12 bg-gray-600 rounded flex items-center justify-center">
+                                      <span className="text-xs text-white font-bold">
+                                        ?
+                                      </span>
+                                    </div>
+                                  )}
                                 </div>
                               </div>
 
@@ -480,6 +491,14 @@ export default function PilotesPage() {
                                   )}
                                 </div>
                               </div>
+
+                              {/* Debug overlay temporaire */}
+                              <DebugOverlay pilote={pilote} />
+
+                              {/* Debug en développement - désactivé */}
+                              {/* {process.env.NODE_ENV === 'development' && (
+                                <DebugBrand marque={pilote.marque} numero={pilote.numero} />
+                              )} */}
 
                               {/* Overlay au hover */}
                               <div className="absolute inset-0 bg-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -586,6 +605,17 @@ export default function PilotesPage() {
         </div>
       </section>
 
+      {/* Diagnostic temporaire - activé temporairement pour debug */}
+      <PiloteDiagnostic 
+        pilotes125={pilotes125}
+        pilotes250={pilotes250}
+        pilotes450={pilotes450}
+      />
+      <MarqueDebugPanel />
+
+      {/* Debug temporaire - désactivé pour test */}
+      {/* {process.env.NODE_ENV === 'development' && <BrandDebugger />} */}
+      {/* <BrandTester /> */}
       
     </div>
   );
