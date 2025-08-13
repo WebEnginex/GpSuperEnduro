@@ -22,8 +22,19 @@ export function useAutoMediaCache(url: string, type: MediaType, options: UseAuto
         setShouldDisableCache(true);
         return;
       }
+
+      // 2. Détection mobile/tablette en production - plus restrictif pour les marques
+      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                             window.innerWidth < 1024;
+      const isMarqueImage = url.includes('/images/marques/');
       
-      // 2. Test d'accès à IndexedDB pour détecter les restrictions
+      if (process.env.NODE_ENV === 'production' && isMobileDevice && isMarqueImage) {
+        console.warn('Production mobile detected for brand image, disabling cache:', url);
+        setShouldDisableCache(true);
+        return;
+      }
+      
+      // 3. Test d'accès à IndexedDB pour détecter les restrictions
       const testIndexedDB = () => {
         try {
           const testRequest = indexedDB.open('test-db', 1);
@@ -41,12 +52,12 @@ export function useAutoMediaCache(url: string, type: MediaType, options: UseAuto
         }
       };
       
-      // 3. Vérification de la mémoire disponible uniquement si très faible
+      // 4. Vérification de la mémoire disponible uniquement si très faible
       const lowMemory = 'deviceMemory' in navigator && 
         (navigator as { deviceMemory?: number }).deviceMemory && 
         (navigator as { deviceMemory?: number }).deviceMemory! < 1; // Seuil plus restrictif
       
-      // 4. Détection du mode privé/incognito
+      // 5. Détection du mode privé/incognito
       const isPrivateMode = () => {
         try {
           // Test spécifique pour Safari en mode privé
@@ -67,15 +78,15 @@ export function useAutoMediaCache(url: string, type: MediaType, options: UseAuto
       if (lowMemory) {
         console.log('Very low memory detected, disabling cache');
         setShouldDisableCache(true);
-      } else {
-        // Tester IndexedDB seulement si pas de mémoire faible
+      } else if (!isMobileDevice || !isMarqueImage) {
+        // Tester IndexedDB seulement si pas mobile avec marque
         testIndexedDB();
         isPrivateMode();
       }
     };
     
     checkCacheSupport();
-  }, []);
+  }, [url]);
 
   const disableCache = options.forceDisableCache || shouldDisableCache;
 

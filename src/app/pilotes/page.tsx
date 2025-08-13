@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 import { BrandLogo } from '@/components/media/BrandLogo';
+import { BrandLogoDebug } from '@/components/media/BrandLogoDebug';
+import { BrandLogosPreloader } from '@/components/media/BrandLogosPreloader';
 import { PilotImage } from '@/components/media/PilotImage';
 import { MARQUES, type MarqueId } from '@/lib/data/marques';
 
@@ -262,6 +264,7 @@ export default function PilotesPage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      <BrandLogosPreloader />
       {/* Section noire sous le header */}
       <section className="relative bg-black py-16 pt-56 sm:pt-60 lg:pt-64">
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -432,11 +435,16 @@ export default function PilotesPage() {
 
                               {/* Logo de la marque en haut à gauche */}
                               <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20">
-                                <div className="brand-logo-container">
+                                <div className="brand-logo-container relative">
                                   <BrandLogo
                                     src={MARQUES[pilote.marque].logo}
                                     alt={MARQUES[pilote.marque].nom}
                                     className="brand-logo"
+                                  />
+                                  <BrandLogoDebug
+                                    src={MARQUES[pilote.marque].logo}
+                                    alt={MARQUES[pilote.marque].nom}
+                                    pilotName={`${pilote.prenom} ${pilote.nom}`}
                                   />
                                 </div>
                               </div>
