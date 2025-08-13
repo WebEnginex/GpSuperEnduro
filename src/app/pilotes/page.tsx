@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
-import { CachedImage } from '@/components/media/CachedImage';
+import { BrandLogo } from '@/components/media/BrandLogo';
+import { PilotImage } from '@/components/media/PilotImage';
 import { MARQUES, type MarqueId } from '@/lib/data/marques';
 
 // Interface pour les pilotes avec marque
@@ -288,6 +289,7 @@ export default function PilotesPage() {
             <div className="max-w-lg mx-auto">
               <div className="flex flex-col sm:flex-row bg-black/60 backdrop-blur-sm rounded-2xl p-3 gap-3 border border-gray-700/50 shadow-2xl">
                 <button
+                
                   onClick={() => handleTabChange('125')}
                   className={`flex-1 py-4 px-6 rounded-xl font-semibold transition-all duration-300 ${
                     activeTab === '125'
@@ -418,27 +420,25 @@ export default function PilotesPage() {
                             <div className="relative aspect-[3/4] bg-gray-900 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300 w-full h-auto border border-gray-800 hover:border-red-500/50">
                               {/* Image du pilote */}
                               <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden">
-                                <CachedImage
+                                <PilotImage
                                   src={pilote.image}
                                   alt={`${pilote.prenom} ${pilote.nom}`}
                                   className="object-cover group-hover:scale-110 transition-transform duration-500 w-full h-full"
                                   priority={slideStartIndex + index < 6}
-                                  loadingBackground="bg-gray-800"
                                 />
                                 {/* Gradient overlay pour améliorer la lisibilité */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"></div>
                               </div>
 
                               {/* Logo de la marque en haut à gauche */}
-                              <div className="absolute top-4 left-4">
-                                <CachedImage
-                                  src={MARQUES[pilote.marque].logo}
-                                  alt={MARQUES[pilote.marque].nom}
-                                  width={60}
-                                  height={60}
-                                  className="object-contain w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 drop-shadow-lg"
-                                  loadingBackground="bg-transparent"
-                                />
+                              <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20">
+                                <div className="brand-logo-container">
+                                  <BrandLogo
+                                    src={MARQUES[pilote.marque].logo}
+                                    alt={MARQUES[pilote.marque].nom}
+                                    className="brand-logo"
+                                  />
+                                </div>
                               </div>
 
                               {/* Numéro style motocross en haut à droite */}

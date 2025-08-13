@@ -46,12 +46,25 @@ export function useMediaCache(url: string, type: MediaType, options: UseMediaCac
             setIsLoading(false);
           }
         } else {
+          // Pour les images critiques (pilotes, marques), ajouter un timeout plus court
+          const isPiloteImage = url.includes('/images/pilotes_');
+          const isMarqueImage = url.includes('/images/marques/');
+          const isCriticalImage = isPiloteImage || isMarqueImage || isBackground;
+          
           // Essayer de récupérer depuis le cache
           try {
             if (isBackground || process.env.NODE_ENV === 'development') {
               console.log(`📦 [useMediaCache] Trying cache for: ${url}`);
             }
-            const cachedMedia = await MediaCacheService.getOrFetchMedia(url, type);
+            
+            // Promise avec timeout pour les images critiques
+            const cachePromise = MediaCacheService.getOrFetchMedia(url, type);
+            const timeoutPromise = new Promise<never>((_, reject) => {
+              setTimeout(() => reject(new Error('Cache timeout')), isCriticalImage ? 3000 : 10000);
+            });
+            
+            const cachedMedia = await Promise.race([cachePromise, timeoutPromise]);
+            
             if (mounted) {
               mediaSrc = cachedMedia;
               if (isBackground || process.env.NODE_ENV === 'development') {

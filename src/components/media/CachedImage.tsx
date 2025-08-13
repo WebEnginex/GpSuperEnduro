@@ -63,6 +63,18 @@ export function CachedImage({
     }
   }, [isBackgroundImage, cachedSrc, fallbackSrc, isMobile, src]);
 
+  // Fallback pour les images de pilotes et marques si le cache échoue
+  useEffect(() => {
+    const isPiloteImage = src.includes('/images/pilotes_');
+    const isMarqueImage = src.includes('/images/marques/');
+    
+    // Activer le fallback immédiatement si pas de cache ou en cas d'erreur
+    if ((isPiloteImage || isMarqueImage) && (!cachedSrc || error) && !fallbackSrc) {
+      console.log(`🔄 [CachedImage] ${isPiloteImage ? 'Pilote' : 'Marque'} image fallback activated:`, src);
+      setFallbackSrc(src.split('?')[0]); // URL sans paramètres de version
+    }
+  }, [src, cachedSrc, fallbackSrc, error]);
+
   // Détecter si on est sur mobile/tablette pour l'objectFit responsive
   useEffect(() => {
     if (responsiveObjectFit) {
@@ -106,6 +118,24 @@ export function CachedImage({
     }
   }, [cachedSrc, fallbackSrc, error, isLoading, src, priority, isMobile, isBackgroundImage]);
 
+  // Logs pour debug des images de pilotes et marques
+  useEffect(() => {
+    const isPiloteImage = src.includes('/images/pilotes_');
+    const isMarqueImage = src.includes('/images/marques/');
+    
+    if (isPiloteImage || isMarqueImage) {
+      console.log(`👤 [CachedImage] Pilote/Marque image state:`, {
+        type: isPiloteImage ? 'pilote' : 'marque',
+        cachedSrc: !!cachedSrc,
+        fallbackSrc: !!fallbackSrc,
+        error,
+        isLoading,
+        finalSrc: cachedSrc || fallbackSrc,
+        url: src
+      });
+    }
+  }, [cachedSrc, fallbackSrc, error, isLoading, src]);
+
   const handleImageLoad = () => {
     setImageLoaded(true);
     setShowPlaceholder(false);
@@ -120,6 +150,16 @@ export function CachedImage({
   const handleImageError = () => {
     const errorMsg = error || 'Erreur de chargement de l\'image';
     setShowPlaceholder(false);
+    
+    // Si pas de fallback et que c'est une image importante, forcer le fallback
+    const isPiloteImage = src.includes('/images/pilotes_');
+    const isMarqueImage = src.includes('/images/marques/');
+    
+    if ((isPiloteImage || isMarqueImage) && !fallbackSrc) {
+      console.log(`🚨 [CachedImage] Image error, forcing fallback:`, src);
+      setFallbackSrc(src.split('?')[0]);
+      return; // Ne pas déclencher onError encore
+    }
     
     // Log pour le background
     if (src.includes('background')) {

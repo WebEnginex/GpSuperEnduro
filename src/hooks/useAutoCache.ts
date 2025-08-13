@@ -94,9 +94,15 @@ export function useAutoMediaCache(url: string, type: MediaType, options: UseAuto
     return urlBase === criticalUrlBase;
   });
 
-  // Pour les images de background, être moins restrictif même en cas de problème de cache
+  // Images importantes : pilotes et marques - toujours essayer le cache
+  const isPiloteImage = url.includes('/images/pilotes_');
+  const isMarqueImage = url.includes('/images/marques/');
   const isBackgroundImage = url.includes('background');
-  const finalDisableCache = disableCache && !isCriticalImage && !isBackgroundImage;
+  
+  // Plus permissif pour les images importantes, mais désactiver le cache en production si problèmes détectés
+  const isProductionWithProblems = process.env.NODE_ENV === 'production' && shouldDisableCache;
+  const finalDisableCache = disableCache && !isCriticalImage && !isBackgroundImage && 
+    !(isPiloteImage || isMarqueImage) || isProductionWithProblems;
 
   return useMediaCache(url, type, {
     ...options,
