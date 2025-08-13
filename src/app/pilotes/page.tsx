@@ -492,8 +492,10 @@ export default function PilotesPage() {
                                 </div>
                               </div>
 
-                              {/* Debug overlay temporaire */}
-                              <DebugOverlay pilote={pilote} />
+                              {/* Debug overlay temporaire - uniquement en développement */}
+                              {process.env.NODE_ENV === 'development' && (
+                                <DebugOverlay pilote={pilote} />
+                              )}
 
                               {/* Debug en développement - désactivé */}
                               {/* {process.env.NODE_ENV === 'development' && (
@@ -605,13 +607,17 @@ export default function PilotesPage() {
         </div>
       </section>
 
-      {/* Diagnostic temporaire - activé temporairement pour debug */}
-      <PiloteDiagnostic 
-        pilotes125={pilotes125}
-        pilotes250={pilotes250}
-        pilotes450={pilotes450}
-      />
-      <MarqueDebugPanel />
+      {/* Diagnostic temporaire - uniquement en développement */}
+      {process.env.NODE_ENV === 'development' && (
+        <>
+          <PiloteDiagnostic 
+            pilotes125={pilotes125}
+            pilotes250={pilotes250}
+            pilotes450={pilotes450}
+          />
+          <MarqueDebugPanel />
+        </>
+      )}
 
       {/* Debug temporaire - désactivé pour test */}
       {/* {process.env.NODE_ENV === 'development' && <BrandDebugger />} */}
