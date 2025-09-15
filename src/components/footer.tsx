@@ -20,10 +20,10 @@ export function Footer() {
                 <span>Date et Horaires</span> 
               </h3>
               <div className="space-y-2 text-slate-300 text-sm">
-                <p>Samedi 4 Octobre 2025</p>
+                <p>7 Mars 2026</p>
                 <p className="text-xs text-slate-400">Ouverture des portes :</p>
-                <p className="text-xs">Tribune Paddock Carré Or & VIP : 13H30</p>
-                <p className="text-xs">Mezzanine & Tribune : 18H30</p>
+                <p className="text-xs">Tribune Paddock Carré Or & VIP : ?</p>
+                <p className="text-xs">Mezzanine & Tribune : ?</p>
               </div>
             </div>
 
@@ -39,8 +39,8 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="block hover:text-red-400 transition-colors duration-300 cursor-pointer"
                 >
-                  <p>Gayant Expo Concerts</p>
-                  <p>Rives de Gayant</p>
+                  <p>Douai Gayant Expo</p>
+                  <p>Rives de gayant</p>
                   <p>59500 Douai</p>
                 </a>
               </div>
@@ -53,7 +53,7 @@ export function Footer() {
               </h3>
               <div className="flex flex-col sm:flex-row justify-center items-center gap-3">
                 <a 
-                  href="https://www.facebook.com/douaisupercross/" 
+                  href="https://www.facebook.com/GP.France.SuperEnduro/" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-medium rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900 text-sm"
@@ -66,7 +66,7 @@ export function Footer() {
                 </a>
                 
                 <a 
-                  href="https://www.instagram.com/douaisupercross/" 
+                  href="https://www.instagram.com/superendurogpfrance/?hl=en" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 hover:from-pink-500 hover:via-purple-500 hover:to-indigo-500 text-white font-medium rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-slate-900 text-sm"
@@ -84,10 +84,10 @@ export function Footer() {
           {/* Section du bas - Titre et Call to action */}
           <div className="text-center mb-8">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-red-400 via-red-500 to-orange-500 bg-clip-text text-transparent mb-4">
-              SX Tour Douai
+              Gp SuperEnduro
             </h2>
             <p className="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-6">
-              Restez connectés pour ne rien manquer de l&apos;événement supercross le plus spectaculaire de France
+              Restez connectés pour ne rien manquer de l&apos;événement SuperEnduro le plus spectaculaire de France
             </p>
             
             {/* Call to action */}
@@ -99,7 +99,7 @@ export function Footer() {
             >
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse mr-3"></div>
               <span className="text-slate-300 text-sm">
-                Billeterie disponible en ligne
+                Billeterie disponible en ligne à partir du 6 Octobre 2025
               </span>
             </a>
           </div>
@@ -111,10 +111,10 @@ export function Footer() {
           
           <div className="text-center">
             <p className="text-slate-400 text-sm leading-relaxed">
-              © 2025 <span className="text-slate-300 font-medium">SX Tour Douai</span> • Tous droits réservés
+              © 2025 <span className="text-slate-300 font-medium">Gp SuperEnduro</span> • Tous droits réservés
             </p>
             <p className="text-slate-500 text-xs mt-2">
-              Conçu avec passion pour les amateurs de supercross
+              Conçu avec passion pour les amateurs d&apos;enduro
             </p>
           </div>
         </div>

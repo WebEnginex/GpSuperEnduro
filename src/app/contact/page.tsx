@@ -226,7 +226,7 @@ export default function Contact() {
                             onClick={copyEmail}
                             className="text-gray-300 hover:text-white transition-colors cursor-pointer"
                           >
-                            contact@sxtour-douai.fr
+                            superendurofrance@gmail.com
                           </button>
                           {emailCopied && (
                             <span className="text-green-400 text-sm">Copié !</span>
@@ -242,8 +242,8 @@ export default function Contact() {
                       <div>
                         <h3 className="font-semibold text-white">Lieu</h3>
                         <p className="text-gray-300">
-                          Circuit de Supercross<br />
-                          Douai, France
+                          Gayant Expo Concerts<br />
+                          Rives de gayant, 59500 Douai
                         </p>
                       </div>
                     </div>

@@ -16,16 +16,16 @@ export default function Billeterie() {
             <span className="text-red-600">Billeterie</span> Officielle
           </h1>
           <p className="text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
-            Réservez vos places pour l&apos;événement supercross le plus spectaculaire de France !
+            Les places et tarifs seront disponible à partir du 6 Octobre 2025!
           </p>
         </div>
       </section>
 
       {/* Tarifs Section avec dégradé */}
-      <section className="py-16 bg-gradient-to-b from-black via-gray-900/30 to-gray-900/50">
+      {/* <section className="py-16 bg-gradient-to-b from-black via-gray-900/30 to-gray-900/50"> */}
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">{/* Mezzanine */}
-          <Link 
+          {/* <Link 
             href="https://www.billetweb.fr/championnat-de-france-de-supercross-2025" 
             target="_blank" 
             rel="noopener noreferrer"
@@ -60,10 +60,10 @@ export default function Billeterie() {
                 </div>
               </CardContent>
             </Card>
-          </Link>
+          </Link> */}
 
           {/* Tribune */}
-          <Link 
+          {/* <Link 
             href="https://www.billetweb.fr/championnat-de-france-de-supercross-2025" 
             target="_blank" 
             rel="noopener noreferrer"
@@ -98,10 +98,10 @@ export default function Billeterie() {
                 </div>
               </CardContent>
             </Card>
-          </Link>
+          </Link> */}
 
           {/* Tribune Paddock - Carré Or */}
-          <Link 
+          {/* <Link 
             href="https://www.billetweb.fr/championnat-de-france-de-supercross-2025" 
             target="_blank" 
             rel="noopener noreferrer"
@@ -138,10 +138,10 @@ export default function Billeterie() {
                 </div>
               </CardContent>
             </Card>
-          </Link>
+          </Link> */}
 
           {/* Tribune Paddock - VIP */}
-          <Link 
+          {/* <Link 
             href="https://www.billetweb.fr/championnat-de-france-de-supercross-2025" 
             target="_blank" 
             rel="noopener noreferrer"
@@ -179,10 +179,10 @@ export default function Billeterie() {
                 </div>
               </CardContent>
             </Card>
-          </Link>
+          </Link> */}
           </div>
         </div>
-      </section>
+      {/* </section> */}
     </div>
   );
 }

@@ -25,7 +25,7 @@ export default function Home() {
       {/* Section principale avec image de fond */}
       <BackgroundImage
         src="/images/background/supercross-sxtour-bg.webp?v=2025011"
-        alt="Supercross de Douai"
+        alt="Gp SuperEnduro"
         className="min-h-screen h-screen w-full overflow-hidden relative"
       >
         {/* Overlay sombre pour améliorer la lisibilité */}
@@ -116,8 +116,8 @@ export default function Home() {
         <section className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto text-center">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
-              Supercross de
-              <span className="text-red-600 dark:text-red-400"> Douai</span>
+              Gp
+              <span className="text-red-600 dark:text-red-400"> SuperEnduro</span>
             </h1>
             
             <div className="mb-4">
@@ -132,7 +132,7 @@ export default function Home() {
                   loadingBackground="bg-transparent"
                 />
                 <p className="text-lg sm:text-xl text-red-600 dark:text-red-400 font-semibold">
-                  Championnat de France 2025
+                  Championnat de ? 2025
                 </p>
                 <CachedImage
                   src="/images/flags/france.svg"
@@ -147,33 +147,33 @@ export default function Home() {
             </div>
             
             <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-300 max-w-4xl mx-auto leading-relaxed mb-16">
-              L&apos;événement supercross le plus spectaculaire du Nord de la France vous attend à Gayant Expo Concerts le Samedi 4 octobre 2025 !
+              L&apos;événement supercross le plus spectaculaire du (SuperEnduro?) vous attend à Gayant Expo Concerts le Samedi 4 octobre 2025 !
             </p>
 
             {/* Informations événement */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
               <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 text-center">
                 <div className="text-4xl mb-4">📅</div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Date & Horaires</h3>
-                <p className="text-slate-600 dark:text-slate-300">Samedi 4 Octobre 2025</p>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">?</h3>
+                <p className="text-slate-600 dark:text-slate-300">?</p>
                 <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
-                  Ouverture : 13H30 - 18H30
+                  Ouverture : ? - ?
                 </p>
               </div>
               
               <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 text-center">
                 <div className="text-4xl mb-4">📍</div>
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Lieu</h3>
-                <p className="text-slate-600 dark:text-slate-300">Gayant Expo Concerts</p>
+                <p className="text-slate-600 dark:text-slate-300">?</p>
                 <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
-                  Rives de Gayant, 59500 Douai
+                  ?
                 </p>
               </div>
               
               <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 text-center sm:col-span-2 lg:col-span-1">
                 <div className="text-4xl mb-4">🎟️</div>
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Billets</h3>
-                <p className="text-slate-600 dark:text-slate-300">À partir de 25€</p>
+                <p className="text-slate-600 dark:text-slate-300">À partir de ?€</p>
                 <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
                   Toutes catégories disponibles
                 </p>
@@ -187,15 +187,15 @@ export default function Home() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               <div>
-                <div className="text-4xl font-bold mb-2">5000+</div>
+                <div className="text-4xl font-bold mb-2">?+</div>
                 <p className="text-red-100">Spectateurs attendus</p>
               </div>
               <div>
-                <div className="text-4xl font-bold mb-2">60+</div>
+                <div className="text-4xl font-bold mb-2">?+</div>
                 <p className="text-red-100">Pilotes participants</p>
               </div>
               <div>
-                <div className="text-4xl font-bold mb-2">6h</div>
+                <div className="text-4xl font-bold mb-2">?h</div>
                 <p className="text-red-100">De spectacle intense</p>
               </div>
               <div>
@@ -213,7 +213,7 @@ export default function Home() {
               Prêt pour l&apos;Adrénaline ?
             </h2>
             <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
-              Ne manquez pas l&apos;événement supercross de l&apos;année ! 
+              Ne manquez pas l&apos;événement SuperEnduro de l&apos;année ! 
               Réservez dès maintenant vos places pour vivre des sensations uniques.
             </p>
             <div className="flex gap-6 justify-center flex-col sm:flex-row">

@@ -3,14 +3,13 @@
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
-import { SmartBrandLogo } from '@/components/media/SmartBrandLogo';
 import { SmartPilotImage } from '@/components/media/SmartPilotImage';
-import { BrandLogosPreloader } from '@/components/media/BrandLogosPreloader';
-import { PiloteDiagnostic } from '@/components/PiloteDiagnostic';
-import { DebugOverlay } from '@/components/DebugOverlay';
-import { MarqueDebugPanel } from '@/components/MarqueDebugPanel';
+// import { BrandLogosPreloader } from '@/components/media/BrandLogosPreloader';
+// import { PiloteDiagnostic } from '@/components/PiloteDiagnostic';
+// import { DebugOverlay } from '@/components/DebugOverlay';
+// import { MarqueDebugPanel } from '@/components/MarqueDebugPanel';
 import { useCacheCleaner } from '@/hooks/useCacheCleaner';
-import { MARQUES, type MarqueId } from '@/lib/data/marques';
+// Marques non affichées pour le moment
 
 // Interface pour les pilotes avec marque
 interface Pilote {
@@ -19,11 +18,13 @@ interface Pilote {
   nom: string;
   club: string;
   image: string;
-  marque: MarqueId;
+  // marque temporairement non utilisée
+  marque?: string;
 }
 
 export default function PilotesPage() {
-  const [activeTab, setActiveTab] = useState('125');
+  // Affichage limité à 2 catégories: Junior (125cc) et Prestige (250cc + 450cc)
+  const [activeTab, setActiveTab] = useState('prestige');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -74,7 +75,7 @@ export default function PilotesPage() {
     },
   ];
 
-  const pilotes250: Pilote[] = [
+  /* const pilotes250: Pilote[] = [
     {
       numero: 141,
       prenom: "Maxime",
@@ -115,9 +116,9 @@ export default function PilotesPage() {
       image: "/images/pilotes_250/Lamarque_Mickaël.webp",
       marque: "ktm"
     },
-  ];
+  ]; */
 
-  const pilotes450: Pilote[] = [
+  /* const pilotes450: Pilote[] = [
     {
       numero: 85,
       prenom: "Cedric",
@@ -158,23 +159,47 @@ export default function PilotesPage() {
       image: "/images/pilotes_450/Ramette_Thomas.webp",
       marque: "suzuki"
     },
+  ]; */
+
+  // Catégorie Prestige (liste fournie) — images et clubs en attente
+  const pilotesPrestige: Pilote[] = [
+    { numero: 57, prenom: 'Billy', nom: 'BOLT', club: '', image: 'images/pilotes_prestige/Billy-kwadrat.jpg', marque: 'ktm' },
+    { numero: 22, prenom: 'Jonathan', nom: 'WALKER', club: '', image: 'images/pilotes_prestige/Jonny-kwadrat.jpg', marque: 'ktm' },
+    { numero: 12, prenom: 'Mitchell', nom: 'BRIGHTMORE', club: '', image: 'images/pilotes_prestige/Mitch-kwadrat.jpg', marque: 'ktm' },
+    { numero: 7, prenom: 'Ashton', nom: 'BRIGHTMORE', club: '', image: 'images/pilotes_prestige/Ash-kwadrat.jpg', marque: 'ktm' },
+    { numero: 42, prenom: 'Eddie', nom: 'KARLSSON', club: '', image: 'images/pilotes_prestige/Eddie-kwadrat.jpg', marque: 'ktm' },
+    { numero: 501, prenom: 'Dominik', nom: 'OLSZOWY', club: '', image: 'images/pilotes_prestige/Dominik-kwadrat.jpg', marque: 'ktm' },
+    { numero: 120, prenom: 'Cooper', nom: 'ABBOTT', club: '', image: 'images/pilotes_prestige/Cooper-kwadrat.jpg', marque: 'ktm' },
+    { numero: 89, prenom: 'Alfredo', nom: 'GOMEZ', club: '', image: 'images/pilotes_prestige/Alfredo-kwadrat.jpg', marque: 'ktm' },
+    { numero: 96, prenom: 'Tim', nom: 'APOLLE', club: '', image: 'images/pilotes_prestige/Tim-kwadrat.jpg', marque: 'ktm' },
+    { numero: 80, prenom: 'Will', nom: 'HOARE', club: '', image: 'images/pilotes_prestige/Will-kwadrat.jpg', marque: 'ktm' },
+    { numero: 21, prenom: 'Diogo', nom: 'VIEIRA', club: '', image: 'images/pilotes_prestige/Diogo-kwadrat.jpg', marque: 'ktm' },
+    { numero: 212, prenom: 'Toby', nom: 'MARTYN', club: '', image: 'images/pilotes_prestige/Toby-kwadrat.jpg', marque: 'ktm' },
+    { numero: 16, prenom: 'Harry', nom: 'EDMONDSON', club: '', image: 'images/pilotes_prestige/Harry-kwadrat.jpg', marque: 'ktm' },
+    { numero: 23, prenom: 'Jordi', nom: 'SALA', club: '', image: 'images/pilotes_prestige/Jordi-kwadrat.jpg', marque: 'ktm' },
+    { numero: 83, prenom: 'Aleksander', nom: 'GOTKOWSKI', club: '', image: 'images/pilotes_prestige/Aleksander-kwadrat.jpg', marque: 'ktm' },
   ];
 
   const getCurrentPilotes = () => {
     switch (activeTab) {
-      case '125': return pilotes125;
-      case '250': return pilotes250;
-      case '450': return pilotes450;
-      default: return pilotes125;
+      case 'junior':
+        return pilotes125;
+      case 'prestige':
+        return pilotesPrestige;
+      default:
+        return pilotesPrestige;
     }
   };
 
   const getTabColor = (tab: string) => {
     switch (tab) {
-      case '125': return 'from-green-600 to-green-700';
-      case '250': return 'from-blue-600 to-blue-700';
-      case '450': return 'from-red-600 to-red-700';
-      default: return 'from-gray-600 to-gray-700';
+      case 'junior':
+        return 'from-green-600 to-green-700';
+      case 'prestige':
+        // Prestige = 250 + 450, on choisit un rouge énergique
+        return 'from-red-600 to-red-700';
+      default:
+        return 'from-gray-600 to-gray-700';
     }
   };
 
@@ -269,9 +294,13 @@ export default function PilotesPage() {
     }
   };
 
+  // Change font color of racing numbers to white
+  const racingNumberStyle = { color: '#FFFFFF' }; // Define style for racing numbers
+
   return (
     <div className="min-h-screen bg-black text-white">
-      <BrandLogosPreloader />
+  {/* Brand logos désactivés pour l'instant */}
+  {/* <BrandLogosPreloader /> */}
       {/* Section noire sous le header */}
       <section className="relative bg-black py-16 pt-56 sm:pt-60 lg:pt-64">
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -298,41 +327,51 @@ export default function PilotesPage() {
             
             <div className="max-w-lg mx-auto">
               <div className="flex flex-col sm:flex-row bg-black/60 backdrop-blur-sm rounded-2xl p-3 gap-3 border border-gray-700/50 shadow-2xl">
-                <button
-                
-                  onClick={() => handleTabChange('125')}
-                  className={`flex-1 py-4 px-6 rounded-xl font-semibold transition-all duration-300 ${
-                    activeTab === '125'
-                      ? `bg-gradient-to-r ${getTabColor('125')} text-white shadow-lg transform scale-105 shadow-green-500/25`
-                      : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50 border border-gray-600/30'
-                  }`}
-                >
+                {/* Ancien sélecteur (3 catégories) conservé pour réactivation ultérieure */}
+                {/**
+                <button onClick={() => handleTabChange('125')} className={`flex-1 py-4 px-6 rounded-xl font-semibold transition-all duration-300 ${
+                  activeTab === '125' ? `bg-gradient-to-r ${getTabColor('125')} text-white shadow-lg transform scale-105 shadow-green-500/25` : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50 border border-gray-600/30'
+                }`}>
                   <div className="text-lg font-bold">125cc</div>
                   <div className="text-xs opacity-75 mt-1">Junior</div>
                 </button>
-                
-                <button
-                  onClick={() => handleTabChange('250')}
-                  className={`flex-1 py-4 px-6 rounded-xl font-semibold transition-all duration-300 ${
-                    activeTab === '250'
-                      ? `bg-gradient-to-r ${getTabColor('250')} text-white shadow-lg transform scale-105 shadow-blue-500/25`
-                      : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50 border border-gray-600/30'
-                  }`}
-                >
+                <button onClick={() => handleTabChange('250')} className={`flex-1 py-4 px-6 rounded-xl font-semibold transition-all duration-300 ${
+                  activeTab === '250' ? `bg-gradient-to-r ${getTabColor('250')} text-white shadow-lg transform scale-105 shadow-blue-500/25` : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50 border border-gray-600/30'
+                }`}>
                   <div className="text-lg font-bold">250cc</div>
                   <div className="text-xs opacity-75 mt-1">SX 250</div>
                 </button>
+                <button onClick={() => handleTabChange('450')} className={`flex-1 py-4 px-6 rounded-xl font-semibold transition-all duration-300 ${
+                  activeTab === '450' ? `bg-gradient-to-r ${getTabColor('450')} text-white shadow-lg transform scale-105 shadow-red-500/25` : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50 border border-gray-600/30'
+                }`}>
+                  <div className="text-lg font-bold">450cc</div>
+                  <div className="text-xs opacity-75 mt-1">SX 450</div>
+                </button>
+                */}
 
+                {/* Nouveau sélecteur: Junior et Prestige */}
                 <button
-                  onClick={() => handleTabChange('450')}
+                  onClick={() => handleTabChange('junior')}
                   className={`flex-1 py-4 px-6 rounded-xl font-semibold transition-all duration-300 ${
-                    activeTab === '450'
-                      ? `bg-gradient-to-r ${getTabColor('450')} text-white shadow-lg transform scale-105 shadow-red-500/25`
+                    activeTab === 'junior'
+                      ? `bg-gradient-to-r ${getTabColor('junior')} text-white shadow-lg transform scale-105 shadow-green-500/25`
                       : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50 border border-gray-600/30'
                   }`}
                 >
-                  <div className="text-lg font-bold">450cc</div>
-                  <div className="text-xs opacity-75 mt-1">SX 450</div>
+                  <div className="text-lg font-bold">Junior</div>
+                  <div className="text-xs opacity-75 mt-1">125cc</div>
+                </button>
+
+                <button
+                  onClick={() => handleTabChange('prestige')}
+                  className={`flex-1 py-4 px-6 rounded-xl font-semibold transition-all duration-300 ${
+                    activeTab === 'prestige'
+                      ? `bg-gradient-to-r ${getTabColor('prestige')} text-white shadow-lg transform scale-105 shadow-red-500/25`
+                      : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50 border border-gray-600/30'
+                  }`}
+                >
+                  <div className="text-lg font-bold">Prestige</div>
+                  <div className="text-xs opacity-75 mt-1">250cc + 450cc</div>
                 </button>
               </div>
             </div>
@@ -347,25 +386,21 @@ export default function PilotesPage() {
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-3 mb-6">
               <div className={`w-16 h-16 rounded-full bg-gradient-to-r ${getTabColor(activeTab)} flex items-center justify-center shadow-lg`}>
-                <span className="text-white font-bold text-sm">{activeTab}cc</span>
+                <span className="text-white font-bold text-sm">{activeTab === 'junior' ? '125cc' : 'Prestige'}</span>
               </div>
               <h2 className="text-3xl font-bold">
-                {activeTab === '125' && (
+                {activeTab === 'junior' && (
                   <>Catégorie <span className="text-green-400">Junior</span></>
                 )}
-                {activeTab === '250' && (
-                  <>Catégorie <span className="text-blue-400">SX 250</span></>
-                )}
-                {activeTab === '450' && (
-                  <>Catégorie <span className="text-red-400">SX 450</span></>
+                {activeTab === 'prestige' && (
+                  <>Catégorie <span className="text-red-400">Prestige</span></>
                 )}
               </h2>
             </div>
             
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-              {activeTab === '125' && 'Les jeunes talents de la catégorie Junior qui représentent l\'avenir du supercross'}
-              {activeTab === '250' && 'La catégorie SX2, la voie vers l\'élite du supercross français'}
-              {activeTab === '450' && "La catégorie SX1, l'élite absolue du supercross français"}
+              {activeTab === 'junior' && 'Les jeunes talents de la catégorie Junior qui représentent l\'avenir du SuperEnduro'}
+              {activeTab === 'prestige' && "La catégorie Prestige, réunissant les meilleurs pilotes"}
             </p>
             
             {/* Indication de navigation pour mobile */}
@@ -443,34 +478,19 @@ export default function PilotesPage() {
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"></div>
                               </div>
 
-                              {/* Logo de la marque en haut à gauche */}
-                              <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20">
-                                <div className="brand-logo-container">
-                                  {pilote.marque && MARQUES[pilote.marque] ? (
-                                    <SmartBrandLogo
-                                      key={`brand-${activeTab}-${pilote.numero}`}
-                                      src={MARQUES[pilote.marque].logo}
-                                      alt={MARQUES[pilote.marque].nom}
-                                      className="brand-logo"
-                                    />
-                                  ) : (
-                                    <div className="w-12 h-12 bg-gray-600 rounded flex items-center justify-center">
-                                      <span className="text-xs text-white font-bold">
-                                        ?
-                                      </span>
-                                    </div>
-                                  )}
-                                </div>
-                              </div>
+                              {/* Logo de marque retiré temporairement */}
 
-                              {/* Numéro style motocross en haut à droite */}
-                              <div className="absolute top-4 right-4">
-                                <span className="text-white font-bold text-2xl tracking-wider drop-shadow-lg font-racing" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
-                                  {pilote.numero}
+                              {/* Numéro en bas à droite */}
+                              <div className="absolute bottom-4 right-4">
+                                <span
+                                  className="font-bold text-2xl tracking-wider drop-shadow-lg font-racing"
+                                  style={{ ...racingNumberStyle, textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}
+                                >
+                                  #{pilote.numero}
                                 </span>
                               </div>
 
-                              {/* Informations organisées en bas */}
+                              {/* Informations en bas: nom/prénom à gauche */}
                               <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/95 to-transparent">
                                 <div className="space-y-2">
                                   {/* Nom et prénom avec police Racing */}
@@ -482,20 +502,14 @@ export default function PilotesPage() {
                                       {pilote.nom}
                                     </div>
                                   </div>
-                                  
-                                  {/* Club */}
-                                  {pilote.club && (
-                                    <div className="text-gray-300 text-sm font-medium">
-                                      {pilote.club}
-                                    </div>
-                                  )}
+                                  {/* Club retiré pour le moment */}
                                 </div>
                               </div>
 
-                              {/* Debug overlay temporaire - uniquement en développement */}
-                              {process.env.NODE_ENV === 'development' && (
-                                <DebugOverlay pilote={pilote} />
-                              )}
+                              {/* Debug overlay désactivé pour le moment */}
+                              {/** process.env.NODE_ENV === 'development' && (
+                                <DebugOverlay pilote={{ numero: pilote.numero, prenom: pilote.prenom, nom: pilote.nom, marque: pilote.marque || '' }} />
+                              ) **/}
 
                               {/* Debug en développement - désactivé */}
                               {/* {process.env.NODE_ENV === 'development' && (
@@ -557,13 +571,13 @@ export default function PilotesPage() {
             <div className="text-center p-6 bg-gray-900/50 rounded-xl border border-gray-800">
               <div className="text-4xl font-bold text-red-500 mb-2">60+</div>
               <h3 className="text-lg font-semibold mb-2">Pilotes confirmés</h3>
-              <p className="text-gray-400 text-sm">Répartis sur 3 catégories</p>
+              <p className="text-gray-400 text-sm">Répartis sur 2 catégories</p>
             </div>
             
             <div className="text-center p-6 bg-gray-900/50 rounded-xl border border-gray-800">
-              <div className="text-4xl font-bold text-green-500 mb-2">3</div>
+              <div className="text-4xl font-bold text-green-500 mb-2">2</div>
               <h3 className="text-lg font-semibold mb-2">Catégories</h3>
-              <p className="text-gray-400 text-sm">125cc, 250cc et 450cc</p>
+              <p className="text-gray-400 text-sm">Junior et Prestige</p>
             </div>
             
             <div className="text-center p-6 bg-gray-900/50 rounded-xl border border-gray-800">
@@ -608,7 +622,7 @@ export default function PilotesPage() {
       </section>
 
       {/* Diagnostic temporaire - uniquement en développement */}
-      {process.env.NODE_ENV === 'development' && (
+      {/** process.env.NODE_ENV === 'development' && (
         <>
           <PiloteDiagnostic 
             pilotes125={pilotes125}
@@ -617,7 +631,7 @@ export default function PilotesPage() {
           />
           <MarqueDebugPanel />
         </>
-      )}
+      ) **/}
 
       {/* Debug temporaire - désactivé pour test */}
       {/* {process.env.NODE_ENV === 'development' && <BrandDebugger />} */}

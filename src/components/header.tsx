@@ -71,7 +71,7 @@ export function Header({ showCountdown = true }: HeaderProps) {
               <Link href="/" className="cursor-pointer">
                 <div className="flex flex-col">
                   <h1 className="text-white text-2xl font-bold tracking-wide transition-colors duration-300">
-                    Supercross <span className="text-red-600">Douai</span>
+                    Gp Super<span className="text-red-600">Enduro</span>
                   </h1>
                   <div className="flex items-center space-x-2 mt-1">
                     <CachedImage
@@ -83,7 +83,7 @@ export function Header({ showCountdown = true }: HeaderProps) {
                       priority={true}
                     />
                     <span className="text-gray-300 text-sm font-medium">
-                      Championnat de France
+                      Championnat de ?
                     </span>
                   </div>
                 </div>

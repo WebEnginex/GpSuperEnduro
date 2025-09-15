@@ -30,8 +30,8 @@ const racingSansOne = Racing_Sans_One({
 });
 
 export const metadata: Metadata = {
-  title: "Supercross de Douai",
-  description: "L'événement incontournable de supercross en France.",
+  title: "Gp SuperEnduro",
+  description: "L'événement incontournable de SuperEnduro.",
 };
 
 export default function RootLayout({
