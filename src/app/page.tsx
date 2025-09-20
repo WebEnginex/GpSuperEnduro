@@ -116,7 +116,7 @@ export default function Home() {
         <section className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto text-center">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
-              Gp
+              GRAND PRIX de FRANCE de
               <span className="text-red-600 dark:text-red-400"> SuperEnduro</span>
             </h1>
             
@@ -131,7 +131,7 @@ export default function Home() {
             </div>
             
             <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-300 max-w-4xl mx-auto leading-relaxed mb-16">
-              Le championnat du monde de SuperEnduro 2026 vous donne donne rendez vous le 7 mars à Douai Gayant Expo ! 
+              Le championnat du monde de SuperEnduro 2026 vous donne rendez vous le 7 mars à Douai Gayant Expo ! 
             </p>
 
             {/* Informations événement */}
