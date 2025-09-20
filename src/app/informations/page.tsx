@@ -37,19 +37,19 @@ const faqSections: FAQSection[] = [
       },
       {
         question: "Puis-je annuler ou modifier ma réservation ?",
-        answer: "Les modifications et annulations sont possibles jusqu'à 48h avant l'événement. Contactez-nous via le formulaire de contact ou par email à contact@sxtour-douai.fr."
+        answer: "Les modifications et annulations sont possibles jusqu'à 48h avant l'événement. Contactez-nous via le formulaire de contact ou par email à contact@sxtour-douai.fr ."
       },
       {
         question: "Y a-t-il un âge minimum pour assister à l'événement ?",
         answer: "Non, l'événement est ouvert à tous les âges. Les enfants de moins de 12 ans doivent être accompagnés d'un adulte. Des tarifs spéciaux sont disponibles pour les enfants."
       },
-    //   {
-    //     question: "Y a-t-il des tarifs de groupe ?",
-    //     answer: "Oui, nous proposons des tarifs préférentiels pour les groupes de 10 personnes et plus. Contactez-nous pour obtenir un devis personnalisé."
-    //   },
+      // {
+      //   question: "Y a-t-il des tarifs de groupe ?",
+      //   answer: "Oui, nous proposons des tarifs préférentiels pour les groupes de 10 personnes et plus. Contactez-nous pour obtenir un devis personnalisé."
+      // },
       {
         question: "Proposez-vous des tarifs préférentiels CSE ?",
-        answer: "Oui, nous proposons des tarifs préférentiels CSE. Pour en bénéficier, faites votre demande via notre formulaire de contact ou directement par email."
+        answer: "Oui, nous proposons des tarifs préférentiels CSE. Pour en bénéficier, faites votre demande via notre formulaire de contact ou directement par email à superendurofrance@gmail.com ."
       },
       {
         question: "Comment présenter mon billet lors de l'événement ?",
@@ -68,7 +68,7 @@ const faqSections: FAQSection[] = [
       },
       {
         question: "Y a-t-il un parking disponible ?",
-        answer: "Oui, un parking gratuit est mis à disposition des spectateurs à proximité immédiate du circuit."
+        answer: "Oui, un parking gratuit est mis à disposition des spectateurs à proximité immédiate du circuit. Pour les détenteurs de Gold Pass et les personnes à mobilité réduite (PMR), le parking est situé au plus proche, dans l'enceinte même de Gayant Expo."
       },
       {
         question: "L'événement est-il accessible aux personnes à mobilité réduite ?",
@@ -87,15 +87,7 @@ const faqSections: FAQSection[] = [
     items: [
       {
         question: "Y a-t-il de la restauration sur place ?",
-        answer: "Absolument ! Vous trouverez sur place plusieurs espaces de restauration : bar, friterie et snack. Les détenteurs de billets VIP bénéficient également d'un bar buffet exclusif."
-      },
-    //   {
-    //     question: "Puis-je apporter ma propre nourriture ?",
-    //     answer: "Les boissons et nourriture extérieures ne sont pas autorisées dans l'enceinte du circuit pour des raisons de sécurité et d'hygiène."
-    //   },
-      {
-        question: "Quels sont les services VIP disponibles ?",
-        answer: "L'expérience VIP comprend un accès privilégié, un bar buffet exclusif, des places premium et un service personnalisé."
+        answer: "Absolument ! Vous trouverez sur place plusieurs espaces de restauration : Friterie, Sandwicherie, Crêperie et Bar."
       }
     ]
   },
@@ -106,7 +98,12 @@ const faqSections: FAQSection[] = [
     items: [
       {
         question: "À quelle heure commence le spectacle ?",
-        answer: "Les portes ouvrent à 13h30 pour les billets Carré Or et VIP, qui bénéficient d'un accès privilégié aux essais, qualifications et au paddock des pilotes. Pour les formules Mezzanine et Tribune standard, l'ouverture se fait à 18h30. Le spectacle principal débute à 20h00."
+        answer: (
+          <>
+            Les portes ouvrent à <span className="font-semibold">13h30</span> pour les <span className="font-semibold">Gold Pass</span> et à <span className="font-semibold">17h30</span> pour les catégories 1, 2 et 3.<br />
+            Les détenteurs de Gold Pass auront accès aux essais et pourront faire le tour du circuit à pied avec un accès privilégié.
+          </>
+        )
       },
       {
         question: "L'événement a-t-il lieu par tous les temps ?",

@@ -66,27 +66,18 @@ export function Header({ showCountdown = true }: HeaderProps) {
         <div className="flex items-center justify-between py-4 sm:py-6">
           {/* Desktop Layout */}
           <div className="hidden lg:flex items-center justify-between w-full">
-            {/* Titre à gauche - Desktop seulement */}
+            {/* Logo à gauche - Desktop seulement */}
             <div className="flex-1 flex justify-start">
               <Link href="/" className="cursor-pointer">
-                <div className="flex flex-col">
-                  <h1 className="text-white text-2xl font-bold tracking-wide transition-colors duration-300">
-                    Gp Super<span className="text-red-600">Enduro</span>
-                  </h1>
-                  <div className="flex items-center space-x-2 mt-1">
-                    <CachedImage
-                      src="/images/flags/france.svg"
-                      alt="Drapeau français"
-                      width={20}
-                      height={15}
-                      className="w-5 h-3.5"
-                      priority={true}
-                    />
-                    <span className="text-gray-300 text-sm font-medium">
-                      Championnat de ?
-                    </span>
-                  </div>
-                </div>
+                <CachedImage
+                  src="/images/logos/SuperEnduro-logo.png"
+                  alt="SuperEnduro Logo"
+                  width={280}
+                  height={112}
+                  className="h-20 sm:h-24 w-auto transition-all duration-300 hover:scale-105"
+                  priority={true}
+                  loadingBackground="bg-transparent"
+                />
               </Link>
             </div>
 
@@ -95,9 +86,9 @@ export function Header({ showCountdown = true }: HeaderProps) {
               <div className="flex items-center space-x-8 sm:space-x-10">
                 <div className="flex-shrink-0">
                   <CachedImage
-                    src="/images/partners/FFMOTO_LOGO.png"
+                    src="images/logos/Logo-Federation-Francaise-Moto.png"
                     alt="FFMOTO"
-                    width={100}
+                    width={110}
                     height={60}
                     className="h-16 sm:h-20 w-auto"
                     priority={true}
@@ -106,9 +97,9 @@ export function Header({ showCountdown = true }: HeaderProps) {
                 </div>
                 <div className="flex-shrink-0">
                   <CachedImage
-                    src="/images/partners/Supercross_Championnat_FR.png"
+                    src="images/logos/FIM_Logo.png"
                     alt="Championnat de France Supercross"
-                    width={100}
+                    width={110}
                     height={60}
                     className="h-16 sm:h-20 w-auto"
                     priority={true}
@@ -175,32 +166,25 @@ export function Header({ showCountdown = true }: HeaderProps) {
             <div className="max-w-7xl mx-auto px-4 py-4">
               {/* Titre et logos dans le menu mobile */}
               <div className="text-center mb-6">
-                <Link href="/" onClick={() => setMobileMenuOpen(false)}>
-                  <div className="flex flex-col items-center mb-4">
-                    <h1 className="text-white text-xl sm:text-2xl font-bold tracking-wide">
-                      Supercross <span className="text-red-600">Douai</span>
-                    </h1>
-                    <div className="flex items-center space-x-2 mt-2">
-                      <CachedImage
-                        src="/images/flags/france.svg"
-                        alt="Drapeau français"
-                        width={16}
-                        height={12}
-                        className="w-4 h-3"
-                        priority={true}
-                      />
-                      <span className="text-gray-300 text-sm font-medium">
-                        Championnat de France
-                      </span>
-                    </div>
-                  </div>
-                </Link>
+                <div className="flex justify-center mb-4">
+                  <Link href="/" onClick={() => setMobileMenuOpen(false)}>
+                    <CachedImage
+                      src="/images/logos/SuperEnduro-logo.png"
+                      alt="SuperEnduro Logo"
+                      width={220}
+                      height={88}
+                      className="h-16 sm:h-20 w-auto transition-all duration-300 hover:scale-105"
+                      priority={true}
+                      loadingBackground="bg-transparent"
+                    />
+                  </Link>
+                </div>
                 
                 {/* Logos dans le menu mobile */}
                 <div className="flex items-center justify-center space-x-6 sm:space-x-8">
                   <div className="flex-shrink-0">
                     <CachedImage
-                      src="/images/partners/FFMOTO_LOGO.png"
+                      src="images/logos/Logo-Federation-Francaise-Moto.png"
                       alt="FFMOTO"
                       width={100}
                       height={60}
@@ -211,7 +195,7 @@ export function Header({ showCountdown = true }: HeaderProps) {
                   </div>
                   <div className="flex-shrink-0">
                     <CachedImage
-                      src="/images/partners/Supercross_Championnat_FR.png"
+                      src="images/logos/FIM_Logo.png"
                       alt="Championnat de France Supercross"
                       width={100}
                       height={60}

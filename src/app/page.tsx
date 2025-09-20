@@ -5,8 +5,8 @@ import { useVisitTracker } from "@/hooks/useVisitTracker";
 import { Header } from "@/components/header";
 import { SimpleCountdown } from "@/components/simple-countdown";
 import { BackgroundImage } from "@/components/media/BackgroundImage";
-import { CachedImage } from "@/components/media/CachedImage";
 import { DebugPanel } from "@/components/DebugPanel";
+import Image from "next/image";
 
 // Import du test en développement seulement
 if (process.env.NODE_ENV === 'development') {
@@ -122,62 +122,47 @@ export default function Home() {
             
             <div className="mb-4">
               <div className="flex items-center justify-center space-x-3">
-                <CachedImage
-                  src="/images/flags/france.svg"
-                  alt="Drapeau français"
-                  width={24}
-                  height={18}
-                  className="w-6 h-4"
-                  priority={true}
-                  loadingBackground="bg-transparent"
-                />
+                
                 <p className="text-lg sm:text-xl text-red-600 dark:text-red-400 font-semibold">
-                  Championnat de ? 2025
+                  championnat du monde 2026
                 </p>
-                <CachedImage
-                  src="/images/flags/france.svg"
-                  alt="Drapeau français"
-                  width={24}
-                  height={18}
-                  className="w-6 h-4"
-                  priority={true}
-                  loadingBackground="bg-transparent"
-                />
+                
               </div>
             </div>
             
             <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-300 max-w-4xl mx-auto leading-relaxed mb-16">
-              L&apos;événement supercross le plus spectaculaire du (SuperEnduro?) vous attend à Gayant Expo Concerts le Samedi 4 octobre 2025 !
+              Le championnat du monde de SuperEnduro 2026 vous donne donne rendez vous le 7 mars à Douai Gayant Expo ! 
             </p>
 
             {/* Informations événement */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
               <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 text-center">
-                <div className="text-4xl mb-4">📅</div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">?</h3>
-                <p className="text-slate-600 dark:text-slate-300">?</p>
-                <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
-                  Ouverture : ? - ?
-                </p>
+              <div className="text-4xl mb-4">📅</div>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Horaires</h3>
+              <p className="text-slate-600 dark:text-slate-300">Ouvertures des portes :</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
+                Gold Pass : 13h30<br />
+                Autres : 17h30
+              </p>
               </div>
               
-              <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 text-center">
+                <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 text-center">
                 <div className="text-4xl mb-4">📍</div>
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Lieu</h3>
-                <p className="text-slate-600 dark:text-slate-300">?</p>
+                <p className="text-slate-600 dark:text-slate-300">Gayant Expo Concerts</p>
                 <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
-                  ?
+                  Rives de Gayant, 59500 Douai
                 </p>
-              </div>
+                </div>
               
-              <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 text-center sm:col-span-2 lg:col-span-1">
+                <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 text-center sm:col-span-2 lg:col-span-1">
                 <div className="text-4xl mb-4">🎟️</div>
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Billets</h3>
-                <p className="text-slate-600 dark:text-slate-300">À partir de ?€</p>
+                <p className="text-slate-600 dark:text-slate-300">Tarifs à venir</p>
                 <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
-                  Toutes catégories disponibles
+                  Plusieurs catégories disponibles
                 </p>
-              </div>
+                </div>
             </div>
           </div>
         </section>
@@ -187,24 +172,158 @@ export default function Home() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               <div>
-                <div className="text-4xl font-bold mb-2">?+</div>
-                <p className="text-red-100">Spectateurs attendus</p>
+          <div className="text-4xl font-bold mb-2">5000+</div>
+          <p className="text-red-100">Spectateurs attendus</p>
               </div>
               <div>
-                <div className="text-4xl font-bold mb-2">?+</div>
-                <p className="text-red-100">Pilotes participants</p>
+          <div className="text-4xl font-bold mb-2">80+</div>
+          <p className="text-red-100">Pilotes mondiaux</p>
               </div>
               <div>
-                <div className="text-4xl font-bold mb-2">?h</div>
-                <p className="text-red-100">De spectacle intense</p>
+          <div className="text-4xl font-bold mb-2">6h</div>
+          <p className="text-red-100">De spectacle intense</p>
               </div>
               <div>
-                <div className="text-4xl font-bold mb-2">100%</div>
-                <p className="text-red-100">Sensations garanties</p>
+          <div className="text-4xl font-bold mb-2">100%</div>
+          <p className="text-red-100">Sensations garanties</p>
               </div>
             </div>
           </div>
         </section>
+
+        {/* Section partenaires */}
+        <section className="bg-white dark:bg-slate-900 py-16">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-center text-slate-900 dark:text-white mb-12">
+              Nos partenaires
+            </h2>
+            
+            {/* Container avec overflow hidden pour l'animation */}
+            <div className="relative overflow-hidden">
+              <div className="flex items-center justify-center gap-12 md:gap-16 lg:gap-20 animate-scroll-partners"
+                style={{
+                  animation: "scroll-partners 20s linear infinite"
+                }}
+              >
+                {/* Images principales */}
+                <div className="flex-shrink-0">
+                  <Image 
+                    src="/images/partners/FFMOTO_LOGO.png" 
+                    alt="Fédération Française de Moto" 
+                    width={140} 
+                    height={80} 
+                    className="h-16 sm:h-20 lg:h-24 w-auto object-contain filter hover:brightness-110 transition-all duration-300" 
+                  />
+                </div>
+                <div className="flex-shrink-0">
+                  <Image 
+                    src="/images/partners/FIM_Logo.png" 
+                    alt="Fédération Française de Moto" 
+                    width={140} 
+                    height={80} 
+                    className="h-16 sm:h-20 lg:h-24 w-auto object-contain filter hover:brightness-110 transition-all duration-300" 
+                  />
+                </div>
+                <div className="flex-shrink-0">
+                  <Image 
+                    src="/images/partners/Logo_Gayant-Expo-Douai.webp" 
+                    alt="Gayant Expo Douai" 
+                    width={140} 
+                    height={80} 
+                    className="h-16 sm:h-20 lg:h-24 w-auto object-contain filter hover:brightness-110 transition-all duration-300" 
+                  />
+                </div>
+                <div className="flex-shrink-0">
+                  <Image 
+                    src="/images/partners/Logo_Nord-le-Departement.webp" 
+                    alt="Département du Nord" 
+                    width={140} 
+                    height={80} 
+                    className="h-16 sm:h-20 lg:h-24 w-auto object-contain filter hover:brightness-110 transition-all duration-300" 
+                  />
+                </div>
+                <div className="flex-shrink-0">
+                  <Image 
+                    src="/images/partners/Logo_Region-hauts-de-France.webp" 
+                    alt="Région Hauts-de-France" 
+                    width={140} 
+                    height={80} 
+                    className="h-16 sm:h-20 lg:h-24 w-auto object-contain filter hover:brightness-110 transition-all duration-300" 
+                  />
+                </div>
+                
+                {/* Images dupliquées pour la continuité de l'animation */}
+                <div className="flex-shrink-0">
+                  <Image 
+                    src="/images/partners/FFMOTO_LOGO.png" 
+                    alt="Fédération Française de Moto" 
+                    width={140} 
+                    height={80} 
+                    className="h-16 sm:h-20 lg:h-24 w-auto object-contain filter hover:brightness-110 transition-all duration-300" 
+                  />
+                </div>
+                <div className="flex-shrink-0">
+                  <Image 
+                    src="/images/partners/FIM_Logo.png" 
+                    alt="Fédération Française de Moto" 
+                    width={140} 
+                    height={80} 
+                    className="h-16 sm:h-20 lg:h-24 w-auto object-contain filter hover:brightness-110 transition-all duration-300" 
+                  />
+                </div>
+                <div className="flex-shrink-0">
+                  <Image 
+                    src="/images/partners/Logo_Gayant-Expo-Douai.webp" 
+                    alt="Gayant Expo Douai" 
+                    width={140} 
+                    height={80} 
+                    className="h-16 sm:h-20 lg:h-24 w-auto object-contain filter hover:brightness-110 transition-all duration-300" 
+                  />
+                </div>
+                <div className="flex-shrink-0">
+                  <Image 
+                    src="/images/partners/Logo_Nord-le-Departement.webp" 
+                    alt="Département du Nord" 
+                    width={140} 
+                    height={80} 
+                    className="h-16 sm:h-20 lg:h-24 w-auto object-contain filter hover:brightness-110 transition-all duration-300" 
+                  />
+                </div>
+                <div className="flex-shrink-0">
+                  <Image 
+                    src="/images/partners/Logo_Region-hauts-de-France.webp" 
+                    alt="Région Hauts-de-France" 
+                    width={140} 
+                    height={80} 
+                    className="h-16 sm:h-20 lg:h-24 w-auto object-contain filter hover:brightness-110 transition-all duration-300" 
+                  />
+                </div>
+              </div>
+            </div>
+            
+            {/* Message de soutien */}
+            <p className="text-center text-slate-600 dark:text-slate-400 mt-8 text-sm sm:text-base">
+              Merci à tous nos partenaires pour leur soutien précieux
+            </p>
+          </div>
+          
+          <style jsx>{`
+            @keyframes scroll-partners {
+              0% { 
+                transform: translateX(0); 
+              }
+              100% { 
+                transform: translateX(-50%); 
+              }
+            }
+            
+            .animate-scroll-partners:hover {
+              animation-play-state: paused;
+            }
+          `}</style>
+        </section>
+
+
 
         {/* Section Call to Action */}
         <section className="bg-slate-900 dark:bg-slate-950 text-white py-20">

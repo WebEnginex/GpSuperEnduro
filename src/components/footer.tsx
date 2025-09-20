@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export function Footer() {
   return (
     <footer className="bg-gradient-to-b from-slate-900 to-slate-950 text-white relative overflow-hidden">
@@ -22,8 +24,8 @@ export function Footer() {
               <div className="space-y-2 text-slate-300 text-sm">
                 <p>7 Mars 2026</p>
                 <p className="text-xs text-slate-400">Ouverture des portes :</p>
-                <p className="text-xs">Tribune Paddock Carré Or & VIP : ?</p>
-                <p className="text-xs">Mezzanine & Tribune : ?</p>
+                <p className="text-xs">Gold Pass : 13h30</p>
+                <p className="text-xs">Catégorie 1, 2 et 3 : 17h30</p>
               </div>
             </div>
 
@@ -81,27 +83,28 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Section du bas - Titre et Call to action */}
+          {/* Section du bas - Logo et Call to action */}
           <div className="text-center mb-8">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-red-400 via-red-500 to-orange-500 bg-clip-text text-transparent mb-4">
-              Gp SuperEnduro
-            </h2>
+            <div className="flex justify-center mb-4">
+              <Image
+                src="/images/logos/SuperEnduro-logo.png"
+                alt="SuperEnduro Logo"
+                width={400}
+                height={160}
+                className="h-32 sm:h-40 w-auto"
+              />
+            </div>
             <p className="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-6">
               Restez connectés pour ne rien manquer de l&apos;événement SuperEnduro le plus spectaculaire de France
             </p>
             
             {/* Call to action */}
-            <a 
-              href="https://www.billetweb.fr/championnat-de-france-de-supercross-2025"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 bg-slate-800/50 backdrop-blur-sm rounded-full border border-slate-700/50 hover:bg-slate-700/50 transition-all duration-300 hover:scale-105"
-            >
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse mr-3"></div>
+            <div className="inline-flex items-center px-4 py-2 bg-slate-800/50 backdrop-blur-sm rounded-full border border-slate-700/50">
+              <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse mr-3"></div>
               <span className="text-slate-300 text-sm">
                 Billeterie disponible en ligne à partir du 6 Octobre 2025
               </span>
-            </a>
+            </div>
           </div>
         </div>
         

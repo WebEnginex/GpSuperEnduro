@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { createMessage } from '@/lib/supabase/admin';
 import { Badge } from "@/components/ui/badge";
-import { Loader2, Send, Mail, MapPin, Clock, Users, Car, Bus } from "lucide-react";
+import { Loader2, Send, Mail, MapPin, Clock } from "lucide-react";
 
 // Composants de formulaire locaux
 const Input = ({ className, ...props }: React.InputHTMLAttributes<HTMLInputElement>) => (
@@ -52,7 +52,7 @@ export default function Contact() {
 
   const copyEmail = async () => {
     try {
-      await navigator.clipboard.writeText('contact@sxtour-douai.fr');
+      await navigator.clipboard.writeText('superendurofrance@gmail.com');
       setEmailCopied(true);
       setTimeout(() => setEmailCopied(false), 2000);
     } catch (err) {
@@ -256,18 +256,18 @@ export default function Contact() {
                     Horaires d&apos;Ouverture
                   </h2>
                   <div className="space-y-4">
-                    <div className="flex items-start gap-4">
-                      <Clock className="h-5 w-5 text-red-400 mt-1" />
-                      <div>
-                        <p className="font-semibold text-white">Tribune Paddock Carré Or & VIP</p>
+                    <div className="flex items-center gap-4">
+                      <Clock className="h-5 w-5 text-red-400" />
+                      <div className="flex justify-between items-center w-full">
+                        <p className="font-semibold text-white">Gold Pass</p>
                         <p className="text-gray-300">13h30</p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-4">
-                      <Clock className="h-5 w-5 text-red-400 mt-1" />
-                      <div>
-                        <p className="font-semibold text-white">Mezzanine & Tribune</p>
-                        <p className="text-gray-300">18h30</p>
+                    <div className="flex items-center gap-4">
+                      <Clock className="h-5 w-5 text-red-400" />
+                      <div className="flex justify-between items-center w-full">
+                        <p className="font-semibold text-white">Catégorie 1, 2 et 3</p>
+                        <p className="text-gray-300">17h30</p>
                       </div>
                     </div>
                   </div>
@@ -279,71 +279,40 @@ export default function Contact() {
                     Services Disponibles
                   </h2>
                   
-                  {/* Accès & Mobilité */}
-                  <div className="mb-6">
-                    <h3 className="text-sm font-semibold text-gray-400 mb-3 uppercase tracking-wide">Accès & Mobilité</h3>
-                    <div className="grid grid-cols-2 gap-3">
-                      <div className="flex items-center gap-2">
-                        <Car className="h-4 w-4 text-red-400" />
-                        <span className="text-sm text-gray-300">Parking</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Bus className="h-4 w-4 text-red-400" />
-                        <span className="text-sm text-gray-300">Transport</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="text-red-400">♿</div>
-                        <span className="text-sm text-gray-300">PMR</span>
-                      </div>
+                  <div className="space-y-4">
+                    {/* Parking */}
+                    <div className="flex items-start gap-3">
+                      <div className="text-red-400 mt-1">🚗</div>
+                      <p className="text-gray-300">Parkings périphériques pour les tickets 1, 2 et 3</p>
+                    </div>
+                    
+                    {/* Restauration */}
+                    <div className="flex items-start gap-3">
+                      <div className="text-red-400 mt-1">🍟</div>
+                        <p className="text-gray-300">Friterie - Sandwicherie - Crêperie - Bar</p>
+                    </div>
+                    
+                    {/* Boutiques */}
+                    <div className="flex items-start gap-3">
+                      <div className="text-red-400 mt-1">🛍️</div>
+                      <p className="text-gray-300">Boutique officielle du SuperEnduro World Championship</p>
+                    </div>
+                    
+                    {/* Magasins partenaires */}
+                    <div className="flex items-start gap-3">
+                      <div className="text-red-400 mt-1">🏪</div>
+                      <p className="text-gray-300">Magasins partenaires</p>
                     </div>
                   </div>
 
-                  {/* Restauration */}
-                  <div className="mb-6">
-                    <h3 className="text-sm font-semibold text-gray-400 mb-3 uppercase tracking-wide">Restauration</h3>
-                    <div className="grid grid-cols-2 gap-3">
-                      <div className="flex items-center gap-2">
-                        <div className="text-red-400">🍺</div>
-                        <span className="text-sm text-gray-300">Bar</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="text-red-400">🍟</div>
-                        <span className="text-sm text-gray-300">Friterie</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="text-red-400">🥪</div>
-                        <span className="text-sm text-gray-300">Snack</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Réservations */}
-                  <div className="mb-6">
-                    <h3 className="text-sm font-semibold text-gray-400 mb-3 uppercase tracking-wide">Réservations</h3>
-                    <div className="grid grid-cols-2 gap-3">
-                      <div className="flex items-center gap-2">
-                        <Users className="h-4 w-4 text-red-400" />
-                        <span className="text-sm text-gray-300">Groupes</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="text-red-400">💼</div>
-                        <span className="text-sm text-gray-300">CSE</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="text-red-400">👶</div>
-                        <span className="text-sm text-gray-300">Enfants</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Section VIP */}
-                  <div className="pt-4 border-t border-gray-700">
+                  {/* Section Gold Pass */}
+                  <div className="pt-6 mt-6 border-t border-gray-700">
                     <div className="bg-gradient-to-r from-yellow-600/20 to-yellow-500/20 rounded-lg border border-yellow-500/30 p-4">
                       <div className="flex items-center gap-2">
-                        <div className="text-yellow-400">⭐</div>
-                        <span className="font-semibold text-yellow-400">Expérience VIP</span>
+                        <div className="text-yellow-400">🏆</div>
+                        <span className="font-semibold text-yellow-400">Gold Pass</span>
                       </div>
-                      <p className="text-sm text-gray-300 mt-1">🍾 Bar buffet exclusif</p>
+                      <p className="text-sm text-gray-300 mt-1">🚗 Parking au plus proche pour les Gold Pass et PMR (dans l&apos;enceinte de Gayant Expo)</p>
                     </div>
                   </div>
                 </div>

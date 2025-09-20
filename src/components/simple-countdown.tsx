@@ -10,7 +10,7 @@ export function SimpleCountdown() {
   });
 
   useEffect(() => {
-    const targetDate = new Date('2025-10-04T13:30:00').getTime();
+    const targetDate = new Date('2026-03-07T13:00:00').getTime();
 
     const updateCountdown = () => {
       const now = new Date().getTime();
