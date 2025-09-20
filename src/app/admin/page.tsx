@@ -152,7 +152,7 @@ export default function AdminLogin() {
 
           {/* Footer */}
           <div className="text-center mt-8 text-gray-500 text-sm">
-            <p>© 2025 Supercross Douai - Tous droits réservés</p>
+            <p>© 2025-2026 SuperEnduro 2026 - Tous droits réservés</p>
           </div>
         </div>
       </section>

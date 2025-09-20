@@ -184,7 +184,7 @@ export default function PilotesPage() {
       <section className="relative bg-black py-16 pt-56 sm:pt-60 lg:pt-64">
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Badge variant="secondary" className="mb-4 bg-red-600/20 text-red-400 border-red-600/30">
-            Supercross Douai 2025
+            SuperEnduro 2026
           </Badge>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
             <span className="text-red-600">Pilotes</span> Officiels
@@ -206,19 +206,6 @@ export default function PilotesPage() {
             
             <div className="max-w-4xl mx-auto">
               <div className="grid grid-cols-2 md:grid-cols-4 bg-black/60 backdrop-blur-sm rounded-2xl p-3 gap-3 border border-gray-700/50 shadow-2xl">
-                {/* Junior */}
-                <button
-                  onClick={() => handleTabChange('junior')}
-                  className={`py-4 px-4 rounded-xl font-semibold transition-all duration-300 ${
-                    activeTab === 'junior'
-                      ? `bg-gradient-to-r ${getTabColor('junior')} text-white shadow-lg transform scale-105 shadow-green-500/25`
-                      : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50 border border-gray-600/30'
-                  }`}
-                >
-                  <div className="text-sm md:text-lg font-bold">Junior</div>
-                  <div className="text-xs opacity-75 mt-1">Débutants</div>
-                </button>
-
                 {/* 125cc */}
                 <button
                   onClick={() => handleTabChange('125cc')}
@@ -229,7 +216,20 @@ export default function PilotesPage() {
                   }`}
                 >
                   <div className="text-sm md:text-lg font-bold">125cc</div>
-                  <div className="text-xs opacity-75 mt-1">SX 125</div>
+                  <div className="text-xs opacity-75 mt-1">moins de 16 ans</div>
+                </button>
+
+                {/* Junior */}
+                <button
+                  onClick={() => handleTabChange('junior')}
+                  className={`py-4 px-4 rounded-xl font-semibold transition-all duration-300 ${
+                    activeTab === 'junior'
+                      ? `bg-gradient-to-r ${getTabColor('junior')} text-white shadow-lg transform scale-105 shadow-green-500/25`
+                      : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50 border border-gray-600/30'
+                  }`}
+                >
+                  <div className="text-sm md:text-lg font-bold">Junior</div>
+                  <div className="text-xs opacity-75 mt-1">18 à 22 ans</div>
                 </button>
 
                 {/* Coupe d'Europe */}
@@ -242,7 +242,7 @@ export default function PilotesPage() {
                   }`}
                 >
                   <div className="text-sm md:text-lg font-bold">Coupe d&apos;Europe</div>
-                  <div className="text-xs opacity-75 mt-1">Europe</div>
+                  <div className="text-xs opacity-75 mt-1">OPEN</div>
                 </button>
 
                 {/* Prestige */}
@@ -255,7 +255,7 @@ export default function PilotesPage() {
                   }`}
                 >
                   <div className="text-sm md:text-lg font-bold">Prestige</div>
-                  <div className="text-xs opacity-75 mt-1">Élite</div>
+                  <div className="text-xs opacity-75 mt-1">PRO SuperEnduro</div>
                 </button>
               </div>
             </div>
@@ -268,34 +268,24 @@ export default function PilotesPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* En-tête de la catégorie active */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-3 mb-6">
-              <div className={`w-16 h-16 rounded-full bg-gradient-to-r ${getTabColor(activeTab)} flex items-center justify-center shadow-lg`}>
-                <span className="text-white font-bold text-xs">
-                  {activeTab === 'junior' && 'JUN'}
-                  {activeTab === '125cc' && '125'}
-                  {activeTab === 'coupe-europe' && 'EUR'}
-                  {activeTab === 'prestige' && 'PRE'}
-                </span>
-              </div>
-              <h2 className="text-3xl font-bold">
-                {activeTab === 'junior' && (
-                  <>Catégorie <span className="text-green-400">Junior</span></>
-                )}
-                {activeTab === '125cc' && (
-                  <>Catégorie <span className="text-blue-400">125cc</span></>
-                )}
-                {activeTab === 'coupe-europe' && (
-                  <>Catégorie <span className="text-purple-400">Coupe d&apos;Europe</span></>
-                )}
-                {activeTab === 'prestige' && (
-                  <>Catégorie <span className="text-red-400">Prestige</span></>
-                )}
-              </h2>
-            </div>
+            <h2 className="text-3xl font-bold mb-6">
+              {activeTab === 'junior' && (
+                <>Catégorie <span className="text-green-400">Junior</span></>
+              )}
+              {activeTab === '125cc' && (
+                <>Catégorie <span className="text-blue-400">125cc</span></>
+              )}
+              {activeTab === 'coupe-europe' && (
+                <>Catégorie <span className="text-purple-400">Coupe d&apos;Europe</span></>
+              )}
+              {activeTab === 'prestige' && (
+                <>Catégorie <span className="text-red-400">Prestige</span></>
+              )}
+            </h2>
             
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                {activeTab === '125cc' && 'Les jeunes espoirs de moins de 16 ans prêts à en découdre en 125cc'}
               {activeTab === 'junior' && 'Les jeunes talents débutants qui découvrent le SuperEnduro'}
-              {activeTab === '125cc' && 'Les pilotes de la catégorie 125cc SX'}
               {activeTab === 'coupe-europe' && 'Les participants à la Coupe d\'Europe SuperEnduro'}
               {activeTab === 'prestige' && "La catégorie Prestige, réunissant les meilleurs pilotes mondiaux"}
             </p>
@@ -478,7 +468,7 @@ export default function PilotesPage() {
             <div className="text-center p-6 bg-gray-900/50 rounded-xl border border-gray-800">
               <div className="text-4xl font-bold text-green-500 mb-2">4</div>
               <h3 className="text-lg font-semibold mb-2">Catégories</h3>
-              <p className="text-gray-400 text-sm">Junior, 125cc, Coupe d&apos;Europe, Prestige</p>
+              <p className="text-gray-400 text-sm">125cc, Junior, Coupe d&apos;Europe, Prestige</p>
             </div>
             
             <div className="text-center p-6 bg-gray-900/50 rounded-xl border border-gray-800">
@@ -488,9 +478,9 @@ export default function PilotesPage() {
             </div>
             
             <div className="text-center p-6 bg-gray-900/50 rounded-xl border border-gray-800">
-              <div className="text-4xl font-bold text-yellow-500 mb-2">2025</div>
+              <div className="text-4xl font-bold text-yellow-500 mb-2">2026</div>
               <h3 className="text-lg font-semibold mb-2">Édition</h3>
-              <p className="text-gray-400 text-sm">Championnat de France</p>
+              <p className="text-gray-400 text-sm">Championnat du Monde</p>
             </div>
           </div>
         </div>

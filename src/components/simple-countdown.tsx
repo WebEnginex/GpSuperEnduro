@@ -34,14 +34,14 @@ export function SimpleCountdown() {
   }, []);
 
   return (
-    <div className="text-center">
+    <div className="text-center mobile-countdown-display">
       <p className="text-white/90 text-sm sm:text-lg mb-2 sm:mb-3 font-medium">
         Début de l&apos;événement dans :
       </p>
       <div className="flex justify-center items-center gap-2 sm:gap-4">
         {/* Jours */}
         <div className="text-center">
-          <div className="text-white text-2xl sm:text-4xl md:text-5xl font-bold">
+          <div className="text-white text-xl sm:text-4xl md:text-5xl font-bold">
             {timeLeft.days.toString().padStart(2, '0')}
           </div>
           <div className="text-white/70 text-xs sm:text-sm mt-1 tracking-wider">

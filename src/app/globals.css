@@ -395,3 +395,249 @@
     padding: 0.375rem;
   }
 }
+
+/* Styles pour la vidéo de fond plein écran */
+.video-background {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  object-fit: cover !important;
+  z-index: -1 !important;
+}
+
+/* Garantir que la vidéo couvre toujours l'écran - Desktop */
+video[data-background="true"] {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
+/* Forcer l'affichage du contenu sur mobile */
+@media (max-width: 768px) {
+  /* Assurer la visibilité des éléments de la page d'accueil */
+  .countdown-container {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 9999 !important;
+  }
+
+  .mobile-countdown-display {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 10000 !important;
+    color: white !important;
+  }
+
+  .mobile-countdown-display * {
+    color: white !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .mobile-countdown-display .flex {
+    display: flex !important;
+  }
+
+  .buttons-container {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 9999 !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+
+  .home-button {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 10000 !important;
+    min-height: 50px !important;
+    width: 100% !important;
+    background-color: rgb(220, 38, 38) !important;
+    color: white !important;
+    border-radius: 9999px !important;
+    padding: 1rem 1.5rem !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .home-button.white-bg {
+    background-color: white !important;
+    color: rgb(31, 41, 55) !important;
+    border: 2px solid white !important;
+  }
+}
+@media (max-width: 768px) {
+  .video-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .video-container video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+  }
+
+  /* Optimisations pour le contenu mobile */
+  .mobile-content {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+    z-index: 1000 !important;
+    position: relative !important;
+  }
+
+  .mobile-buttons {
+    gap: 1rem !important;
+    max-width: 280px !important;
+    z-index: 1001 !important;
+  }
+
+  .mobile-button {
+    min-height: 48px !important;
+    font-size: 0.9rem !important;
+    padding: 0.875rem 1.5rem !important;
+    font-weight: 600 !important;
+    z-index: 1002 !important;
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .mobile-countdown {
+    margin-bottom: 2rem !important;
+    z-index: 1001 !important;
+    position: relative !important;
+  }
+
+  /* Force la visibilité du texte */
+  .mobile-content * {
+    color: white !important;
+    z-index: inherit !important;
+  }
+
+  .mobile-button.bg-red-600 {
+    background-color: #dc2626 !important;
+    color: white !important;
+  }
+
+  .mobile-button.bg-white {
+    background-color: white !important;
+    color: #1f2937 !important;
+  }
+}
+
+/* Optimisations pour mode portrait sur mobile */
+@media (max-width: 768px) and (orientation: portrait) {
+  .video-container video {
+    width: 100vw;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .mobile-content {
+    padding-top: 3rem !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  /* Ajustements du compteur pour portrait mobile */
+  .countdown-mobile {
+    transform: scale(0.85) !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .mobile-buttons {
+    width: 100% !important;
+    max-width: 300px !important;
+  }
+}
+
+/* Optimisations pour tablette */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .tablet-content {
+    padding-top: 2rem !important;
+    z-index: 1000 !important;
+    position: relative !important;
+  }
+
+  .tablet-buttons {
+    max-width: 400px !important;
+    gap: 1.25rem !important;
+    z-index: 1001 !important;
+  }
+
+  .tablet-button {
+    min-height: 52px !important;
+    font-size: 1rem !important;
+    padding: 1rem 2rem !important;
+    font-weight: 600 !important;
+    z-index: 1002 !important;
+    position: relative !important;
+  }
+
+  /* Force la visibilité sur tablette */
+  .tablet-content * {
+    z-index: inherit !important;
+  }
+}
+
+/* Optimisations pour mode paysage sur tablette */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+  .video-container video {
+    width: auto;
+    height: 100vh;
+    min-width: 100vw;
+  }
+
+  .tablet-content {
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+}
+
+/* S'assurer que le body peut défiler normalement */
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Container principal pour le contenu scrollable */
+.page-content {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+}

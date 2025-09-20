@@ -37,7 +37,7 @@ const faqSections: FAQSection[] = [
       },
       {
         question: "Puis-je annuler ou modifier ma réservation ?",
-        answer: "Les modifications et annulations sont possibles jusqu'à 48h avant l'événement. Contactez-nous via le formulaire de contact ou par email à contact@sxtour-douai.fr ."
+        answer: "Les modifications et annulations sont possibles conformement aux conditions générales de Ticketmaster"
       },
       {
         question: "Y a-t-il un âge minimum pour assister à l'événement ?",
@@ -101,7 +101,7 @@ const faqSections: FAQSection[] = [
         answer: (
           <>
             Les portes ouvrent à <span className="font-semibold">13h00</span> pour les <span className="font-semibold">Pass Premmium</span> et à <span className="font-semibold">17h30</span> pour les catégories 1, 2 et 3.<br />
-            Les détenteurs de Pass Premmium auront accès aux essais et pourront faire le tour du circuit à pied avec un accès privilégié.
+            Les détenteurs de Pass Premmium auront un accès privilégié aux stands pilotes, essais et pourront faire le tour du circuit à pied.
           </>
         )
       },
@@ -140,7 +140,7 @@ export default function InformationsPage() {
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center ">
             <Badge variant="secondary" className="mb-4 bg-red-600/20 text-red-400 border-red-600/30">
-            Supercross Douai 2025
+            SuperEnduro 2026
           </Badge>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
@@ -148,7 +148,7 @@ export default function InformationsPage() {
             <span className="text-red-500"> Pratiques</span>
           </h1>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Trouvez rapidement les réponses à toutes vos questions sur le Supercross de Douai
+            Trouvez rapidement les réponses à toutes vos questions sur le SuperEnduro 2026
           </p>
         </div>
       </section>

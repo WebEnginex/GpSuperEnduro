@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useVisitTracker } from "@/hooks/useVisitTracker";
 import { Header } from "@/components/header";
 import { SimpleCountdown } from "@/components/simple-countdown";
-import { BackgroundImage } from "@/components/media/BackgroundImage";
+import { CachedVideo } from "@/components/media/CachedVideo";
 import { DebugPanel } from "@/components/DebugPanel";
 import Image from "next/image";
 
@@ -22,34 +22,42 @@ export default function Home() {
       {/* Header réutilisable */}
       <Header showCountdown={true} />
 
-      {/* Section principale avec image de fond */}
-      <BackgroundImage
-        src="/images/background/supercross-sxtour-bg.webp?v=2025011"
-        alt="Gp SuperEnduro"
-        className="min-h-screen h-screen w-full overflow-hidden relative"
-      >
+      {/* Section principale avec vidéo de fond */}
+      <div className="min-h-screen h-screen w-full overflow-hidden relative">
+        {/* Vidéo de fond fixe */}
+        <div className="absolute inset-0 w-full h-full video-container">
+          <CachedVideo
+            src="/video/SuperEnduroPoland2023.webm"
+            className="w-full h-full object-cover"
+            autoPlay={true}
+            loop={true}
+            muted={true}
+            controls={false}
+          />
+        </div>
+        
         {/* Overlay sombre pour améliorer la lisibilité */}
-        <div className="absolute inset-0 bg-black/50 z-10 w-full h-full"></div>
+        <div className="absolute inset-0 bg-black/40 z-5 w-full h-full"></div>
 
         {/* Contenu superposé */}
-        <div className="relative z-20 w-full h-full min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 pt-24 sm:pt-20 md:pt-16 lg:pt-0">
+        <div className="absolute inset-0 z-30 flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 pt-20 pb-20">
           {/* Compte à rebours centré */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 w-full countdown-container">
             <SimpleCountdown />
           </div>
 
           {/* Boutons d'action sur le background */}
-          <div className="flex gap-6 justify-center flex-col sm:flex-row max-w-lg mx-auto">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full max-w-md mx-auto buttons-container">
             <Link 
               href="/billeterie"
-              className="inline-flex items-center justify-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl text-lg"
+              className="w-full sm:w-auto flex items-center justify-center px-6 py-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-full transition-all duration-300 text-base sm:text-lg home-button"
             >
               Billeterie officielle
             </Link>
             
             <Link 
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-gray-100 text-gray-900 border-2 border-white hover:border-gray-200 font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl text-lg"
+              className="w-full sm:w-auto flex items-center justify-center px-6 py-4 bg-white hover:bg-gray-100 text-gray-900 border-2 border-white hover:border-gray-200 font-semibold rounded-full transition-all duration-300 text-base sm:text-lg home-button white-bg"
             >
               Nous contacter
             </Link>
@@ -92,7 +100,7 @@ export default function Home() {
                   viewBox="0 0 24 24"
                   style={{ animationDelay: '0.2s' }}
 
->
+                >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
                 </svg>
                 <svg 
@@ -108,7 +116,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </BackgroundImage>
+      </div>
 
       {/* Section de contenu après la vidéo */}
       <div className="bg-white dark:bg-slate-900">
