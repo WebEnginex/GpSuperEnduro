@@ -100,7 +100,7 @@ const faqSections: FAQSection[] = [
         question: "À quelle heure commence le spectacle ?",
         answer: (
           <>
-            Les portes ouvrent à <span className="font-semibold">13h30</span> pour les <span className="font-semibold">Gold Pass</span> et à <span className="font-semibold">17h30</span> pour les catégories 1, 2 et 3.<br />
+            Les portes ouvrent à <span className="font-semibold">13h00</span> pour les <span className="font-semibold">Gold Pass</span> et à <span className="font-semibold">17h30</span> pour les catégories 1, 2 et 3.<br />
             Les détenteurs de Gold Pass auront accès aux essais et pourront faire le tour du circuit à pied avec un accès privilégié.
           </>
         )

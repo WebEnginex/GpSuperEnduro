@@ -141,7 +141,7 @@ export default function Home() {
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Horaires</h3>
               <p className="text-slate-600 dark:text-slate-300">Ouvertures des portes :</p>
               <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
-                Gold Pass : 13h30<br />
+                Gold Pass : 13h00<br />
                 Autres : 17h30
               </p>
               </div>

@@ -24,7 +24,7 @@ export function Footer() {
               <div className="space-y-2 text-slate-300 text-sm">
                 <p>7 Mars 2026</p>
                 <p className="text-xs text-slate-400">Ouverture des portes :</p>
-                <p className="text-xs">Gold Pass : 13h30</p>
+                <p className="text-xs">Gold Pass : 13h00</p>
                 <p className="text-xs">Catégorie 1, 2 et 3 : 17h30</p>
               </div>
             </div>
