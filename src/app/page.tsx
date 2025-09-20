@@ -120,18 +120,10 @@ export default function Home() {
               <span className="text-red-600 dark:text-red-400"> SuperEnduro</span>
             </h1>
             
-            <div className="mb-4">
-              <div className="flex items-center justify-center space-x-3">
-                
-                <p className="text-lg sm:text-xl text-red-600 dark:text-red-400 font-semibold">
-                  championnat du monde 2026
-                </p>
-                
-              </div>
-            </div>
+            
             
             <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-300 max-w-4xl mx-auto leading-relaxed mb-16">
-              Le championnat du monde de SuperEnduro 2026 vous donne rendez vous le 7 mars à Douai Gayant Expo ! 
+              Le championnat du monde de SuperEnduro 2026 vous donne rendez-vous le 7 mars à Douai Gayant Expo ! 
             </p>
 
             {/* Informations événement */}
@@ -141,7 +133,7 @@ export default function Home() {
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Horaires</h3>
               <p className="text-slate-600 dark:text-slate-300">Ouvertures des portes :</p>
               <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
-                Gold Pass : 13h00<br />
+                Pass Premmium : 13h00<br />
                 Autres : 17h30
               </p>
               </div>
