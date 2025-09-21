@@ -259,7 +259,7 @@ export default function Contact() {
                     <div className="flex items-center gap-4">
                       <Clock className="h-5 w-5 text-red-400" />
                       <div className="flex justify-between items-center w-full">
-                        <p className="font-semibold text-white">Pass Premmium</p>
+                        <p className="font-semibold text-white">Pass Premium</p>
                         <p className="text-gray-300">13h30</p>
                       </div>
                     </div>
@@ -305,14 +305,14 @@ export default function Contact() {
                     </div>
                   </div>
 
-                  {/* Section Pass Premmium */}
+                  {/* Section Pass Premium */}
                   <div className="pt-6 mt-6 border-t border-gray-700">
                     <div className="bg-gradient-to-r from-yellow-600/20 to-yellow-500/20 rounded-lg border border-yellow-500/30 p-4">
                       <div className="flex items-center gap-2">
                         <div className="text-yellow-400">🏆</div>
-                        <span className="font-semibold text-yellow-400">Pass Premmium</span>
+                        <span className="font-semibold text-yellow-400">Pass Premium</span>
                       </div>
-                      <p className="text-sm text-gray-300 mt-1">🚗 Parking au plus proche pour les Pass Premmium et PMR (dans l&apos;enceinte de Gayant Expo)</p>
+                      <p className="text-sm text-gray-300 mt-1">🚗 Parking au plus proche pour les Pass Premium et PMR (dans l&apos;enceinte de Gayant Expo)</p>
                     </div>
                   </div>
                 </div>

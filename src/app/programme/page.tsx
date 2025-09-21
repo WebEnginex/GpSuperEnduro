@@ -22,7 +22,7 @@ export default function ProgrammePage() {
                 Ouverture des portes
               </h3>
               <p className="text-gray-400 text-sm">
-                Accès aux essais - qualifications
+                Accès aux essais - qualifications + stands des pilotes
               </p>
             </div>
           </div>
@@ -38,7 +38,7 @@ export default function ProgrammePage() {
             </div>
             <div>
               <h3 className="text-lg font-semibold text-white mb-2">
-                Accès aux stands pilotes et circuit
+                Visite du circuit
               </h3>
               
             </div>
@@ -84,9 +84,7 @@ export default function ProgrammePage() {
             <h3 className="text-lg font-semibold text-white mb-2">
               Cérémonie d&apos;ouverture + présentation des pilotes
             </h3>
-            <p className="text-gray-400 text-sm">
-              Ouverture officielle de l&apos;événement avec la présentation de tous les pilotes
-            </p>
+            
           </div>
         </div>
 

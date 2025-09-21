@@ -68,7 +68,7 @@ const faqSections: FAQSection[] = [
       },
       {
         question: "Y a-t-il un parking disponible ?",
-        answer: "Oui, un parking gratuit est mis à disposition des spectateurs à proximité immédiate du circuit. Pour les détenteurs de Pass Premmium et les personnes à mobilité réduite (PMR), le parking est situé au plus proche, dans l'enceinte même de Gayant Expo."
+        answer: "Oui, un parking gratuit est mis à disposition des spectateurs à proximité immédiate du circuit. Pour les détenteurs de Pass Premium et les personnes à mobilité réduite (PMR), le parking est situé au plus proche, dans l'enceinte même de Gayant Expo."
       },
       {
         question: "L'événement est-il accessible aux personnes à mobilité réduite ?",
@@ -100,8 +100,8 @@ const faqSections: FAQSection[] = [
         question: "À quelle heure commence le spectacle ?",
         answer: (
           <>
-            Les portes ouvrent à <span className="font-semibold">13h00</span> pour les <span className="font-semibold">Pass Premmium</span> et à <span className="font-semibold">17h30</span> pour les catégories 1, 2 et 3.<br />
-            Les détenteurs de Pass Premmium auront un accès privilégié aux stands pilotes, essais et pourront faire le tour du circuit à pied.
+            Les portes ouvrent à <span className="font-semibold">13h00</span> pour les <span className="font-semibold">Pass Premium</span> et à <span className="font-semibold">17h30</span> pour les catégories 1, 2 et 3.<br />
+            Les détenteurs de Pass Premium auront un accès privilégié aux stands pilotes, essais et pourront faire le tour du circuit à pied.
           </>
         )
       },
