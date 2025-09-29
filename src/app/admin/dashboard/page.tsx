@@ -157,11 +157,11 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+  <div className="min-h-screen bg-black text-white pt-56">
       {/* Header réutilisable */}
       <Header showCountdown={false} />
       
-      <div className="pt-48 lg:pt-52">
+  <div>
         {/* Header spécifique au dashboard */}
         <div className="bg-gray-900/50 border-b border-gray-800/50 shadow-sm backdrop-blur-sm">
           <div className="container mx-auto px-4 py-4 lg:py-6">
@@ -234,7 +234,7 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 pt-32">
         {activeTab === 'dashboard' && (
           <div className="space-y-8">
             {/* Statistiques de visites */}
