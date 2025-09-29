@@ -260,7 +260,7 @@ export default function Contact() {
                       <Clock className="h-5 w-5 text-red-400" />
                       <div className="flex justify-between items-center w-full">
                         <p className="font-semibold text-white">Pass Premium</p>
-                        <p className="text-gray-300">13h30</p>
+                        <p className="text-gray-300">13h00</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-4">
