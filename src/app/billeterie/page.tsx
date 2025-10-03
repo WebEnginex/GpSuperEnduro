@@ -2,6 +2,18 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Billeterie Grand Prix Super Enduro 2026 | 7 Mars à Douai",
+  description: "Réservez vos places pour le Grand Prix Super Enduro 2026 le 7 Mars à Gayant Expo Douai. Pass Premium (13h), Catégories 1, 2 et 3 (17h30). Billeterie officielle.",
+  keywords: "billeterie, tickets, Grand Prix Super Enduro 2026, Douai, Gayant Expo, Pass Premium, réservation",
+  openGraph: {
+    title: "Billeterie Grand Prix Super Enduro 2026",
+    description: "Réservez vos places pour le 7 Mars 2026 à Gayant Expo Douai",
+    type: "website",
+  },
+};
 
 export default function Billeterie() {
   return (

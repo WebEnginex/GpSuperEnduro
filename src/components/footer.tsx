@@ -91,7 +91,7 @@ export function Footer() {
                 alt="SuperEnduro Logo"
                 width={400}
                 height={160}
-                className="h-32 sm:h-40 w-auto"
+                className="h-20 sm:h-28 lg:h-32 xl:h-40 w-auto max-w-full px-4"
               />
             </div>
             <p className="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-6">

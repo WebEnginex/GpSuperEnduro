@@ -173,7 +173,7 @@ export function Header({ showCountdown = true }: HeaderProps) {
                       alt="SuperEnduro Logo"
                       width={220}
                       height={88}
-                      className="h-16 sm:h-20 w-auto transition-all duration-300 hover:scale-105"
+                      className="h-14 sm:h-16 md:h-18 w-auto max-w-full px-2 transition-all duration-300 hover:scale-105"
                       priority={true}
                       loadingBackground="bg-transparent"
                     />

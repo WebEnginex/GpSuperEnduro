@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.gpsuperendurofrance.fr/sitemap.xml
+
+# Disallow admin pages if any
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /api/
+
+# Allow all important pages
+Allow: /
+Allow: /billeterie
+Allow: /programme  
+Allow: /pilotes
+Allow: /informations
+Allow: /contact
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1

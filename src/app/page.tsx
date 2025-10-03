@@ -209,7 +209,7 @@ export default function Home() {
                 <div className="flex-shrink-0">
                   <Image 
                     src="/images/partners/FFMOTO_LOGO.png" 
-                    alt="Fédération Française de Moto" 
+                    alt="Fédération Française de Motocyclisme (FFM)" 
                     width={140} 
                     height={80} 
                     className="h-16 sm:h-20 lg:h-24 w-auto object-contain filter hover:brightness-110 transition-all duration-300" 
@@ -218,7 +218,7 @@ export default function Home() {
                 <div className="flex-shrink-0">
                   <Image 
                     src="/images/partners/FIM_Logo.png" 
-                    alt="Fédération Française de Moto" 
+                    alt="Fédération Internationale de Motocyclisme (FIM)" 
                     width={140} 
                     height={80} 
                     className="h-16 sm:h-20 lg:h-24 w-auto object-contain filter hover:brightness-110 transition-all duration-300" 
@@ -256,7 +256,7 @@ export default function Home() {
                 <div className="flex-shrink-0">
                   <Image 
                     src="/images/partners/FFMOTO_LOGO.png" 
-                    alt="Fédération Française de Moto" 
+                    alt="Fédération Française de Motocyclisme (FFM)" 
                     width={140} 
                     height={80} 
                     className="h-16 sm:h-20 lg:h-24 w-auto object-contain filter hover:brightness-110 transition-all duration-300" 
@@ -265,7 +265,7 @@ export default function Home() {
                 <div className="flex-shrink-0">
                   <Image 
                     src="/images/partners/FIM_Logo.png" 
-                    alt="Fédération Française de Moto" 
+                    alt="Fédération Internationale de Motocyclisme (FIM)" 
                     width={140} 
                     height={80} 
                     className="h-16 sm:h-20 lg:h-24 w-auto object-contain filter hover:brightness-110 transition-all duration-300" 

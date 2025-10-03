@@ -49,7 +49,18 @@ const faqSections: FAQSection[] = [
       // },
       {
         question: "Proposez-vous des tarifs préférentiels CSE ?",
-        answer: "Oui, nous proposons des tarifs préférentiels CSE. Pour en bénéficier, faites votre demande via notre formulaire de contact ou directement par email à superendurofrance@gmail.com ."
+        answer: (
+          <>
+            Oui, nous proposons des tarifs préférentiels CSE. Pour en bénéficier, faites votre demande via notre{' '}
+            <Link href="/contact" className="text-red-400 hover:text-red-300 underline">
+              formulaire de contact
+            </Link>
+            {' '}ou directement par email à superendurofrance@gmail.com. Découvrez aussi tous nos tarifs sur notre{' '}
+            <Link href="/billeterie" className="text-red-400 hover:text-red-300 underline">
+              page billeterie
+            </Link>.
+          </>
+        )
       },
       {
         question: "Comment présenter mon billet lors de l'événement ?",
@@ -64,7 +75,15 @@ const faqSections: FAQSection[] = [
     items: [
       {
         question: "Où se déroule l'événement ?",
-        answer: "L'événement a lieu au Gayant Expo Concerts de Douai. L'adresse exacte et l'itinéraire sont disponibles dans la section Contact de notre site."
+        answer: (
+          <>
+            L&apos;événement a lieu au Gayant Expo Concerts de Douai. L&apos;adresse exacte et l&apos;itinéraire sont disponibles dans la{' '}
+            <Link href="/contact" className="text-red-400 hover:text-red-300 underline">
+              section Contact
+            </Link>
+            {' '}de notre site.
+          </>
+        )
       },
       {
         question: "Y a-t-il un parking disponible ?",
