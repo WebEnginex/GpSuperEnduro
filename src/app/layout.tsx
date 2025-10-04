@@ -82,6 +82,9 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
+        {/* Google Search Console Verification */}
+        <meta name="google-site-verification" content="GuU6SxJt5PYQoSkhyIvDCN0nYeQkBfrB6fJ2d3FZL4E" />
+        
         {/* Balises supplémentaires pour l'affichage Google */}
         <link rel="canonical" href="https://www.gpsuperendurofrance.fr/" />
         <link rel="shortcut icon" href="/favicons/favicon.ico" />
