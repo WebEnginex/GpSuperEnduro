@@ -30,22 +30,31 @@ const racingSansOne = Racing_Sans_One({
 });
 
 export const metadata: Metadata = {
-  title: "Grand Prix Super Enduro 2026 | 7 Mars 2026 à Douai",
-  description: "Grand Prix Super Enduro 2026 en intérieur le 7 Mars 2026 à Gayant Expo Douai. Spectacle exceptionnel avec les meilleurs pilotes internationaux de SuperEnduro.",
-  keywords: "Grand Prix Super Enduro, Douai, 2026, indoor, enduro, pilotes internationaux, Gayant Expo, sport moto",
+  title: "Super Enduro Douai 2026 | Grand Prix 7 Mars - Gayant Expo",
+  description: "Super Enduro débarque en France ! Grand Prix Super Enduro 2026 le 7 Mars à Douai Gayant Expo. Championnat indoor avec les meilleurs pilotes internationaux.",
+  keywords: "Super Enduro, SuperEnduro, Grand Prix, Douai 2026, indoor enduro, championnat FIM, motocross indoor, spectacle moto, Gayant Expo, pilotes internationaux, billeterie moto, 7 mars 2026, Nord France, sport mécanique, événement moto",
   authors: [{ name: "GP Super Enduro France" }],
   openGraph: {
-    title: "Grand Prix Super Enduro 2026 - 7 Mars à Douai",
-    description: "Grand Prix Super Enduro 2026 en intérieur à Gayant Expo Douai le 7 Mars 2026",
+    title: "Super Enduro Douai 2026 - 7 Mars Gayant Expo",
+    description: "Super Enduro débarque en France ! Championnat indoor le 7 Mars 2026 à Douai avec les meilleurs pilotes internationaux.",
     type: "website",
     locale: "fr_FR",
-    siteName: "GP Super Enduro France",
+    siteName: "Super Enduro France",
     url: "https://www.gpsuperendurofrance.fr/",
+    images: [
+      {
+        url: "https://www.gpsuperendurofrance.fr/images/logos/SuperEnduro-logo.png",
+        width: 400,
+        height: 160,
+        alt: "Super Enduro Logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Grand Prix Super Enduro 2026",
-    description: "7 Mars 2026 à Gayant Expo Douai - Grand Prix Super Enduro en intérieur",
+    title: "Super Enduro Douai 2026",
+    description: "Le Super Enduro débarque en France ! 7 Mars 2026 à Gayant Expo Douai",
+    images: ["https://www.gpsuperendurofrance.fr/images/logos/SuperEnduro-logo.png"],
   },
   robots: {
     index: true,
@@ -53,14 +62,14 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/icons/favicon.ico", sizes: "any" },
+      { url: "/favicons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicons/favicon.ico", sizes: "any" },
     ],
-    apple: { url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    apple: { url: "/favicons/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     other: [
-      { rel: "android-chrome", url: "/icons/android-chrome-192x192.png", sizes: "192x192" },
-      { rel: "android-chrome", url: "/icons/android-chrome-512x512.png", sizes: "512x512" },
+      { rel: "android-chrome", url: "/favicons/android-chrome-192x192.png", sizes: "192x192" },
+      { rel: "android-chrome", url: "/favicons/android-chrome-512x512.png", sizes: "512x512" },
     ],
   },
 };
@@ -73,6 +82,14 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
+        {/* Balises supplémentaires pour l'affichage Google */}
+        <link rel="canonical" href="https://www.gpsuperendurofrance.fr/" />
+        <link rel="shortcut icon" href="/favicons/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+        <link rel="manifest" href="/favicons/site.webmanifest" />
+        <meta name="theme-color" content="#dc2626" />
+        <meta name="msapplication-TileColor" content="#dc2626" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

@@ -1,33 +1,33 @@
-# Plan d'amélioration SEO pour gp-super-enduro
 
-## 1. Balises meta et titres
-- Ajouter des balises `<title>`, `<meta name="description">`, et Open Graph sur chaque page principale.
-- Vérifier la présence de balises alt sur toutes les images.
+---
 
-## 2. Sitemap et robots.txt
-- Générer un fichier `sitemap.xml` à la racine du projet.
-- Générer un fichier `robots.txt` pour contrôler l'indexation.
+## Optimisation supplémentaire (Phase 2)
 
-## 3. Données structurées
-- Ajouter des données structurées (JSON-LD) pour les pages importantes (événements, organisation, etc.).
+### 🎯 Objectifs identifiés :
+- Site visible sur "super enduro 2026 douai" ✅
+- Manque d'icône dans les résultats Google ❌
+- Besoin de se positionner sur "Super Enduro" seul ❌
+
+### 📋 Plan d'action :
+
+## 9. Amélioration de l'affichage dans les résultats Google
+- [ ] Ajouter des balises canonical et shortcut icon optimisées
+- [ ] Créer un favicon plus visible et reconnaissable
+- [ ] Optimiser les métadonnées pour l'affichage des snippets
+
+## 10. Expansion du contenu pour "Super Enduro"
+- [ ] Ajouter une section explicative "Qu'est-ce que le Super Enduro ?"
+- [ ] Enrichir le contenu de la page d'accueil avec plus de mots-clés
+- [ ] Optimiser le title et la description pour inclure "Super Enduro" seul
 
 
+## 12. Mise à jour du sitemap et navigation
+- [ ] Ajouter la nouvelle page actualités au sitemap
+- [ ] Intégrer les nouveaux liens dans la navigation
+- [ ] Soumettre le sitemap mis à jour à Google Search Console
 
-
-## 5. Accessibilité et indexabilité
-- Vérifier l'accessibilité des pages (balises ARIA, contraste, navigation clavier).
-- S'assurer qu'aucune page importante n'est en "noindex" ou bloquée par robots.txt.
-
-## 6. Liens internes et externes
-- Améliorer le maillage interne (liens entre pages).
-- Ajouter des liens externes pertinents (réseaux sociaux, partenaires).
-
-## 7. Google Search Console
-- Ajouter le site à Google Search Console et soumettre le sitemap.
-
-## 8. Analyse et suivi
-- Installer Google Analytics ou Matomo pour suivre le trafic.
-- Vérifier régulièrement les performances SEO et corriger les erreurs.
+---
+On peut avancer étape par étape en cochant chaque point après réalisation.
 
 
 
