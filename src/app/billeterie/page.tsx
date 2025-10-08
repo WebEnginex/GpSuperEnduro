@@ -1,6 +1,7 @@
-import { Button } from "@/components/ui/button";
+import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { TrackedButton } from "@/components/TrackedButton";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -72,9 +73,13 @@ export default function Billeterie() {
                   </ul>
                 </div>
                 <div className="pt-4">
-                  <Button className="w-full text-white transition-colors" style={{ backgroundColor: 'rgb(0, 192, 192)' }}>
+                  <TrackedButton 
+                    ticketType="premium"
+                    className="w-full text-white transition-colors" 
+                    style={{ backgroundColor: 'rgb(0, 192, 192)' }}
+                  >
                     Réserver
-                  </Button>
+                  </TrackedButton>
                 </div>
               </CardContent>
             </Card>
@@ -91,7 +96,7 @@ export default function Billeterie() {
               <div className="absolute top-0 left-0 w-full h-3 rounded-t-2xl" style={{ backgroundColor: 'rgb(233, 86, 119)' }} />
               <CardHeader className="pb-4 pt-8 relative z-20">
                 <CardTitle style={{ color: 'rgb(233, 86, 119)' }} className="flex items-center gap-2">
-                  🏟️ Catégorie 1
+                  Catégorie 1
                 </CardTitle>
                 <CardDescription className="text-gray-300">
                   Places situées dans les gradins pour une excellente visibilité sur le circuit et les obstacles.
@@ -109,9 +114,13 @@ export default function Billeterie() {
                   </ul>
                 </div>
                 <div className="pt-4">
-                  <Button className="w-full text-white transition-colors" style={{ backgroundColor: 'rgb(233, 86, 119)' }}>
+                  <TrackedButton 
+                    ticketType="category_1"
+                    className="w-full text-white transition-colors" 
+                    style={{ backgroundColor: 'rgb(233, 86, 119)' }}
+                  >
                     Réserver
-                  </Button>
+                  </TrackedButton>
                 </div>
               </CardContent>
             </Card>
@@ -128,7 +137,7 @@ export default function Billeterie() {
               <div className="absolute top-0 left-0 w-full h-3 rounded-t-2xl" style={{ backgroundColor: 'rgb(0, 215, 0)' }} />
               <CardHeader className="pb-4 pt-8 relative z-20">
                 <CardTitle style={{ color: 'rgb(0, 215, 0)' }} className="flex items-center gap-2">
-                  🪑 Catégorie 2
+                  Catégorie 2
                 </CardTitle>
                 <CardDescription className="text-gray-300">
                   Places situées dans la mezzanine, offrant une vue sur l&apos;ensemble du circuit et des obstacles.
@@ -146,9 +155,13 @@ export default function Billeterie() {
                   </ul>
                 </div>
                 <div className="pt-4">
-                  <Button className="w-full text-black transition-colors" style={{ backgroundColor: 'rgb(0, 215, 0)' }}>
+                  <TrackedButton 
+                    ticketType="category_2"
+                    className="w-full text-white transition-colors" 
+                    style={{ backgroundColor: 'rgb(0, 215, 0)' }}
+                  >
                     Réserver
-                  </Button>
+                  </TrackedButton>
                 </div>
               </CardContent>
             </Card>
@@ -165,7 +178,7 @@ export default function Billeterie() {
               <div className="absolute top-0 left-0 w-full h-3 rounded-t-2xl" style={{ backgroundColor: 'rgb(255, 255, 0)' }} />
               <CardHeader className="pb-4 pt-8 relative z-20">
                 <CardTitle style={{ color: 'rgb(255, 255, 0)' }} className="flex items-center gap-2">
-                  🎫 Catégorie 3
+                  Catégorie 3
                 </CardTitle>
                 <CardDescription className="text-gray-300">
                   Places situées dans la mezzanine, offrant une vue sur l&apos;ensemble du circuit et des obstacles.
@@ -183,9 +196,13 @@ export default function Billeterie() {
                   </ul>
                 </div>
                 <div className="pt-4">
-                  <Button className="w-full text-black transition-colors" style={{ backgroundColor: 'rgb(255, 255, 0)' }}>
+                  <TrackedButton 
+                    ticketType="category_3"
+                    className="w-full text-whit transition-colors" 
+                    style={{ backgroundColor: 'rgb(255, 255, 0)' }}
+                  >
                     Réserver
-                  </Button>
+                  </TrackedButton>
                 </div>
               </CardContent>
             </Card>
