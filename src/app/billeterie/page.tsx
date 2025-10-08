@@ -61,7 +61,9 @@ export default function Billeterie() {
                     À partir de <span className="text-3xl" style={{ color: 'rgb(0, 192, 192)' }}>48€</span>
                   </div>
                   <ul className="space-y-3 text-gray-300 text-sm">
+                    <li className="flex items-start gap-2">🚗 Parking de votre véhicule au plus proche de l&apos;entrée principale</li>
                     <li className="flex items-start gap-2">🏁 Accès aux essais et qualifications</li>
+                    <li className="flex items-start gap-2">🚶‍♂️ Visite exclusive du circuit</li>
                     <li className="flex items-start gap-2">🏍️ Accès aux stands des pilotes</li>
                     <li className="flex items-start gap-2">🎫 Places premium avec vue optimale</li>
                     <li className="flex items-start gap-2">✍️ Séance de dédicaces</li>
