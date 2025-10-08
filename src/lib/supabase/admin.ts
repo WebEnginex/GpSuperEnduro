@@ -17,6 +17,17 @@ export interface Message {
   status: 'unread' | 'read' | 'archived';
 }
 
+export interface TicketClickStats {
+  ticketType: string;
+  totalClicks: number;
+  monthlyClicks: number;
+}
+
+interface TicketClick {
+  ticket_type: string;
+  clicked_at: string;
+}
+
 // Fonctions pour les visites
 export const trackVisit = async () => {
   const supabase = createClient();
@@ -60,6 +71,78 @@ export const getVisitsStats = async () => {
   } catch (error) {
     console.error('Erreur lors de la récupération des statistiques:', error);
     return { total: 0, monthly: 0 };
+  }
+};
+
+// Fonctions pour les statistiques de clics sur les billets
+export const getTicketClicksStats = async (): Promise<TicketClickStats[]> => {
+  const supabase = createClient();
+  
+  try {
+    console.log('Début de getTicketClicksStats...');
+    
+    // Récupérer tous les clics groupés par type de billet
+    const { data: allClicks, error: allClicksError } = await supabase
+      .from('ticket_clicks')
+      .select('ticket_type, clicked_at')
+      .order('ticket_type');
+
+    console.log('Tous les clics:', allClicks);
+
+    if (allClicksError) {
+      console.error('Erreur allClicks:', allClicksError);
+      throw allClicksError;
+    }
+
+    // Récupérer les clics de ce mois groupés par type de billet
+    const startOfMonth = new Date();
+    startOfMonth.setDate(1);
+    startOfMonth.setHours(0, 0, 0, 0);
+
+    const { data: monthlyClicks, error: monthlyClicksError } = await supabase
+      .from('ticket_clicks')
+      .select('ticket_type, clicked_at')
+      .gte('clicked_at', startOfMonth.toISOString())
+      .order('ticket_type');
+
+    console.log('Clics mensuels:', monthlyClicks);
+
+    if (monthlyClicksError) {
+      console.error('Erreur monthlyClicks:', monthlyClicksError);
+      throw monthlyClicksError;
+    }
+
+    // Compter les clics par type de billet (utiliser les vrais ticketType)
+    const ticketTypes = [
+      { key: 'premium', label: 'Premium' },
+      { key: 'category_1', label: 'Catégorie 1' },
+      { key: 'category_2', label: 'Catégorie 2' },
+      { key: 'category_3', label: 'Catégorie 3' }
+    ];
+    const stats: TicketClickStats[] = [];
+
+    for (const ticket of ticketTypes) {
+      const totalClicks = allClicks?.filter((click: TicketClick) => click.ticket_type === ticket.key).length || 0;
+      const monthlyClicksCount = monthlyClicks?.filter((click: TicketClick) => click.ticket_type === ticket.key).length || 0;
+      
+      stats.push({
+        ticketType: ticket.label,
+        totalClicks,
+        monthlyClicks: monthlyClicksCount
+      });
+    }
+
+    console.log('Stats calculées:', stats);
+    return stats;
+  } catch (error) {
+    console.error('Erreur lors de la récupération des statistiques de clics:', error);
+    // Retourner des données par défaut pour tester l'affichage
+    return [
+      { ticketType: 'Premium', totalClicks: 0, monthlyClicks: 0 },
+      { ticketType: 'Catégorie 1', totalClicks: 0, monthlyClicks: 0 },
+      { ticketType: 'Catégorie 2', totalClicks: 0, monthlyClicks: 0 },
+      { ticketType: 'Catégorie 3', totalClicks: 0, monthlyClicks: 0 }
+    ];
   }
 };
 

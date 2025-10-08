@@ -2,7 +2,6 @@ import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrackedButton } from "@/components/TrackedButton";
-import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -40,173 +39,149 @@ export default function Billeterie() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
 
           {/* Premium */}
-          <Link 
-            href="https://www.ticketmaster.fr/fr/manifestation/championnat-du-monde-de-superenduro-2026-billet/idmanif/637073" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="block transform transition-all duration-300 hover:scale-105 h-full"
-          >
-            <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col bg-gray-900/50 border-gray-800 hover:bg-gray-800/50 overflow-hidden relative">
-              <div className="absolute top-0 left-0 w-full h-3 rounded-t-2xl" style={{ backgroundColor: 'rgb(0, 192, 192)' }} />
-              <CardHeader className="pb-4 pt-8 relative z-20">
-                <CardTitle style={{ color: 'rgb(0, 192, 192)' }} className="flex items-center gap-2">
-                  👑 Premium
-                </CardTitle>
-                <CardDescription className="text-gray-300">
-                  L&apos;expérience ultime avec accès privilégié et service premium.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1 flex flex-col justify-between space-y-4">
-                <div>
-                  <div className="text-2xl font-bold text-white mb-4">
-                    À partir de <span className="text-3xl" style={{ color: 'rgb(0, 192, 192)' }}>48€</span>
-                  </div>
-                  <ul className="space-y-3 text-gray-300 text-sm">
-                    <li className="flex items-start gap-2">🚗 Parking de votre véhicule au plus proche de l&apos;entrée principale</li>
-                    <li className="flex items-start gap-2">🏁 Accès aux essais et qualifications</li>
-                    <li className="flex items-start gap-2">🚶‍♂️ Visite exclusive du circuit</li>
-                    <li className="flex items-start gap-2">🏍️ Accès aux stands des pilotes</li>
-                    <li className="flex items-start gap-2">🎫 Places premium avec vue optimale</li>
-                    <li className="flex items-start gap-2">✍️ Séance de dédicaces</li>
-                    <li className="flex items-start gap-2">🎉 Cérémonie d&apos;ouverture</li>
-                    <li className="flex items-start gap-2">🛍️ Accès stands partenaires</li>
-                  </ul>
+          <Card className="hover:shadow-xl transition-all duration-300 h-full flex flex-col bg-gray-900/50 border-gray-800 hover:bg-gray-800/50 overflow-hidden relative">
+            <div className="absolute top-0 left-0 w-full h-3 rounded-t-2xl" style={{ backgroundColor: 'rgb(0, 192, 192)' }} />
+            <CardHeader className="pb-4 pt-8 relative z-20">
+              <CardTitle style={{ color: 'rgb(0, 192, 192)' }} className="flex items-center gap-2">
+                👑 Premium
+              </CardTitle>
+              <CardDescription className="text-gray-300">
+                L&apos;expérience ultime avec accès privilégié et service premium.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="flex-1 flex flex-col justify-between space-y-4">
+              <div>
+                <div className="text-2xl font-bold text-white mb-4">
+                  À partir de <span className="text-3xl" style={{ color: 'rgb(0, 192, 192)' }}>48€</span>
                 </div>
-                <div className="pt-4">
-                  <TrackedButton 
-                    ticketType="premium"
-                    className="w-full text-white transition-colors" 
-                    style={{ backgroundColor: 'rgb(0, 192, 192)' }}
-                  >
-                    Réserver
-                  </TrackedButton>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
+                <ul className="space-y-3 text-gray-300 text-sm">
+                  <li className="flex items-start gap-2">🚗 Parking de votre véhicule au plus proche de l&apos;entrée principale</li>
+                  <li className="flex items-start gap-2">🏁 Accès aux essais et qualifications</li>
+                  <li className="flex items-start gap-2">🚶‍♂️ Visite exclusive du circuit</li>
+                  <li className="flex items-start gap-2">🏍️ Accès aux stands des pilotes</li>
+                  <li className="flex items-start gap-2">🎫 Places premium avec vue optimale</li>
+                  <li className="flex items-start gap-2">✍️ Séance de dédicaces</li>
+                  <li className="flex items-start gap-2">🎉 Cérémonie d&apos;ouverture</li>
+                  <li className="flex items-start gap-2">🛍️ Accès stands partenaires</li>
+                </ul>
+              </div>
+              <div className="pt-4">
+                <TrackedButton 
+                  ticketType="premium"
+                  href="https://www.ticketmaster.fr/fr/manifestation/championnat-du-monde-de-superenduro-2026-billet/idmanif/637073"
+                  className="w-full text-white transition-colors" 
+                  style={{ backgroundColor: 'rgb(0, 192, 192)' }}
+                >
+                  Réserver
+                </TrackedButton>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Catégorie 1 */}
-          <Link 
-            href="https://www.ticketmaster.fr/fr/manifestation/championnat-du-monde-de-superenduro-2026-billet/idmanif/637073" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="block transform transition-all duration-300 hover:scale-105 h-full"
-          >
-            <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col bg-gray-900/50 border-gray-800 hover:bg-gray-800/50 overflow-hidden relative">
-              <div className="absolute top-0 left-0 w-full h-3 rounded-t-2xl" style={{ backgroundColor: 'rgb(233, 86, 119)' }} />
-              <CardHeader className="pb-4 pt-8 relative z-20">
-                <CardTitle style={{ color: 'rgb(233, 86, 119)' }} className="flex items-center gap-2">
-                  Catégorie 1
-                </CardTitle>
-                <CardDescription className="text-gray-300">
-                  Places situées dans les gradins pour une excellente visibilité sur le circuit et les obstacles.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1 flex flex-col justify-between space-y-4">
-                <div>
-                  <div className="text-2xl font-bold text-white mb-4">
-                    À partir de <span className="text-3xl" style={{ color: 'rgb(233, 86, 119)' }}>30€</span>
-                  </div>
-                  <ul className="space-y-3 text-gray-300 text-sm">
-                    <li className="flex items-start gap-2">✍️ Séance de dédicaces</li>
-                    <li className="flex items-start gap-2">🎉 Cérémonie d&apos;ouverture</li>
-                    <li className="flex items-start gap-2">🛍️ Accès stands partenaires</li>
-                  </ul>
+          <Card className="hover:shadow-xl transition-all duration-300 h-full flex flex-col bg-gray-900/50 border-gray-800 hover:bg-gray-800/50 overflow-hidden relative">
+            <div className="absolute top-0 left-0 w-full h-3 rounded-t-2xl" style={{ backgroundColor: 'rgb(233, 86, 119)' }} />
+            <CardHeader className="pb-4 pt-8 relative z-20">
+              <CardTitle style={{ color: 'rgb(233, 86, 119)' }} className="flex items-center gap-2">
+                Catégorie 1
+              </CardTitle>
+              <CardDescription className="text-gray-300">
+                Places situées dans les gradins pour une excellente visibilité sur le circuit et les obstacles.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="flex-1 flex flex-col justify-between space-y-4">
+              <div>
+                <div className="text-2xl font-bold text-white mb-4">
+                  À partir de <span className="text-3xl" style={{ color: 'rgb(233, 86, 119)' }}>30€</span>
                 </div>
-                <div className="pt-4">
-                  <TrackedButton 
-                    ticketType="category_1"
-                    className="w-full text-white transition-colors" 
-                    style={{ backgroundColor: 'rgb(233, 86, 119)' }}
-                  >
-                    Réserver
-                  </TrackedButton>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
+                <ul className="space-y-3 text-gray-300 text-sm">
+                  <li className="flex items-start gap-2">✍️ Séance de dédicaces</li>
+                  <li className="flex items-start gap-2">🎉 Cérémonie d&apos;ouverture</li>
+                  <li className="flex items-start gap-2">🛍️ Accès stands partenaires</li>
+                </ul>
+              </div>
+              <div className="pt-4">
+                <TrackedButton 
+                  ticketType="category_1"
+                  href="https://www.ticketmaster.fr/fr/manifestation/championnat-du-monde-de-superenduro-2026-billet/idmanif/637073"
+                  className="w-full text-white transition-colors" 
+                  style={{ backgroundColor: 'rgb(233, 86, 119)' }}
+                >
+                  Réserver
+                </TrackedButton>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Catégorie 2 */}
-          <Link 
-            href="https://www.ticketmaster.fr/fr/manifestation/championnat-du-monde-de-superenduro-2026-billet/idmanif/637073" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="block transform transition-all duration-300 hover:scale-105 h-full"
-          >
-            <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col bg-gray-900/50 border-gray-800 hover:bg-gray-800/50 overflow-hidden relative">
-              <div className="absolute top-0 left-0 w-full h-3 rounded-t-2xl" style={{ backgroundColor: 'rgb(0, 215, 0)' }} />
-              <CardHeader className="pb-4 pt-8 relative z-20">
-                <CardTitle style={{ color: 'rgb(0, 215, 0)' }} className="flex items-center gap-2">
-                  Catégorie 2
-                </CardTitle>
-                <CardDescription className="text-gray-300">
-                  Places situées dans la mezzanine, offrant une vue sur l&apos;ensemble du circuit et des obstacles.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1 flex flex-col justify-between space-y-4">
-                <div>
-                  <div className="text-2xl font-bold text-white mb-4">
-                    À partir de <span className="text-3xl" style={{ color: 'rgb(0, 215, 0)' }}>24€</span>
-                  </div>
-                  <ul className="space-y-3 text-gray-300 text-sm">
-                    <li className="flex items-start gap-2">✍️ Séance de dédicaces</li>
-                    <li className="flex items-start gap-2">🎉 Cérémonie d&apos;ouverture</li>
-                    <li className="flex items-start gap-2">🛍️ Accès stands partenaires</li>
-                  </ul>
+          <Card className="hover:shadow-xl transition-all duration-300 h-full flex flex-col bg-gray-900/50 border-gray-800 hover:bg-gray-800/50 overflow-hidden relative">
+            <div className="absolute top-0 left-0 w-full h-3 rounded-t-2xl" style={{ backgroundColor: 'rgb(0, 215, 0)' }} />
+            <CardHeader className="pb-4 pt-8 relative z-20">
+              <CardTitle style={{ color: 'rgb(0, 215, 0)' }} className="flex items-center gap-2">
+                Catégorie 2
+              </CardTitle>
+              <CardDescription className="text-gray-300">
+                Places situées dans la mezzanine, offrant une vue sur l&apos;ensemble du circuit et des obstacles.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="flex-1 flex flex-col justify-between space-y-4">
+              <div>
+                <div className="text-2xl font-bold text-white mb-4">
+                  À partir de <span className="text-3xl" style={{ color: 'rgb(0, 215, 0)' }}>24€</span>
                 </div>
-                <div className="pt-4">
-                  <TrackedButton 
-                    ticketType="category_2"
-                    className="w-full text-white transition-colors" 
-                    style={{ backgroundColor: 'rgb(0, 215, 0)' }}
-                  >
-                    Réserver
-                  </TrackedButton>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
+                <ul className="space-y-3 text-gray-300 text-sm">
+                  <li className="flex items-start gap-2">✍️ Séance de dédicaces</li>
+                  <li className="flex items-start gap-2">🎉 Cérémonie d&apos;ouverture</li>
+                  <li className="flex items-start gap-2">🛍️ Accès stands partenaires</li>
+                </ul>
+              </div>
+              <div className="pt-4">
+                <TrackedButton 
+                  ticketType="category_2"
+                  href="https://www.ticketmaster.fr/fr/manifestation/championnat-du-monde-de-superenduro-2026-billet/idmanif/637073"
+                  className="w-full text-white transition-colors" 
+                  style={{ backgroundColor: 'rgb(0, 215, 0)' }}
+                >
+                  Réserver
+                </TrackedButton>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Catégorie 3 */}
-          <Link 
-            href="https://www.ticketmaster.fr/fr/manifestation/championnat-du-monde-de-superenduro-2026-billet/idmanif/637073" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="block transform transition-all duration-300 hover:scale-105 h-full"
-          >
-            <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col bg-gray-900/50 border-gray-800 hover:bg-gray-800/50 overflow-hidden relative">
-              <div className="absolute top-0 left-0 w-full h-3 rounded-t-2xl" style={{ backgroundColor: 'rgb(255, 255, 0)' }} />
-              <CardHeader className="pb-4 pt-8 relative z-20">
-                <CardTitle style={{ color: 'rgb(255, 255, 0)' }} className="flex items-center gap-2">
-                  Catégorie 3
-                </CardTitle>
-                <CardDescription className="text-gray-300">
-                  Places situées dans la mezzanine, offrant une vue sur l&apos;ensemble du circuit et des obstacles.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1 flex flex-col justify-between space-y-4">
-                <div>
-                  <div className="text-2xl font-bold text-white mb-4">
-                    À partir de <span className="text-3xl" style={{ color: 'rgb(255, 255, 0)' }}>18€</span>
-                  </div>
-                  <ul className="space-y-3 text-gray-300 text-sm">
-                    <li className="flex items-start gap-2">✍️ Séance de dédicaces</li>
-                    <li className="flex items-start gap-2">🎉 Cérémonie d&apos;ouverture</li>
-                    <li className="flex items-start gap-2">🛍️ Accès stands partenaires</li>
-                  </ul>
+          <Card className="hover:shadow-xl transition-all duration-300 h-full flex flex-col bg-gray-900/50 border-gray-800 hover:bg-gray-800/50 overflow-hidden relative">
+            <div className="absolute top-0 left-0 w-full h-3 rounded-t-2xl" style={{ backgroundColor: 'rgb(255, 255, 0)' }} />
+            <CardHeader className="pb-4 pt-8 relative z-20">
+              <CardTitle style={{ color: 'rgb(255, 255, 0)' }} className="flex items-center gap-2">
+                Catégorie 3
+              </CardTitle>
+              <CardDescription className="text-gray-300">
+                Places situées dans la mezzanine, offrant une vue sur l&apos;ensemble du circuit et des obstacles.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="flex-1 flex flex-col justify-between space-y-4">
+              <div>
+                <div className="text-2xl font-bold text-white mb-4">
+                  À partir de <span className="text-3xl" style={{ color: 'rgb(255, 255, 0)' }}>18€</span>
                 </div>
-                <div className="pt-4">
-                  <TrackedButton 
-                    ticketType="category_3"
-                    className="w-full text-whit transition-colors" 
-                    style={{ backgroundColor: 'rgb(255, 255, 0)' }}
-                  >
-                    Réserver
-                  </TrackedButton>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
+                <ul className="space-y-3 text-gray-300 text-sm">
+                  <li className="flex items-start gap-2">✍️ Séance de dédicaces</li>
+                  <li className="flex items-start gap-2">🎉 Cérémonie d&apos;ouverture</li>
+                  <li className="flex items-start gap-2">🛍️ Accès stands partenaires</li>
+                </ul>
+              </div>
+              <div className="pt-4">
+                <TrackedButton 
+                  ticketType="category_3"
+                  href="https://www.ticketmaster.fr/fr/manifestation/championnat-du-monde-de-superenduro-2026-billet/idmanif/637073"
+                  className="w-full text-black transition-colors" 
+                  style={{ backgroundColor: 'rgb(255, 255, 0)' }}
+                >
+                  Réserver
+                </TrackedButton>
+              </div>
+            </CardContent>
+          </Card>
           </div>
         </div>
       </section>

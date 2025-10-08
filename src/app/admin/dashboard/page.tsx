@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
-import { getVisitsStats, getMessages, updateMessageStatus, deleteMessage, type Message } from '@/lib/supabase/admin';
+import { getVisitsStats, getMessages, updateMessageStatus, deleteMessage, getTicketClicksStats, type Message, type TicketClickStats } from '@/lib/supabase/admin';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -27,7 +27,8 @@ import {
   Maximize2,
   Filter,
   CheckCircle,
-  Circle
+  Circle,
+  Ticket
 } from "lucide-react";
 import { User } from '@supabase/supabase-js';
 import type { AuthChangeEvent, Session } from '@supabase/supabase-js';
@@ -37,6 +38,7 @@ export default function AdminDashboard() {
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'dashboard' | 'messages'>('dashboard');
   const [visitsStats, setVisitsStats] = useState({ total: 0, monthly: 0 });
+  const [ticketClicksStats, setTicketClicksStats] = useState<TicketClickStats[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
   const [messagesLoading, setMessagesLoading] = useState(false);
   const [selectedMessage, setSelectedMessage] = useState<Message | null>(null);
@@ -73,15 +75,19 @@ export default function AdminDashboard() {
     return () => subscription.unsubscribe();
   }, [router, supabase.auth]);
 
-  // Charger les statistiques de visites
+  // Charger les statistiques de visites et de clics
   useEffect(() => {
-    const loadVisitsStats = async () => {
-      const stats = await getVisitsStats();
-      setVisitsStats(stats);
+    const loadStats = async () => {
+        const [visitsData, clicksData] = await Promise.all([
+        getVisitsStats(),
+        getTicketClicksStats()
+      ]);
+      setVisitsStats(visitsData);
+      setTicketClicksStats(clicksData);
     };
 
     if (user) {
-      loadVisitsStats();
+      loadStats();
     }
   }, [user]);
 
@@ -274,6 +280,85 @@ export default function AdminDashboard() {
                   <p className="text-xs text-green-400 flex items-center gap-1 mt-1">
                     <TrendingUp className="h-3 w-3" />
                     Depuis le 1er du mois
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Statistiques des clics sur les billets */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+                <Ticket className="h-5 w-5 text-yellow-400" />
+                Clics sur les billets
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {ticketClicksStats.map((stat) => {
+                  const getTicketColor = (ticketType: string) => {
+                    switch (ticketType) {
+                      case 'Premium': return { bg: 'bg-gradient-to-br from-cyan-600 to-cyan-800', text: 'text-cyan-300', icon: 'text-cyan-400' };
+                      case 'Catégorie 1': return { bg: 'bg-gradient-to-br from-pink-600 to-pink-800', text: 'text-pink-300', icon: 'text-pink-400' };
+                      case 'Catégorie 2': return { bg: 'bg-gradient-to-br from-green-600 to-green-800', text: 'text-green-300', icon: 'text-green-400' };
+                      case 'Catégorie 3': return { bg: 'bg-gradient-to-br from-yellow-600 to-yellow-800', text: 'text-yellow-300', icon: 'text-yellow-400' };
+                      default: return { bg: 'bg-gradient-to-br from-gray-600 to-gray-800', text: 'text-gray-300', icon: 'text-gray-400' };
+                    }
+                  };
+
+                  const colors = getTicketColor(stat.ticketType);
+                  const getPrice = (ticketType: string) => {
+                    switch (ticketType) {
+                      case 'Premium': return '48€';
+                      case 'Catégorie 1': return '30€';
+                      case 'Catégorie 2': return '24€';
+                      case 'Catégorie 3': return '18€';
+                      default: return '';
+                    }
+                  };
+
+                  return (
+                    <Card key={stat.ticketType} className={`${colors.bg} border-0 shadow-lg hover:shadow-xl transition-shadow`}>
+                      <CardHeader className="pb-3">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <CardTitle className="text-sm font-medium text-white">
+                              {stat.ticketType}
+                            </CardTitle>
+                            <p className={`text-xs ${colors.text} mt-1`}>
+                              {getPrice(stat.ticketType)}
+                            </p>
+                          </div>
+                          <Ticket className={`h-4 w-4 ${colors.icon}`} />
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="text-2xl font-bold text-white">
+                          {stat.totalClicks}
+                        </div>
+                        <p className={`text-xs ${colors.text} flex items-center gap-1 mt-1`}>
+                          <span>Ce mois: {stat.monthlyClicks}</span>
+                        </p>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+
+              {/* Résumé total */}
+              <Card className="bg-gray-900/50 border-gray-800/50 shadow-lg">
+                <CardHeader className="pb-3">
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-sm font-medium text-gray-400">
+                      Total des Clics
+                    </CardTitle>
+                    <Ticket className="h-4 w-4 text-orange-400" />
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-3xl font-bold text-white">
+                    {ticketClicksStats.reduce((sum, stat) => sum + stat.totalClicks, 0).toLocaleString()}
+                  </div>
+                  <p className="text-xs text-orange-400 flex items-center gap-1 mt-1">
+                    <TrendingUp className="h-3 w-3" />
+                    Ce mois: {ticketClicksStats.reduce((sum, stat) => sum + stat.monthlyClicks, 0).toLocaleString()}
                   </p>
                 </CardContent>
               </Card>

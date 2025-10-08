@@ -3,16 +3,18 @@ import { createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
 export async function POST(request: NextRequest) {
   try {
     const { ticketType } = await request.json();
+    console.log('API track-click appelée avec ticketType:', ticketType);
 
     // Validation du type de billet
     const validTicketTypes = ['premium', 'category_1', 'category_2', 'category_3'];
     if (!validTicketTypes.includes(ticketType)) {
+      console.error('Type de billet invalide:', ticketType);
       return NextResponse.json({ error: 'Type de billet invalide' }, { status: 400 });
     }
 
@@ -34,7 +36,15 @@ export async function POST(request: NextRequest) {
       });
 
     // Insertion dans la base de données
-    const { error } = await supabase
+    console.log('Tentative d\'insertion du clic:', {
+      ticket_type: ticketType,
+      user_agent: userAgent,
+      ip_address: ipAddress,
+      referrer: referrer,
+      session_id: sessionId
+    });
+
+    const { error, data } = await supabase
       .from('ticket_clicks')
       .insert({
         ticket_type: ticketType,
@@ -42,12 +52,15 @@ export async function POST(request: NextRequest) {
         ip_address: ipAddress,
         referrer: referrer,
         session_id: sessionId
-      });
+      })
+      .select();
 
     if (error) {
       console.error('Erreur lors de l\'insertion du clic:', error);
       return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 });
     }
+
+    console.log('Clic inséré avec succès:', data);
 
     return NextResponse.json({ success: true });
 
