@@ -51,8 +51,11 @@ export default function Billeterie() {
             </CardHeader>
             <CardContent className="flex-1 flex flex-col justify-between space-y-4">
               <div>
-                <div className="text-2xl font-bold text-white mb-4">
+                <div className="text-2xl font-bold text-white mb-2">
                   À partir de <span className="text-3xl" style={{ color: 'rgb(0, 192, 192)' }}>48€</span>
+                </div>
+                <div className="mb-4 px-3 py-2 rounded-lg border" style={{ backgroundColor: 'rgba(0, 192, 192, 0.1)', borderColor: 'rgba(0, 192, 192, 0.3)' }}>
+                  <p className="text-sm font-medium" style={{ color: 'rgb(0, 192, 192)' }}>🕐 Ouverture à 13H00</p>
                 </div>
                 <ul className="space-y-3 text-gray-300 text-sm">
                   <li className="flex items-start gap-2">🚗 Parking de votre véhicule au plus proche de l&apos;entrée principale</li>
@@ -91,8 +94,11 @@ export default function Billeterie() {
             </CardHeader>
             <CardContent className="flex-1 flex flex-col justify-between space-y-4">
               <div>
-                <div className="text-2xl font-bold text-white mb-4">
+                <div className="text-2xl font-bold text-white mb-2">
                   À partir de <span className="text-3xl" style={{ color: 'rgb(233, 86, 119)' }}>30€</span>
+                </div>
+                <div className="mb-4 px-3 py-2 rounded-lg border" style={{ backgroundColor: 'rgba(233, 86, 119, 0.1)', borderColor: 'rgba(233, 86, 119, 0.3)' }}>
+                  <p className="text-sm font-medium" style={{ color: 'rgb(233, 86, 119)' }}>🕐 Ouverture à 17H30</p>
                 </div>
                 <ul className="space-y-3 text-gray-300 text-sm">
                   <li className="flex items-start gap-2">✍️ Séance de dédicaces</li>
@@ -126,8 +132,11 @@ export default function Billeterie() {
             </CardHeader>
             <CardContent className="flex-1 flex flex-col justify-between space-y-4">
               <div>
-                <div className="text-2xl font-bold text-white mb-4">
+                <div className="text-2xl font-bold text-white mb-2">
                   À partir de <span className="text-3xl" style={{ color: 'rgb(0, 215, 0)' }}>24€</span>
+                </div>
+                <div className="mb-4 px-3 py-2 rounded-lg border" style={{ backgroundColor: 'rgba(0, 215, 0, 0.1)', borderColor: 'rgba(0, 215, 0, 0.3)' }}>
+                  <p className="text-sm font-medium" style={{ color: 'rgb(0, 215, 0)' }}>🕐 Ouverture à 17H30</p>
                 </div>
                 <ul className="space-y-3 text-gray-300 text-sm">
                   <li className="flex items-start gap-2">✍️ Séance de dédicaces</li>
@@ -161,8 +170,11 @@ export default function Billeterie() {
             </CardHeader>
             <CardContent className="flex-1 flex flex-col justify-between space-y-4">
               <div>
-                <div className="text-2xl font-bold text-white mb-4">
+                <div className="text-2xl font-bold text-white mb-2">
                   À partir de <span className="text-3xl" style={{ color: 'rgb(255, 255, 0)' }}>18€</span>
+                </div>
+                <div className="mb-4 px-3 py-2 rounded-lg border" style={{ backgroundColor: 'rgba(255, 255, 0, 0.1)', borderColor: 'rgba(255, 255, 0, 0.3)' }}>
+                  <p className="text-sm font-medium" style={{ color: 'rgb(255, 255, 0)' }}>🕐 Ouverture à 17H30</p>
                 </div>
                 <ul className="space-y-3 text-gray-300 text-sm">
                   <li className="flex items-start gap-2">✍️ Séance de dédicaces</li>
