@@ -94,7 +94,7 @@ export default function Contact() {
         url="https://www.gpsuperendurofrance.fr/contact"
       />
       {/* Section noire sous le header */}
-      <section id="main-content" className="relative bg-black py-16 pt-56 sm:pt-60 lg:pt-64">
+      <section id="main-content" className="relative bg-black py-16 pt-64 sm:pt-72 lg:pt-80">
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Badge variant="secondary" className="mb-4 bg-red-600/20 text-red-400 border-red-600/30">
             SuperEnduro 2026

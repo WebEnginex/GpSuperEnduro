@@ -191,7 +191,7 @@ export default function ProgrammePage() {
         url="https://www.gpsuperendurofrance.fr/programme"
       />
       {/* Section noire sous le header */}
-      <section id="main-content" className="relative bg-black py-16 pt-56 sm:pt-60 lg:pt-64">
+      <section id="main-content" className="relative bg-black py-16 pt-64 sm:pt-72 lg:pt-80">
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Badge variant="secondary" className="mb-4 bg-red-600/20 text-red-400 border-red-600/30">
             SuperEnduro 2026
@@ -199,9 +199,9 @@ export default function ProgrammePage() {
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
             <span className="text-red-600">Programme</span> Officiel
           </h1>
-          <p className="text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
-            Programme provisoire susceptible de modifications. Le programme définitif sera publié le 5 Octobre 2025.
-          </p>
+            <p className="text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
+            Découvrez le programme officiel du Grand Prix Super Enduro 2026 à Douai.
+            </p>
         </div>
       </section>
 
@@ -242,13 +242,7 @@ export default function ProgrammePage() {
             {/* Contenu du programme selon l'onglet */}
             {renderProgramme()}
 
-            {/* Note importante */}
-            <div className="mt-8 p-4 bg-red-600/20 border border-red-500/30 rounded-lg">
-              <p className="text-red-300 text-sm text-center">
-                ⚠️ Programme provisoire susceptible de modifications. 
-                Le programme définitif sera publié le 5 Octobre 2025.
-              </p>
-            </div>
+            
           </div>
         </div>
       </section>

@@ -720,3 +720,81 @@ a[aria-label] {
   min-height: 44px;
   min-width: 44px;
 }
+
+/* ============================================
+   EFFETS HOVER DESKTOP UNIQUEMENT
+   ============================================ */
+
+/* Classes pour les effets hover qui ne s'activent que sur desktop (appareils avec support hover) */
+
+/* Hover scale pour les cartes */
+@media (hover: hover) and (pointer: fine) {
+  .hover-scale-card:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* Hover shadow pour les cartes */
+@media (hover: hover) and (pointer: fine) {
+  .hover-shadow-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Hover background pour les cartes */
+@media (hover: hover) and (pointer: fine) {
+  .hover-bg-card:hover {
+    background-color: rgba(31, 41, 55, 0.5); /* gray-800/50 */
+  }
+}
+
+/* Hover scale pour les boutons */
+@media (hover: hover) and (pointer: fine) {
+  .hover-scale-button:hover {
+    transform: scale(1.1);
+  }
+}
+
+/* Hover scale léger pour les liens/boutons */
+@media (hover: hover) and (pointer: fine) {
+  .hover-scale-link:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* Hover pour les cartes de pilotes */
+@media (hover: hover) and (pointer: fine) {
+  .hover-pilot-card:hover {
+    transform: scale(1.05);
+    border-color: rgba(239, 68, 68, 0.5); /* red-500/50 */
+  }
+}
+
+/* Hover pour l'image du pilote (zoom) */
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .hover-pilot-image {
+    transform: scale(1.1);
+  }
+}
+
+/* Hover overlay pour les cartes de pilotes */
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .hover-pilot-overlay {
+    opacity: 1;
+  }
+}
+
+/* Hover pour les onglets */
+@media (hover: hover) and (pointer: fine) {
+  .hover-tab:hover {
+    color: white;
+    background-color: rgba(55, 65, 81, 0.5); /* gray-700/50 */
+  }
+}
+
+/* Hover pour les indicateurs de pagination */
+@media (hover: hover) and (pointer: fine) {
+  .hover-pagination:hover {
+    background-color: rgb(107, 114, 128); /* gray-500 */
+  }
+}

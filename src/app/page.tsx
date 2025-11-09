@@ -176,17 +176,24 @@ export default function Home() {
       {/* Section de contenu après la vidéo */}
       <div className="bg-white dark:bg-slate-900">
         {/* Section Hero avec informations */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <section className="py-6 sm:py-8 md:py-10 px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto text-center">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-white -mb-8 sm:-mb-12 md:-mb-16">
               GRAND PRIX de FRANCE
-              <div className="w-full flex justify-center mt-1 mb-2">
-                <Image src="/images/logos/SuperEnduro-logo.png" alt="SuperEnduro" width={300} height={100} className="mx-auto" />
-              </div>
             </h1>
-            
-            
-            
+
+            {/* Logo SuperEnduro - Marges négatives agressives pour éliminer complètement l'espace vide */}
+            <div className="w-full flex justify-center -mt-12 sm:-mt-16 md:-mt-20 -mb-16 sm:-mb-20 md:-mb-24">
+              <Image
+                src="/images/logos/SuperEnduro-logo.png"
+                alt="SuperEnduro"
+                width={850}
+                height={283}
+                className="w-[420px] sm:w-[550px] md:w-[700px] lg:w-[850px] h-auto mx-auto drop-shadow-2xl hover:scale-105 transition-transform duration-300"
+                priority
+              />
+            </div>
+
             <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-300 max-w-4xl mx-auto leading-relaxed mb-16">
               Le championnat du monde de SuperEnduro 2026 vous donne rendez-vous le 7 mars à Douai Gayant Expo ! 
             </p>

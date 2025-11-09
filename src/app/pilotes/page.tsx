@@ -5,8 +5,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 import { SmartPilotImage } from '@/components/media/SmartPilotImage';
 import CountryFlag from 'react-country-flag';
-// Couleur dorée subtile pour le palmarès
-const gold = '#FFD700';
 import { useCacheCleaner } from '@/hooks/useCacheCleaner';
 import { SEO } from "@/components/SEO";
 
@@ -44,7 +42,7 @@ export default function PilotesPage() {
 
   // Catégorie Prestige (liste fournie) — images et clubs en attente
   const pilotesPrestige: Pilote[] = [
-  { numero: 57, prenom: 'Billy', nom: 'BOLT', club: '', image: 'images/pilotes_prestige/Billy-kwadrat.jpg', marque: 'husqvarna', nationalite: 'gb', palmares: 'Champion du monde 2023', team: 'Husqvarna Factory Racing' },
+  { numero: 57, prenom: 'Billy', nom: 'BOLT', club: '', image: 'images/pilotes_prestige/Billy-kwadrat.jpg', marque: 'husqvarna', nationalite: 'gb', palmares: '5 fois champion du monde', team: 'Husqvarna Factory Racing' },
     { numero: 22, prenom: 'Jonathan', nom: 'WALKER', club: '', image: 'images/pilotes_prestige/Jonny-kwadrat.jpg', marque: 'husqvarna', nationalite: 'gb', palmares: 'Vice-champion du monde et vice-champion des USA', team: 'Triumph Racing' },
     { numero: 12, prenom: 'Mitchell', nom: 'BRIGHTMORE', club: '', image: 'images/pilotes_prestige/Mitch-kwadrat.jpg', marque: 'ktm', nationalite: 'gb', palmares: 'Champion du monde junior 2024, troisième du championnat du monde 2025', team: 'Gas Gas Racing Team' },
     { numero: 7, prenom: 'Ashton', nom: 'BRIGHTMORE', club: '', image: 'images/pilotes_prestige/Ash-kwadrat.jpg', marque: 'ktm', nationalite: 'gb', palmares: 'Vice-champion du monde junior 2024, quatrième du championnat du monde 2025', team: 'Gas Gas Racing Team' },
@@ -192,7 +190,7 @@ export default function PilotesPage() {
         url="https://www.gpsuperendurofrance.fr/pilotes"
       />
       {/* Section noire sous le header */}
-      <section id="main-content" className="relative bg-black py-16 pt-56 sm:pt-60 lg:pt-64">
+      <section id="main-content" className="relative bg-black py-16 pt-64 sm:pt-72 lg:pt-80">
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Badge variant="secondary" className="mb-4 bg-red-600/20 text-red-400 border-red-600/30">
             SuperEnduro 2026
@@ -220,10 +218,10 @@ export default function PilotesPage() {
                 {/* 125cc */}
                 <button
                   onClick={() => handleTabChange('125cc')}
-                  className={`py-4 px-4 rounded-xl font-semibold transition-all duration-300 ${
+                  className={`py-4 px-4 rounded-xl font-semibold transition-all duration-300 min-h-[44px] ${
                     activeTab === '125cc'
                       ? `bg-gradient-to-r ${getTabColor('125cc')} text-white shadow-lg transform scale-105 shadow-blue-500/25`
-                      : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50 border border-gray-600/30'
+                      : 'bg-gray-800/50 text-gray-400 hover-tab border border-gray-600/30'
                   }`}
                 >
                   <div className="flex flex-col items-center">
@@ -235,10 +233,10 @@ export default function PilotesPage() {
                 {/* Junior */}
                 <button
                   onClick={() => handleTabChange('junior')}
-                  className={`py-4 px-4 rounded-xl font-semibold transition-all duration-300 ${
+                  className={`py-4 px-4 rounded-xl font-semibold transition-all duration-300 min-h-[44px] ${
                     activeTab === 'junior'
                       ? `bg-gradient-to-r ${getTabColor('junior')} text-white shadow-lg transform scale-105 shadow-green-500/25`
-                      : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50 border border-gray-600/30'
+                      : 'bg-gray-800/50 text-gray-400 hover-tab border border-gray-600/30'
                   }`}
                 >
                   <div className="flex flex-col items-center">
@@ -250,10 +248,10 @@ export default function PilotesPage() {
                 {/* Coupe d'Europe */}
                 <button
                   onClick={() => handleTabChange('coupe-europe')}
-                  className={`py-4 px-4 rounded-xl font-semibold transition-all duration-300 ${
+                  className={`py-4 px-4 rounded-xl font-semibold transition-all duration-300 min-h-[44px] ${
                     activeTab === 'coupe-europe'
                       ? `bg-gradient-to-r ${getTabColor('coupe-europe')} text-white shadow-lg transform scale-105 shadow-purple-500/25`
-                      : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50 border border-gray-600/30'
+                      : 'bg-gray-800/50 text-gray-400 hover-tab border border-gray-600/30'
                   }`}
                 >
                   <div className="flex flex-col items-center">
@@ -265,10 +263,10 @@ export default function PilotesPage() {
                 {/* Prestige */}
                 <button
                   onClick={() => handleTabChange('prestige')}
-                  className={`py-4 px-4 rounded-xl font-semibold transition-all duration-300 ${
+                  className={`py-4 px-4 rounded-xl font-semibold transition-all duration-300 min-h-[44px] ${
                     activeTab === 'prestige'
                       ? `bg-gradient-to-r ${getTabColor('prestige')} text-white shadow-lg transform scale-105 shadow-red-500/25`
-                      : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50 border border-gray-600/30'
+                      : 'bg-gray-800/50 text-gray-400 hover-tab border border-gray-600/30'
                   }`}
                 >
                   <div className="flex flex-col items-center">
@@ -339,14 +337,14 @@ export default function PilotesPage() {
                   <>
                     <button
                       onClick={prevSlide}
-                      className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 bg-red-600 hover:bg-red-700 text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg"
+                      className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-12 h-12 min-h-[48px] min-w-[48px] bg-red-600 hover:bg-red-700 text-white rounded-full flex items-center justify-center transition-all duration-300 hover-scale-button shadow-lg"
                       aria-label="Pilote précédent"
                     >
                       <ChevronLeft className="w-6 h-6" />
                     </button>
                     <button
                       onClick={nextSlide}
-                      className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 bg-red-600 hover:bg-red-700 text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg"
+                      className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-12 h-12 min-h-[48px] min-w-[48px] bg-red-600 hover:bg-red-700 text-white rounded-full flex items-center justify-center transition-all duration-300 hover-scale-button shadow-lg"
                       aria-label="Pilote suivant"
                     >
                       <ChevronRight className="w-6 h-6" />
@@ -385,54 +383,69 @@ export default function PilotesPage() {
                           }`}>
                             {slidePilotes.map((pilote, index) => (
                               <div key={`${activeTab}-${pilote.numero}-${slideStartIndex + index}`} className="group w-full">
-                                <div className="relative aspect-[3/4] bg-gray-900 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300 w-full h-auto border border-gray-800 hover:border-red-500/50">
+                                <div className="relative aspect-[3/4] bg-gray-900 rounded-xl overflow-hidden hover-pilot-card transition-all duration-300 w-full h-auto border border-gray-800">
                                   {/* Drapeau en haut à gauche */}
                                   {pilote.nationalite && (
                                     <div className="absolute top-3 left-3 z-20">
                                       <CountryFlag countryCode={pilote.nationalite?.toUpperCase() || ''} svg style={{ width: 32, height: 24, borderRadius: '50%', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }} />
                                     </div>
                                   )}
+
+                                  {/* Numéro en haut à droite */}
+                                  <div className="absolute top-3 right-3 z-20">
+                                    <span className="text-white text-2xl font-bold" style={{textShadow:'2px 2px 8px #000,0 0 2px #FFD700'}}>
+                                      #{pilote.numero}
+                                    </span>
+                                  </div>
+
                                   {/* Image du pilote */}
                                   <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden">
                                     <SmartPilotImage
                                       key={`pilot-${activeTab}-${pilote.numero}`}
                                       src={pilote.image}
                                       alt={`${pilote.prenom} ${pilote.nom}`}
-                                      className="object-cover group-hover:scale-110 transition-transform duration-500 w-full h-full"
+                                      className="object-cover hover-pilot-image transition-transform duration-500 w-full h-full"
                                       priority={slideStartIndex + index < 6}
                                     />
                                     {/* Gradient overlay pour améliorer la lisibilité */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"></div>
                                   </div>
 
-                                  {/* Numéro en bas à droite */}
-                                  <div className="absolute bottom-4 right-4">
-                                  </div>
+                                  {/* Informations en bas: nom/prénom + team + palmarès */}
+                                  <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/95 via-black/80 to-transparent">
+                                    <div className="flex flex-col items-center justify-center space-y-1.5 w-full">
+                                      {/* Prénom - Style moderne et épuré avec meilleure visibilité */}
+                                      <span className="text-base md:text-lg uppercase tracking-[0.2em] text-white font-semibold w-full text-center truncate" style={{textShadow:'2px 2px 6px rgba(0,0,0,0.95), 0 0 10px rgba(0,0,0,0.8)', letterSpacing: '0.15em'}}>
+                                        {pilote.prenom}
+                                      </span>
 
-                                  {/* Informations en bas: nom/prénom à gauche + palmarès + team */}
-                                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/95 to-transparent">
-                                    <div className="flex flex-col items-center justify-center space-y-2 w-full">
-                                      {/* Prénom */}
-                                      <span className="text-base text-white font-semibold tracking-wide mb-0.5 w-full text-center truncate" style={{textShadow:'1px 1px 4px #000'}}>{pilote.prenom}</span>
-                                      {/* Nom */}
-                                      <span className="text-3xl font-bold text-white font-racing drop-shadow-lg mb-1 w-full text-center truncate" style={{ textShadow: '2px 2px 6px rgba(0,0,0,0.8)' }}>{pilote.nom}</span>
-                                      {/* Team */}
+                                      {/* Nom - Style racing bold */}
+                                      <h3 className="text-3xl md:text-4xl font-bold text-white font-racing uppercase w-full text-center truncate" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.9), 0 0 20px rgba(239,68,68,0.3)' }}>
+                                        {pilote.nom}
+                                      </h3>
+
+                                      {/* Team - Style moderne avec accent rouge */}
                                       {pilote.team && (
-                                        <span className="text-sm text-red-500 font-semibold italic mb-1 w-full text-center truncate" style={{fontWeight:600}}>{pilote.team}</span>
+                                        <div className="mt-1 w-full text-center">
+                                          <span className="inline-block text-xs md:text-sm font-semibold text-red-500 bg-red-500/10 px-3 py-1 rounded-full border border-red-500/30 backdrop-blur-sm" style={{textShadow:'0 1px 2px rgba(0,0,0,0.8)'}}>
+                                            {pilote.team}
+                                          </span>
+                                        </div>
                                       )}
-                                      {/* Palmarès */}
+
+                                      {/* Palmarès - Style premium avec or */}
                                       {pilote.palmares && (
-                                        <span className="text-base font-semibold mt-2 w-full text-center break-words whitespace-pre-line" style={{color: gold, textShadow: '0 0 8px #FFD70099'}}>{pilote.palmares}</span>
+                                        <div className="mt-2 w-full text-center">
+                                          <p className="text-xs md:text-sm font-semibold leading-relaxed px-2" style={{color: '#FFD700', textShadow: '0 0 10px rgba(255,215,0,0.4), 1px 1px 3px rgba(0,0,0,0.9)'}}>
+                                            {pilote.palmares}
+                                          </p>
+                                        </div>
                                       )}
                                     </div>
-                                    {/* Numéro stylisé, unique */}
-                                    <span className="absolute bottom-2 right-3 text-white text-xl font-bold" style={{textShadow:'2px 2px 8px #000,0 0 2px #FFD700'}}>
-                                      #{pilote.numero}
-                                    </span>
                                   </div>
 
                                   {/* Overlay au hover */}
-                                  <div className="absolute inset-0 bg-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                  <div className="absolute inset-0 bg-red-500/10 opacity-0 hover-pilot-overlay transition-opacity duration-300"></div>
                                 </div>
                               </div>
                             ))}
@@ -457,10 +470,10 @@ export default function PilotesPage() {
                         <button
                           key={index}
                           onClick={() => setCurrentSlide(index)}
-                          className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                            currentSlide === index 
-                              ? 'bg-red-500 scale-110' 
-                              : 'bg-gray-600 hover:bg-gray-500'
+                          className={`w-3 h-3 min-h-[44px] min-w-[44px] rounded-full transition-all duration-300 ${
+                            currentSlide === index
+                              ? 'bg-red-500 scale-110'
+                              : 'bg-gray-600 hover-pagination'
                           }`}
                           aria-label={`Aller à la slide ${index + 1}`}
                         />
@@ -522,15 +535,15 @@ export default function PilotesPage() {
             Réservez dès maintenant vos places pour ne rien rater de ces affrontements épiques entre les meilleurs pilotes français.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
+            <a
               href="/billeterie"
-              className="inline-flex items-center justify-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 text-lg"
+              className="inline-flex items-center justify-center px-8 py-4 min-h-[44px] bg-red-600 hover:bg-red-700 text-white font-semibold rounded-xl transition-all duration-300 hover-scale-link text-base sm:text-lg"
             >
               Réserver mes billets
             </a>
-            <a 
+            <a
               href="/programme"
-              className="inline-flex items-center justify-center px-8 py-4 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 text-lg"
+              className="inline-flex items-center justify-center px-8 py-4 min-h-[44px] bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700 text-white font-semibold rounded-xl transition-all duration-300 hover-scale-link text-base sm:text-lg"
             >
               Voir le programme
             </a>

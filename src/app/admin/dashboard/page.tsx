@@ -157,13 +157,13 @@ export default function AdminDashboard() {
   }
 
   return (
-  <div className="min-h-screen bg-black text-white pt-56">
+  <div className="min-h-screen bg-black text-white">
       {/* Header réutilisable */}
       <Header showCountdown={false} />
       
   <div>
         {/* Header spécifique au dashboard */}
-        <div className="bg-gray-900/50 border-b border-gray-800/50 shadow-sm backdrop-blur-sm">
+        <div className="fixed top-[80px] sm:top-[96px] lg:top-[240px] left-0 right-0 z-40 bg-gray-900/50 border-b border-gray-800/50 shadow-sm backdrop-blur-sm">
           <div className="container mx-auto px-4 py-4 lg:py-6">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
               <div className="flex items-center gap-3">
@@ -234,7 +234,7 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8 pt-32">
+      <div className="container mx-auto px-4 py-8 pt-[280px] sm:pt-[300px] lg:pt-[440px]">
         {activeTab === 'dashboard' && (
           <div className="space-y-8">
             {/* Statistiques de visites */}
@@ -524,7 +524,7 @@ export default function AdminDashboard() {
 
       {/* Modal pour afficher le message en grand */}
       {showMessageModal && selectedMessage && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-2 lg:p-4">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[70] flex items-center justify-center p-2 lg:p-4">
           <div className="bg-white rounded-xl lg:rounded-2xl max-w-4xl w-full max-h-[95vh] lg:max-h-[90vh] overflow-hidden shadow-2xl">
             {/* En-tête du modal */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 lg:p-6 border-b border-gray-200 gap-3">
