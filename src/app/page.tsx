@@ -7,6 +7,8 @@ import { SimpleCountdown } from "@/components/simple-countdown";
 import { CachedVideo } from "@/components/media/CachedVideo";
 import { DebugPanel } from "@/components/DebugPanel";
 import Image from "next/image";
+import { SEO } from "@/components/SEO";
+import { StructuredData } from "@/components/StructuredData";
 
 // Import du test en développement seulement
 if (process.env.NODE_ENV === 'development') {
@@ -17,13 +19,55 @@ export default function Home() {
   // Tracker les visites automatiquement
   useVisitTracker();
 
+  // Données structurées pour l'événement
+  const eventStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "SportsEvent",
+    "name": "Grand Prix Super Enduro Douai 2026",
+    "description": "Assistez au Grand Prix Super Enduro, un événement indoor exceptionnel avec les meilleurs pilotes mondiaux.",
+    "startDate": "2026-03-07T13:00:00+01:00",
+    "endDate": "2026-03-07T22:30:00+01:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": {
+      "@type": "Place",
+      "name": "Gayant Expo Concerts",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rives de Gayant",
+        "addressLocality": "Douai",
+        "postalCode": "59500",
+        "addressCountry": "FR"
+      }
+    },
+    "organizer": {
+      "@type": "Organization",
+      "name": "Gp Super Enduro Douai",
+      "email": "superendurofrance@gmail.com"
+    },
+    "image": [
+      "https://www.gpsuperendurofrance.fr/images/logos/SuperEnduro-logo.png"
+    ],
+    "performer": {
+      "@type": "SportsTeam",
+      "name": "Pilotes Super Enduro"
+    },
+    "sport": "Super Enduro"
+  };
+
   return (
     <div className="w-full overflow-x-hidden">
+      <SEO 
+        title="Grand Prix Super Enduro Douai - 7 Mars 2026 | Événement Indoor Super Enduro"
+        description="Assistez au Grand Prix Super Enduro, un événement indoor exceptionnel avec les meilleurs pilotes mondiaux."
+        url="https://www.gpsuperendurofrance.fr/"
+      />
+      <StructuredData data={eventStructuredData} />
       {/* Header réutilisable */}
       <Header showCountdown={true} />
 
       {/* Section principale avec vidéo de fond */}
-      <div className="min-h-screen h-screen w-full overflow-hidden relative">
+      <div id="main-content" className="min-h-screen h-screen w-full overflow-hidden relative">
         {/* Vidéo de fond fixe */}
         <div className="absolute inset-0 w-full h-full video-container">
           <CachedVideo
@@ -41,6 +85,17 @@ export default function Home() {
 
         {/* Contenu superposé */}
         <div className="absolute inset-0 z-30 flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 pt-20 pb-20">
+          {/* Logo SuperEnduro au-dessus du compteur sur mobile/tablette */}
+          <div className="flex lg:hidden mb-6 w-full justify-center">
+            <Image
+              src="/images/logos/SuperEnduro-logo.png"
+              alt="SuperEnduro"
+              width={320}
+              height={120}
+              className="mx-auto w-64 sm:w-72 h-auto drop-shadow-lg"
+              priority
+            />
+          </div>
           {/* Compte à rebours centré */}
           <div className="text-center mb-8 w-full countdown-container">
             <SimpleCountdown />
@@ -124,8 +179,10 @@ export default function Home() {
         <section className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto text-center">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
-              GRAND PRIX de FRANCE de
-              <span className="text-red-600 dark:text-red-400"> SuperEnduro</span>
+              GRAND PRIX de FRANCE
+              <div className="w-full flex justify-center mt-4">
+                <Image src="/images/logos/SuperEnduro-logo.png" alt="SuperEnduro" width={160} height={54} className="mx-auto" />
+              </div>
             </h1>
             
             
@@ -158,7 +215,37 @@ export default function Home() {
                 <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 text-center sm:col-span-2 lg:col-span-1">
                 <div className="text-4xl mb-4">🎟️</div>
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Billets</h3>
-                <p className="text-slate-600 dark:text-slate-300">Tarifs à venir</p>
+                <a href="https://www.ticketmaster.fr/fr/manifestation/championnat-du-monde-de-superenduro-2026-billet/idmanif/637073" target="_blank" rel="noopener noreferrer">
+                  <span className="inline-block mx-auto mb-2 w-40 h-auto rounded-xl bg-white/95 shadow-2xl animate-ticket-pulse">
+                    <Image
+                      src="/images/logos/ticketmaster-seeklogo-min.png"
+                      alt="Ticketmaster"
+                      width={160}
+                      height={60}
+                      className="w-full h-auto transition-transform duration-300"
+                    />
+                  </span>
+                  <style jsx>{`
+                    @keyframes ticket-pulse {
+                      0% {
+                        transform: scale(1);
+                        box-shadow: 0 4px 32px 0 rgba(0,0,0,0.18);
+                      }
+                      50% {
+                        transform: scale(1.04);
+                        box-shadow: 0 8px 48px 0 rgba(0,0,0,0.28);
+                      }
+                      100% {
+                        transform: scale(1);
+                        box-shadow: 0 4px 32px 0 rgba(0,0,0,0.18);
+                      }
+                    }
+                    .animate-ticket-pulse {
+                      animation: ticket-pulse 1.4s infinite;
+                      will-change: transform, box-shadow;
+                    }
+                  `}</style>
+                </a>
                 <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
                   Plusieurs catégories disponibles
                 </p>

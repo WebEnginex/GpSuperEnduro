@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Badge } from "@/components/ui/badge";
 import { ChevronDown, ChevronUp, HelpCircle, Ticket, MapPin, Coffee, Calendar } from 'lucide-react';
+import { SEO } from "@/components/SEO";
 
 interface FAQItem {
   question: string;
@@ -135,8 +136,13 @@ export default function InformationsPage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      <SEO 
+        title="Infos pratiques – Grand Prix Super Enduro Douai"
+        description="Toutes les informations pratiques pour le Grand Prix Super Enduro le 7 mars 2026 à Gayant Expo Douai : accès, horaires, billetterie, FAQ, parkings et services."
+        url="https://www.gpsuperendurofrance.fr/informations"
+      />
       {/* Section noire sous le header */}
-      <section className="relative bg-black py-16 pt-56 sm:pt-60 lg:pt-64">
+      <section id="main-content" className="relative bg-black py-16 pt-56 sm:pt-60 lg:pt-64">
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center ">
             <Badge variant="secondary" className="mb-4 bg-red-600/20 text-red-400 border-red-600/30">

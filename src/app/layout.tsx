@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Bebas_Neue, Racing_Sans_One } from "next/font/google";
+// @ts-expect-error: Next.js side-effect CSS import, TypeScript does not support CSS modules here
 import "./globals.css";
 import { ConditionalHeader } from "@/components/conditional-header";
 import { Footer } from "@/components/footer";
 import { CacheInitializer } from "@/components/CacheInitializer";
 import { AutoCacheProvider } from "@/components/AutoCacheProvider";
 import { BackgroundPreloader } from "@/components/BackgroundPreloader";
+import { SkipToContent } from "@/components/SkipToContent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,6 +48,7 @@ export default function RootLayout({
         suppressHydrationWarning
         style={{ margin: 0, padding: 0, width: '100%', minHeight: '100vh' }}
       >
+        <SkipToContent />
         <CacheInitializer />
         <BackgroundPreloader />
         <AutoCacheProvider />

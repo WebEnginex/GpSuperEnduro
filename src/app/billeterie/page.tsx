@@ -1,13 +1,21 @@
+'use client';
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import { SEO } from "@/components/SEO";
 
 export default function Billeterie() {
   return (
     <div className="min-h-screen bg-black text-white">
+      <SEO 
+        title="Billetterie Grand Prix Super Enduro Douai - Réservez vos places"
+        description="Réservez vos billets pour le Grand Prix Super Enduro le 7 mars 2026 à Douai. Plusieurs catégories disponibles : Mezzanine, Tribune, Carré Or et VIP. Billetterie disponible à partir du 6 octobre 2025."
+        url="https://www.ticketmaster.fr/fr/manifestation/championnat-du-monde-de-superenduro-2026-billet/idmanif/637073"
+      />
       {/* Section noire sous le header */}
-      <section className="relative bg-black py-16 pt-56 sm:pt-60 lg:pt-64">
+      <section id="main-content" className="relative bg-black py-16 pt-56 sm:pt-60 lg:pt-64">
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Badge variant="secondary" className="mb-4 bg-red-600/20 text-red-400 border-red-600/30">
             SuperEnduro 2026
@@ -22,11 +30,12 @@ export default function Billeterie() {
       </section>
 
       {/* Tarifs Section avec dégradé */}
-      {/* <section className="py-16 bg-gradient-to-b from-black via-gray-900/30 to-gray-900/50"> */}
+      <section className="py-16 bg-gradient-to-b from-black via-gray-900/30 to-gray-900/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">{/* Mezzanine */}
-          {/* <Link 
-            href="https://www.billetweb.fr/championnat-de-france-de-supercross-2025" 
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {/* Mezzanine */}
+          <Link 
+            href="https://www.ticketmaster.fr/fr/manifestation/championnat-du-monde-de-superenduro-2026-billet/idmanif/637073" 
             target="_blank" 
             rel="noopener noreferrer"
             className="block transform transition-all duration-300 hover:scale-105 h-full"
@@ -60,11 +69,11 @@ export default function Billeterie() {
                 </div>
               </CardContent>
             </Card>
-          </Link> */}
+          </Link>
 
           {/* Tribune */}
-          {/* <Link 
-            href="https://www.billetweb.fr/championnat-de-france-de-supercross-2025" 
+          <Link 
+            href="https://www.ticketmaster.fr/fr/manifestation/championnat-du-monde-de-superenduro-2026-billet/idmanif/637073" 
             target="_blank" 
             rel="noopener noreferrer"
             className="block transform transition-all duration-300 hover:scale-105 h-full"
@@ -98,11 +107,11 @@ export default function Billeterie() {
                 </div>
               </CardContent>
             </Card>
-          </Link> */}
+          </Link>
 
           {/* Tribune Paddock - Carré Or */}
-          {/* <Link 
-            href="https://www.billetweb.fr/championnat-de-france-de-supercross-2025" 
+          <Link 
+            href="https://www.ticketmaster.fr/fr/manifestation/championnat-du-monde-de-superenduro-2026-billet/idmanif/637073" 
             target="_blank" 
             rel="noopener noreferrer"
             className="block transform transition-all duration-300 hover:scale-105 h-full"
@@ -138,11 +147,11 @@ export default function Billeterie() {
                 </div>
               </CardContent>
             </Card>
-          </Link> */}
+          </Link>
 
           {/* Tribune Paddock - VIP */}
-          {/* <Link 
-            href="https://www.billetweb.fr/championnat-de-france-de-supercross-2025" 
+          <Link 
+            href="https://www.ticketmaster.fr/fr/manifestation/championnat-du-monde-de-superenduro-2026-billet/idmanif/637073" 
             target="_blank" 
             rel="noopener noreferrer"
             className="block transform transition-all duration-300 hover:scale-105 h-full"
@@ -179,10 +188,10 @@ export default function Billeterie() {
                 </div>
               </CardContent>
             </Card>
-          </Link> */}
+          </Link>
           </div>
         </div>
-      {/* </section> */}
+      </section>
     </div>
   );
 }

@@ -4,7 +4,11 @@ import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 import { SmartPilotImage } from '@/components/media/SmartPilotImage';
+import CountryFlag from 'react-country-flag';
+// Couleur dorée subtile pour le palmarès
+const gold = '#FFD700';
 import { useCacheCleaner } from '@/hooks/useCacheCleaner';
+import { SEO } from "@/components/SEO";
 
 // Interface pour les pilotes avec marque
 interface Pilote {
@@ -14,6 +18,9 @@ interface Pilote {
   club: string;
   image: string;
   marque?: string;
+  nationalite?: string; // ex: 'gb', 'se', 'pl', 'us', 'de', 'pt', 'es'
+  palmares?: string;
+  team?: string;
 }
 
 export default function PilotesPage() {
@@ -37,21 +44,21 @@ export default function PilotesPage() {
 
   // Catégorie Prestige (liste fournie) — images et clubs en attente
   const pilotesPrestige: Pilote[] = [
-    { numero: 57, prenom: 'Billy', nom: 'BOLT', club: '', image: 'images/pilotes_prestige/Billy-kwadrat.jpg', marque: 'ktm' },
-    { numero: 22, prenom: 'Jonathan', nom: 'WALKER', club: '', image: 'images/pilotes_prestige/Jonny-kwadrat.jpg', marque: 'ktm' },
-    { numero: 12, prenom: 'Mitchell', nom: 'BRIGHTMORE', club: '', image: 'images/pilotes_prestige/Mitch-kwadrat.jpg', marque: 'ktm' },
-    { numero: 7, prenom: 'Ashton', nom: 'BRIGHTMORE', club: '', image: 'images/pilotes_prestige/Ash-kwadrat.jpg', marque: 'ktm' },
-    { numero: 42, prenom: 'Eddie', nom: 'KARLSSON', club: '', image: 'images/pilotes_prestige/Eddie-kwadrat.jpg', marque: 'ktm' },
-    { numero: 501, prenom: 'Dominik', nom: 'OLSZOWY', club: '', image: 'images/pilotes_prestige/Dominik-kwadrat.jpg', marque: 'ktm' },
-    { numero: 120, prenom: 'Cooper', nom: 'ABBOTT', club: '', image: 'images/pilotes_prestige/Cooper-kwadrat.jpg', marque: 'ktm' },
-    { numero: 89, prenom: 'Alfredo', nom: 'GOMEZ', club: '', image: 'images/pilotes_prestige/Alfredo-kwadrat.jpg', marque: 'ktm' },
-    { numero: 96, prenom: 'Tim', nom: 'APOLLE', club: '', image: 'images/pilotes_prestige/Tim-kwadrat.jpg', marque: 'ktm' },
-    { numero: 80, prenom: 'Will', nom: 'HOARE', club: '', image: 'images/pilotes_prestige/Will-kwadrat.jpg', marque: 'ktm' },
-    { numero: 21, prenom: 'Diogo', nom: 'VIEIRA', club: '', image: 'images/pilotes_prestige/Diogo-kwadrat.jpg', marque: 'ktm' },
-    { numero: 212, prenom: 'Toby', nom: 'MARTYN', club: '', image: 'images/pilotes_prestige/Toby-kwadrat.jpg', marque: 'ktm' },
-    { numero: 16, prenom: 'Harry', nom: 'EDMONDSON', club: '', image: 'images/pilotes_prestige/Harry-kwadrat.jpg', marque: 'ktm' },
-    { numero: 23, prenom: 'Jordi', nom: 'SALA', club: '', image: 'images/pilotes_prestige/Jordi-kwadrat.jpg', marque: 'ktm' },
-    { numero: 83, prenom: 'Aleksander', nom: 'GOTKOWSKI', club: '', image: 'images/pilotes_prestige/Aleksander-kwadrat.jpg', marque: 'ktm' },
+  { numero: 57, prenom: 'Billy', nom: 'BOLT', club: '', image: 'images/pilotes_prestige/Billy-kwadrat.jpg', marque: 'husqvarna', nationalite: 'gb', palmares: 'Champion du monde 2023', team: 'Husqvarna Factory Racing' },
+    { numero: 22, prenom: 'Jonathan', nom: 'WALKER', club: '', image: 'images/pilotes_prestige/Jonny-kwadrat.jpg', marque: 'husqvarna', nationalite: 'gb', palmares: 'Vice-champion du monde et vice-champion des USA', team: 'Triumph Racing' },
+    { numero: 12, prenom: 'Mitchell', nom: 'BRIGHTMORE', club: '', image: 'images/pilotes_prestige/Mitch-kwadrat.jpg', marque: 'ktm', nationalite: 'gb', palmares: 'Champion du monde junior 2024, troisième du championnat du monde 2025', team: 'Gas Gas Racing Team' },
+    { numero: 7, prenom: 'Ashton', nom: 'BRIGHTMORE', club: '', image: 'images/pilotes_prestige/Ash-kwadrat.jpg', marque: 'ktm', nationalite: 'gb', palmares: 'Vice-champion du monde junior 2024, quatrième du championnat du monde 2025', team: 'Gas Gas Racing Team' },
+    { numero: 42, prenom: 'Eddie', nom: 'KARLSSON', club: '', image: 'images/pilotes_prestige/Eddie-kwadrat.jpg', marque: 'husqvarna', nationalite: 'se', palmares: '5ème du championnat du monde', team: 'STARK FUTURE' },
+    { numero: 501, prenom: 'Dominik', nom: 'OLSZOWY', club: '', image: 'images/pilotes_prestige/Dominik-kwadrat.jpg', marque: 'ktm', nationalite: 'pl', palmares: '6ème du championnat du monde 2025', team: 'RIEJU Factory Team' },
+    { numero: 120, prenom: 'Cooper', nom: 'ABBOTT', club: '', image: 'images/pilotes_prestige/Cooper-kwadrat.jpg', marque: 'ktm', nationalite: 'us', palmares: '7ème du championnat du monde 2025', team: 'SHERCO USA' },
+    { numero: 89, prenom: 'Alfredo', nom: 'GOMEZ', club: '', image: 'images/pilotes_prestige/Alfredo-kwadrat.jpg', marque: 'husqvarna', nationalite: 'es', palmares: '10ème du championnat du monde 2025', team: 'Beta Factory' },
+    { numero: 96, prenom: 'Tim', nom: 'APOLLE', club: '', image: 'images/pilotes_prestige/Tim-kwadrat.jpg', marque: 'husqvarna', nationalite: 'de', palmares: '8ème du championnat du monde 2025', team: 'BETA Factory' },
+    { numero: 80, prenom: 'Will', nom: 'HOARE', club: '', image: 'images/pilotes_prestige/Will-kwadrat.jpg', marque: 'ktm', nationalite: 'gb', palmares: '', team: 'KTM UK' },
+    { numero: 21, prenom: 'Diogo', nom: 'VIEIRA', club: '', image: 'images/pilotes_prestige/Diogo-kwadrat.jpg', marque: 'ktm', nationalite: 'pt', palmares: '9ème du championnat du monde 2025', team: 'KTM Portugal' },
+    { numero: 212, prenom: 'Toby', nom: 'MARTYN', club: '', image: 'images/pilotes_prestige/Toby-kwadrat.jpg', marque: 'ktm', nationalite: 'gb', palmares: '', team: 'KTM UK' },
+    { numero: 16, prenom: 'Harry', nom: 'EDMONDSON', club: '', image: 'images/pilotes_prestige/Harry-kwadrat.jpg', marque: 'ktm', nationalite: 'gb', palmares: '', team: 'KTM UK' },
+    { numero: 23, prenom: 'Jordi', nom: 'SALA', club: '', image: 'images/pilotes_prestige/Jordi-kwadrat.jpg', marque: 'ktm', nationalite: 'es', palmares: '', team: 'KTM Spain' },
+    { numero: 83, prenom: 'Aleksander', nom: 'GOTKOWSKI', club: '', image: 'images/pilotes_prestige/Aleksander-kwadrat.jpg', marque: 'ktm', nationalite: 'pl', palmares: '', team: 'KTM Poland' },
   ];
 
   const getCurrentPilotes = () => {
@@ -176,12 +183,16 @@ export default function PilotesPage() {
   };
 
   // Change font color of racing numbers to white
-  const racingNumberStyle = { color: '#FFFFFF' }; // Define style for racing numbers
 
   return (
     <div className="min-h-screen bg-black text-white">
+      <SEO 
+        title="Pilotes – Grand Prix Super Enduro Douai"
+        description="Découvrez les pilotes du Grand Prix Super Enduro le 7 mars 2026 à Douai : catégories Junior, 125cc, Coupe d'Europe et Prestige avec les meilleurs pilotes mondiaux."
+        url="https://www.gpsuperendurofrance.fr/pilotes"
+      />
       {/* Section noire sous le header */}
-      <section className="relative bg-black py-16 pt-56 sm:pt-60 lg:pt-64">
+      <section id="main-content" className="relative bg-black py-16 pt-56 sm:pt-60 lg:pt-64">
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Badge variant="secondary" className="mb-4 bg-red-600/20 text-red-400 border-red-600/30">
             SuperEnduro 2026
@@ -215,8 +226,10 @@ export default function PilotesPage() {
                       : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50 border border-gray-600/30'
                   }`}
                 >
-                  <div className="text-sm md:text-lg font-bold">125cc</div>
-                  <div className="text-xs opacity-75 mt-1">moins de 16 ans</div>
+                  <div className="flex flex-col items-center">
+                    <span className="text-base md:text-lg font-bold mb-1">125cc</span>
+                    <span className="text-xs text-gray-300 opacity-80">moins de 16 ans</span>
+                  </div>
                 </button>
 
                 {/* Junior */}
@@ -228,8 +241,10 @@ export default function PilotesPage() {
                       : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50 border border-gray-600/30'
                   }`}
                 >
-                  <div className="text-sm md:text-lg font-bold">Junior</div>
-                  <div className="text-xs opacity-75 mt-1">18 à 22 ans</div>
+                  <div className="flex flex-col items-center">
+                    <span className="text-base md:text-lg font-bold mb-1">Junior</span>
+                    <span className="text-xs text-gray-300 opacity-80">18 à 22 ans</span>
+                  </div>
                 </button>
 
                 {/* Coupe d'Europe */}
@@ -241,8 +256,10 @@ export default function PilotesPage() {
                       : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50 border border-gray-600/30'
                   }`}
                 >
-                  <div className="text-sm md:text-lg font-bold">Coupe d&apos;Europe</div>
-                  <div className="text-xs opacity-75 mt-1">OPEN</div>
+                  <div className="flex flex-col items-center">
+                    <span className="text-base md:text-lg font-bold mb-1">Coupe d&apos;Europe</span>
+                    <span className="text-xs text-gray-300 opacity-80">OPEN</span>
+                  </div>
                 </button>
 
                 {/* Prestige */}
@@ -254,8 +271,10 @@ export default function PilotesPage() {
                       : 'bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50 border border-gray-600/30'
                   }`}
                 >
-                  <div className="text-sm md:text-lg font-bold">Prestige</div>
-                  <div className="text-xs opacity-75 mt-1">PRO SuperEnduro</div>
+                  <div className="flex flex-col items-center">
+                    <span className="text-base md:text-lg font-bold mb-1">Prestige</span>
+                    <span className="text-xs text-gray-300 opacity-80">PRO SuperEnduro</span>
+                  </div>
                 </button>
               </div>
             </div>
@@ -367,6 +386,12 @@ export default function PilotesPage() {
                             {slidePilotes.map((pilote, index) => (
                               <div key={`${activeTab}-${pilote.numero}-${slideStartIndex + index}`} className="group w-full">
                                 <div className="relative aspect-[3/4] bg-gray-900 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300 w-full h-auto border border-gray-800 hover:border-red-500/50">
+                                  {/* Drapeau en haut à gauche */}
+                                  {pilote.nationalite && (
+                                    <div className="absolute top-3 left-3 z-20">
+                                      <CountryFlag countryCode={pilote.nationalite?.toUpperCase() || ''} svg style={{ width: 32, height: 24, borderRadius: '50%', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }} />
+                                    </div>
+                                  )}
                                   {/* Image du pilote */}
                                   <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden">
                                     <SmartPilotImage
@@ -382,27 +407,28 @@ export default function PilotesPage() {
 
                                   {/* Numéro en bas à droite */}
                                   <div className="absolute bottom-4 right-4">
-                                    <span
-                                      className="font-bold text-2xl tracking-wider drop-shadow-lg font-racing"
-                                      style={{ ...racingNumberStyle, textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}
-                                    >
-                                      #{pilote.numero}
-                                    </span>
                                   </div>
 
-                                  {/* Informations en bas: nom/prénom à gauche */}
+                                  {/* Informations en bas: nom/prénom à gauche + palmarès + team */}
                                   <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/95 to-transparent">
-                                    <div className="space-y-2">
-                                      {/* Nom et prénom avec police Racing */}
-                                      <div>
-                                        <div className="text-white font-bold text-lg leading-tight tracking-wide drop-shadow-lg font-racing" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
-                                          {pilote.prenom}
-                                        </div>
-                                        <div className="text-red-400 font-bold text-xl leading-tight tracking-wide drop-shadow-lg font-racing" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
-                                          {pilote.nom}
-                                        </div>
-                                      </div>
+                                    <div className="flex flex-col items-center justify-center space-y-2 w-full">
+                                      {/* Prénom */}
+                                      <span className="text-base text-white font-semibold tracking-wide mb-0.5 w-full text-center truncate" style={{textShadow:'1px 1px 4px #000'}}>{pilote.prenom}</span>
+                                      {/* Nom */}
+                                      <span className="text-3xl font-bold text-white font-racing drop-shadow-lg mb-1 w-full text-center truncate" style={{ textShadow: '2px 2px 6px rgba(0,0,0,0.8)' }}>{pilote.nom}</span>
+                                      {/* Team */}
+                                      {pilote.team && (
+                                        <span className="text-sm text-red-500 font-semibold italic mb-1 w-full text-center truncate" style={{fontWeight:600}}>{pilote.team}</span>
+                                      )}
+                                      {/* Palmarès */}
+                                      {pilote.palmares && (
+                                        <span className="text-base font-semibold mt-2 w-full text-center break-words whitespace-pre-line" style={{color: gold, textShadow: '0 0 8px #FFD70099'}}>{pilote.palmares}</span>
+                                      )}
                                     </div>
+                                    {/* Numéro stylisé, unique */}
+                                    <span className="absolute bottom-2 right-3 text-white text-xl font-bold" style={{textShadow:'2px 2px 8px #000,0 0 2px #FFD700'}}>
+                                      #{pilote.numero}
+                                    </span>
                                   </div>
 
                                   {/* Overlay au hover */}
@@ -419,7 +445,7 @@ export default function PilotesPage() {
 
                 {/* Indicators avec compteur */}
                 {maxSlides > 1 && (
-                  <div className="flex justify-center items-center mt-8 space-x-4">
+                  <div className="flex justify-center items-center mt-8 md:mt-24 space-x-4">
                     {/* Compteur sur mobile */}
                     <div className="md:hidden text-gray-400 text-sm">
                       {currentSlide + 1} / {maxSlides}

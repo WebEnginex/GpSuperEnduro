@@ -135,6 +135,9 @@ export function Header({ showCountdown = true }: HeaderProps) {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-4 text-white hover:text-red-400 transition-all duration-300 flex items-center justify-center bg-black/30 hover:bg-black/50 backdrop-blur-sm rounded-xl border border-white/20 hover:border-red-400/50 shadow-lg hover:shadow-xl"
+              aria-label={mobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-menu"
             >
               {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -144,7 +147,7 @@ export function Header({ showCountdown = true }: HeaderProps) {
         {/* Deuxième ligne : Menu - Desktop seulement */}
         <div className="border-t border-white/10 py-6 hidden lg:block">
           {/* Navigation Desktop */}
-          <nav className="flex justify-center">
+          <nav className="flex justify-center" aria-label="Navigation principale">
             <div className="flex space-x-12">
               {menuItems.map((item) => (
                 <Link
@@ -162,7 +165,10 @@ export function Header({ showCountdown = true }: HeaderProps) {
 
         {/* Menu Mobile/Tablette */}
         {mobileMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-lg shadow-2xl border-t border-white/10">
+          <div 
+            id="mobile-menu"
+            className="lg:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-lg shadow-2xl border-t border-white/10"
+          >
             <div className="max-w-7xl mx-auto px-4 py-4">
               {/* Titre et logos dans le menu mobile */}
               <div className="text-center mb-6">

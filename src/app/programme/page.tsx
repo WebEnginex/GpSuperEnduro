@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Badge } from "@/components/ui/badge";
+import { SEO } from "@/components/SEO";
 
 export default function ProgrammePage() {
   const [activeTab, setActiveTab] = useState('premium');
@@ -184,8 +185,13 @@ export default function ProgrammePage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      <SEO 
+        title="Programme – Grand Prix Super Enduro Douai"
+        description="Consultez le programme complet du Grand Prix Super Enduro le 7 mars 2026 à Douai : horaires des épreuves, cérémonie d'ouverture, SuperPole et remise des prix du championnat du monde."
+        url="https://www.gpsuperendurofrance.fr/programme"
+      />
       {/* Section noire sous le header */}
-      <section className="relative bg-black py-16 pt-56 sm:pt-60 lg:pt-64">
+      <section id="main-content" className="relative bg-black py-16 pt-56 sm:pt-60 lg:pt-64">
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Badge variant="secondary" className="mb-4 bg-red-600/20 text-red-400 border-red-600/30">
             SuperEnduro 2026
@@ -194,7 +200,7 @@ export default function ProgrammePage() {
             <span className="text-red-600">Programme</span> Officiel
           </h1>
           <p className="text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
-            Programme provisoire - Le programme définitif sera publié le 5 Octobre 2025
+            Programme provisoire susceptible de modifications. Le programme définitif sera publié le 5 Octobre 2025.
           </p>
         </div>
       </section>
