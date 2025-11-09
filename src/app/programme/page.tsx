@@ -46,19 +46,21 @@ export default function ProgrammePage() {
           </div>
         )}
 
-        {/* 17H30 */}
-        <div className="flex items-start gap-4 p-4 bg-gray-800/50 rounded-lg border border-gray-700">
-          <div className="flex-shrink-0">
-            <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-sm">17H30</span>
+        {/* 17H30 - seulement pour tickets standard (catégorie 1, 2 et 3) */}
+        {activeTab === 'standard' && (
+          <div className="flex items-start gap-4 p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+            <div className="flex-shrink-0">
+              <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-sm">17H30</span>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-white mb-2">
+                Ouverture des portes tickets catégorie 1, 2 et 3
+              </h3>
             </div>
           </div>
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-2">
-              Ouverture des portes tickets catégorie 1, 2 et 3
-            </h3>
-          </div>
-        </div>
+        )}
 
         {/* 18H00 */}
         <div className="flex items-start gap-4 p-4 bg-gray-800/50 rounded-lg border border-gray-700">
