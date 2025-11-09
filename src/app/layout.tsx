@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Bebas_Neue, Racing_Sans_One } from "next/font/google";
-// @ts-expect-error: Next.js side-effect CSS import, TypeScript does not support CSS modules here
 import "./globals.css";
 import { ConditionalHeader } from "@/components/conditional-header";
 import { Footer } from "@/components/footer";
