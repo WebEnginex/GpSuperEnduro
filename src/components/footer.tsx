@@ -39,11 +39,11 @@ export function Footer() {
                   href="https://www.google.com/maps/dir//Gayant+Expo+Concerts,+Rives+de+Gayant,+59500+Douai"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block hover:text-red-400 transition-colors duration-300 cursor-pointer"
+                  className="flex flex-col items-center gap-1 hover:text-red-400 transition-colors duration-300 cursor-pointer"
                 >
-                  <p>Douai Gayant Expo</p>
-                  <p>Rives de gayant</p>
-                  <p>59500 Douai</p>
+                  <span className="font-semibold">Gayant Expo Concerts</span>
+                  <span>Rives de Gayant</span>
+                  <span>59500 Douai</span>
                 </a>
               </div>
             </div>
