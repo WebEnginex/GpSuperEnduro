@@ -15,7 +15,7 @@ export default function Billeterie() {
         url="https://www.ticketmaster.fr/fr/manifestation/championnat-du-monde-de-superenduro-2026-billet/idmanif/637073"
       />
       {/* Section noire sous le header */}
-      <section id="main-content" className="relative bg-black py-16 pt-64 sm:pt-72 lg:pt-[400px]">
+      <section id="main-content" className="relative bg-black py-16 pt-64 sm:pt-72 lg:pt-80">
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Badge variant="secondary" className="mb-4 bg-red-600/20 text-red-400 border-red-600/30">
             SuperEnduro 2026
