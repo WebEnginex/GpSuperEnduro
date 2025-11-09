@@ -199,7 +199,7 @@ export default function Home() {
               <p className="text-slate-600 dark:text-slate-300">Ouvertures des portes :</p>
               <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
                 Pass Premium : 13h00<br />
-                Autres : 17h30
+                Catégorie 1, 2 et 3 : 17h30
               </p>
               </div>
               
