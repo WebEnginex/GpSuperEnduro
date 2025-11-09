@@ -9,7 +9,6 @@ export const CACHE_CONFIG = {
   CRITICAL_MEDIA: [
     { url: '/images/background/supercross-sxtour-bg.webp?v=2025011', type: 'image' as const },
     { url: '/images/partners/FFMOTO_LOGO.png', type: 'image' as const },
-    { url: '/images/partners/Supercross_Championnat_FR.png', type: 'image' as const },
     { url: '/images/affiche/affiche_supercross_douai.webp', type: 'image' as const },
     { url: '/images/flags/france.svg', type: 'image' as const },
     { url: '/images/marques/yamaha.svg', type: 'image' as const }
@@ -46,7 +45,6 @@ export const CACHE_CONFIG = {
     { url: '/images/partners/Logo_Gayant-Expo-Douai.webp', type: 'image' as const },
     { url: '/images/partners/Logo_Nord-le-Departement.webp', type: 'image' as const },
     { url: '/images/partners/Logo_Region-hauts-de-France.webp', type: 'image' as const },
-    { url: '/images/partners/Supercross_Championnat_FR.png', type: 'image' as const }
   ]
 };
 

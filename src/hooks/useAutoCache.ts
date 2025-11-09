@@ -94,7 +94,6 @@ export function useAutoMediaCache(url: string, type: MediaType, options: UseAuto
   const criticalImages = [
     '/images/background/supercross-sxtour-bg.webp',
     '/images/partners/FFMOTO_LOGO.png',
-    '/images/partners/Supercross_Championnat_FR.png',
     '/images/flags/france.svg'
   ];
 
