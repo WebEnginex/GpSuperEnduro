@@ -107,7 +107,7 @@ export default function Home() {
               href="/billeterie"
               className="w-full sm:w-auto flex items-center justify-center px-6 py-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-full transition-all duration-300 text-base sm:text-lg home-button"
             >
-              Billeterie officielle
+              Billetterie officielle
             </Link>
             
             <Link 
@@ -254,7 +254,7 @@ export default function Home() {
                   `}</style>
                 </a>
                 <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
-                  Plusieurs catégories disponibles
+                  Plusieurs catégories sont disponibles
                 </p>
                 </div>
             </div>
@@ -434,7 +434,7 @@ export default function Home() {
                 href="/billeterie"
                 className="inline-flex items-center justify-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl text-lg"
               >
-                Billeterie officielle
+                Billetterie officielle
               </Link>
               <Link 
                 href="/contact"

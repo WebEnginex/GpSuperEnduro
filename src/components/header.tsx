@@ -39,7 +39,7 @@ export function Header({ showCountdown = true }: HeaderProps) {
     { href: "/", label: "Accueil" },
     { href: "/programme", label: "Programme" },
     { href: "/pilotes", label: "Pilotes" },
-    { href: "/billeterie", label: "Billeterie" },
+    { href: "/billeterie", label: "Billetterie" },
     { href: "/contact", label: "Contact" },
     { href: "/informations", label: "Informations" },
   ];
@@ -125,7 +125,7 @@ export function Header({ showCountdown = true }: HeaderProps) {
                 className="inline-flex items-center justify-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 text-base space-x-2"
               >
                 <Ticket size={18} />
-                <span>Billeterie</span>
+                <span>Billetterie</span>
               </Link>
             </div>
           </div>
@@ -248,7 +248,7 @@ export function Header({ showCountdown = true }: HeaderProps) {
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <Ticket size={20} />
-                  <span>Billeterie</span>
+                  <span>Billetterie</span>
                 </Link>
               </div>
             </div>

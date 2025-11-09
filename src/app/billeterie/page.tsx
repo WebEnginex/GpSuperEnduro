@@ -21,10 +21,10 @@ export default function Billeterie() {
             SuperEnduro 2026
           </Badge>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
-            <span className="text-red-600">Billeterie</span> Officielle
+            <span className="text-red-600">Billetterie</span> Officielle
           </h1>
             <p className="text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
-              Réservez vos billets pour le Grand Prix Super Enduro à Douai et assistez à une soirée unique. Plusieurs catégories disponibles.
+              Réservez vos billets pour le Grand Prix Super Enduro à Douai et assistez à une soirée unique. Plusieurs catégories sont disponibles.
             </p>
         </div>
       </section>
