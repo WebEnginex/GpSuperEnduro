@@ -180,8 +180,8 @@ export default function Home() {
           <div className="max-w-6xl mx-auto text-center">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
               GRAND PRIX de FRANCE
-              <div className="w-full flex justify-center mt-4">
-                <Image src="/images/logos/SuperEnduro-logo.png" alt="SuperEnduro" width={160} height={54} className="mx-auto" />
+              <div className="w-full flex justify-center mt-1 mb-2">
+                <Image src="/images/logos/SuperEnduro-logo.png" alt="SuperEnduro" width={300} height={100} className="mx-auto" />
               </div>
             </h1>
             
