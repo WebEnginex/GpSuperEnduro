@@ -67,18 +67,18 @@ export function Countdown() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: index * 0.1 }}
-          className="relative bg-surface border border-white/10 rounded-lg p-4 md:p-6 text-center overflow-hidden group"
+          className="relative bg-surface border border-line shadow-card rounded-lg p-4 md:p-6 text-center overflow-hidden group"
         >
           <div className="absolute inset-0 bg-gradient-to-b from-brand-red/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
           <span
-            className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white tabular-nums"
+            className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tabular-nums"
             suppressHydrationWarning
           >
             {isMounted
               ? String(timeLeft[unit.key]).padStart(2, "0")
               : "--"}
           </span>
-          <p className="text-zinc-400 text-xs md:text-sm uppercase tracking-widest mt-2">
+          <p className="text-muted text-xs md:text-sm uppercase tracking-widest mt-2">
             {unit.label}
           </p>
         </motion.div>

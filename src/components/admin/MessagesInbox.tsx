@@ -36,13 +36,13 @@ const sortOptions = [
 ] as const;
 
 const categoryStyles: Record<string, string> = {
-  general: "border-sky-500/40 bg-sky-500/10 text-sky-300",
-  tickets: "border-amber-500/40 bg-amber-500/10 text-amber-300",
-  vip: "border-violet-500/40 bg-violet-500/10 text-violet-300",
-  press: "border-cyan-500/40 bg-cyan-500/10 text-cyan-300",
-  partnership: "border-emerald-500/40 bg-emerald-500/10 text-emerald-300",
-  volunteer: "border-lime-500/40 bg-lime-500/10 text-lime-300",
-  other: "border-zinc-500/40 bg-zinc-500/10 text-zinc-300",
+  general: "border-sky-500/40 bg-sky-500/10 text-sky-700",
+  tickets: "border-amber-500/40 bg-amber-500/10 text-amber-700",
+  vip: "border-violet-500/40 bg-violet-500/10 text-violet-700",
+  press: "border-cyan-500/40 bg-cyan-500/10 text-cyan-700",
+  partnership: "border-emerald-500/40 bg-emerald-500/10 text-emerald-700",
+  volunteer: "border-lime-600/40 bg-lime-500/10 text-lime-700",
+  other: "border-zinc-400/50 bg-zinc-500/10 text-zinc-700",
 };
 
 type SortValue = (typeof sortOptions)[number]["value"];
@@ -74,7 +74,7 @@ function StatusBadge({ status }: { status: string }) {
         "shrink-0 rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider",
         isNew
           ? "border-brand-red/40 text-brand-red"
-          : "border-white/10 text-zinc-500"
+          : "border-line-strong text-subtle"
       )}
     >
       {statusLabels[status] ?? status}
@@ -96,10 +96,10 @@ function CategoryBadge({ category }: { category: string }) {
 }
 
 const selectClass =
-  "w-full rounded-md border border-white/10 bg-black px-3 py-2 text-sm text-zinc-200 focus:border-brand-red/40 focus:outline-none";
+  "w-full rounded-md border border-line-strong bg-background px-3 py-2 text-sm text-foreground focus:border-brand-red/40 focus:outline-none";
 
 const checkboxClass =
-  "h-4 w-4 shrink-0 rounded border-white/20 bg-black text-brand-red focus:ring-brand-red/40 focus:ring-offset-0";
+  "h-4 w-4 shrink-0 rounded border-line-strong bg-surface accent-brand-red focus:ring-brand-red/40 focus:ring-offset-0";
 
 export function MessagesInbox({
   initialMessages,
@@ -308,12 +308,12 @@ export function MessagesInbox({
 
   if (messages.length === 0) {
     return (
-      <div className="rounded-xl border border-dashed border-white/15 bg-zinc-950/50 px-6 py-12 text-center">
-        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-black text-zinc-500">
+      <div className="rounded-xl border border-dashed border-line-strong bg-surface/70 px-6 py-12 text-center">
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-line bg-background text-subtle">
           <Mail size={22} />
         </div>
-        <p className="text-base font-medium text-white">Aucun message</p>
-        <p className="mx-auto mt-2 max-w-sm text-sm text-zinc-500">
+        <p className="text-base font-medium text-foreground">Aucun message</p>
+        <p className="mx-auto mt-2 max-w-sm text-sm text-subtle">
           Les messages du formulaire contact apparaîtront ici.
         </p>
       </div>
@@ -322,20 +322,20 @@ export function MessagesInbox({
 
   return (
     <div className="space-y-3 sm:space-y-4">
-      <div className="rounded-xl border border-white/10 bg-zinc-950 p-3 sm:p-4">
+      <div className="rounded-xl border border-line bg-surface shadow-card p-3 sm:p-4">
         <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 xl:grid-cols-4">
           <label className="relative sm:col-span-2 xl:col-span-1">
             <span className="sr-only">Rechercher</span>
             <Search
               size={14}
-              className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500"
+              className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-subtle"
             />
             <input
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Rechercher…"
-              className="w-full rounded-md border border-white/10 bg-black py-2 pl-9 pr-3 text-sm text-white placeholder:text-zinc-600 focus:border-brand-red/40 focus:outline-none"
+              className="w-full rounded-md border border-line-strong bg-background py-2 pl-9 pr-3 text-sm text-foreground placeholder:text-subtle focus:border-brand-red/40 focus:outline-none"
             />
           </label>
 
@@ -376,7 +376,7 @@ export function MessagesInbox({
             <span className="sr-only">Trier</span>
             <ArrowUpDown
               size={14}
-              className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500"
+              className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-subtle"
             />
             <select
               value={sortBy}
@@ -393,8 +393,8 @@ export function MessagesInbox({
         </div>
 
         <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
-          <p className="text-xs text-zinc-500">
-            <span className="font-semibold tabular-nums text-zinc-300">
+          <p className="text-xs text-subtle">
+            <span className="font-semibold tabular-nums text-foreground/85">
               {filteredMessages.length}
             </span>{" "}
             message{filteredMessages.length > 1 ? "s" : ""}
@@ -427,7 +427,7 @@ export function MessagesInbox({
               <button
                 type="button"
                 onClick={resetFilters}
-                className="inline-flex items-center gap-1.5 rounded-md border border-white/10 px-2.5 py-1.5 text-xs text-zinc-400 transition-colors hover:border-white/20 hover:text-white"
+                className="inline-flex items-center gap-1.5 rounded-md border border-line-strong px-2.5 py-1.5 text-xs text-muted transition-colors hover:border-foreground/40 hover:text-foreground"
               >
                 <X size={12} />
                 Réinitialiser
@@ -446,11 +446,11 @@ export function MessagesInbox({
       <div className="grid grid-cols-1 gap-3 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-4">
         <div
           className={cn(
-            "overflow-hidden rounded-xl border border-white/10 bg-zinc-950",
+            "overflow-hidden rounded-xl border border-line bg-surface shadow-card",
             selected ? "hidden lg:block" : "block"
           )}
         >
-          <div className="flex items-center gap-3 border-b border-white/8 px-3.5 py-2.5 sm:px-4">
+          <div className="flex items-center gap-3 border-b border-line px-3.5 py-2.5 sm:px-4">
             <input
               type="checkbox"
               className={checkboxClass}
@@ -464,16 +464,16 @@ export function MessagesInbox({
               onChange={toggleSelectAllFiltered}
               aria-label="Tout sélectionner"
             />
-            <span className="text-xs text-zinc-500">
+            <span className="text-xs text-subtle">
               {allFilteredSelected
                 ? "Tout désélectionner"
                 : "Tout sélectionner"}
             </span>
           </div>
 
-          <ul className="max-h-[min(55vh,480px)] divide-y divide-white/5 overflow-y-auto sm:max-h-[min(60vh,560px)] lg:max-h-[min(72vh,640px)]">
+          <ul className="max-h-[min(55vh,480px)] divide-y divide-line overflow-y-auto sm:max-h-[min(60vh,560px)] lg:max-h-[min(72vh,640px)]">
             {filteredMessages.length === 0 ? (
-              <li className="px-4 py-10 text-center text-sm text-zinc-500">
+              <li className="px-4 py-10 text-center text-sm text-subtle">
                 Aucun message ne correspond à ces filtres.
               </li>
             ) : (
@@ -485,7 +485,7 @@ export function MessagesInbox({
                     <div
                       className={cn(
                         "flex items-start gap-3 px-3.5 py-3.5 transition-colors sm:px-4",
-                        active ? "bg-zinc-900" : "hover:bg-zinc-900/60"
+                        active ? "bg-brand-red/[0.06]" : "hover:bg-foreground/[0.03]"
                       )}
                     >
                       <input
@@ -502,17 +502,17 @@ export function MessagesInbox({
                         className="min-w-0 flex-1 text-left"
                       >
                         <div className="mb-1.5 flex items-start justify-between gap-2">
-                          <p className="min-w-0 truncate text-sm font-medium text-white">
+                          <p className="min-w-0 truncate text-sm font-medium text-foreground">
                             {message.name}
                           </p>
                           <StatusBadge status={message.status} />
                         </div>
-                        <p className="truncate text-xs text-zinc-400">
+                        <p className="truncate text-xs text-muted">
                           {message.subject}
                         </p>
                         <div className="mt-2 flex flex-wrap items-center gap-2">
                           <CategoryBadge category={message.category} />
-                          <span className="text-[11px] text-zinc-600">
+                          <span className="text-[11px] text-subtle">
                             {formatDate(message.createdAt)}
                           </span>
                         </div>
@@ -526,12 +526,12 @@ export function MessagesInbox({
         </div>
 
         {selected ? (
-          <div className="flex min-h-[min(70vh,520px)] flex-col rounded-xl border border-white/10 bg-zinc-950 p-4 sm:min-h-[420px] sm:p-5">
+          <div className="flex min-h-[min(70vh,520px)] flex-col rounded-xl border border-line bg-surface shadow-card p-4 sm:min-h-[420px] sm:p-5">
             <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
               <button
                 type="button"
                 onClick={() => setSelectedId(null)}
-                className="inline-flex items-center gap-1.5 text-xs text-zinc-400 transition-colors hover:text-white lg:hidden"
+                className="inline-flex items-center gap-1.5 text-xs text-muted transition-colors hover:text-foreground lg:hidden"
               >
                 <ArrowLeft size={14} />
                 Retour à la liste
@@ -547,23 +547,23 @@ export function MessagesInbox({
               </button>
             </div>
 
-            <div className="mb-4 border-b border-white/8 pb-4">
+            <div className="mb-4 border-b border-line pb-4">
               <div className="mb-2.5 flex flex-wrap items-center gap-2">
                 <StatusBadge status={selected.status} />
                 <CategoryBadge category={selected.category} />
-                <span className="text-[11px] text-zinc-600">
+                <span className="text-[11px] text-subtle">
                   {formatDate(selected.createdAt)}
                 </span>
               </div>
-              <h2 className="text-base font-medium leading-snug text-white sm:text-lg">
+              <h2 className="text-base font-medium leading-snug text-foreground sm:text-lg">
                 {selected.subject}
               </h2>
-              <p className="mt-1.5 break-words text-sm text-zinc-400">
+              <p className="mt-1.5 break-words text-sm text-muted">
                 {selected.name}
-                <span className="text-zinc-600"> · </span>
+                <span className="text-subtle"> · </span>
                 <a
                   href={`mailto:${selected.email}`}
-                  className="text-zinc-300 underline-offset-2 hover:underline"
+                  className="text-foreground/85 underline-offset-2 hover:underline"
                 >
                   {selected.email}
                 </a>
@@ -571,15 +571,15 @@ export function MessagesInbox({
             </div>
 
             <div className="min-h-0 flex-1 overflow-y-auto">
-              <p className="whitespace-pre-wrap break-words text-sm leading-relaxed text-zinc-300">
+              <p className="whitespace-pre-wrap break-words text-sm leading-relaxed text-foreground/85">
                 {selected.message}
               </p>
             </div>
 
-            <div className="mt-5 space-y-3 border-t border-white/8 pt-4">
+            <div className="mt-5 space-y-3 border-t border-line pt-4">
               <label
                 htmlFor="admin-reply"
-                className="block text-[11px] font-semibold uppercase tracking-[0.16em] text-zinc-500"
+                className="block text-[11px] font-semibold uppercase tracking-[0.16em] text-subtle"
               >
                 Répondre
               </label>
@@ -589,16 +589,16 @@ export function MessagesInbox({
                 onChange={(e) => setReply(e.target.value)}
                 rows={4}
                 placeholder="Écrire une réponse…"
-                className="w-full resize-y rounded-md border border-white/10 bg-black px-3 py-2.5 text-sm text-white placeholder:text-zinc-600 focus:border-brand-red/50 focus:outline-none"
+                className="w-full resize-y rounded-md border border-line-strong bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-subtle focus:border-brand-red/50 focus:outline-none"
               />
               <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                <p className="text-[11px] text-zinc-600">
+                <p className="text-[11px] text-subtle">
                   Envoi email via Brevo à brancher ensuite.
                 </p>
                 <button
                   type="button"
                   disabled
-                  className="cursor-not-allowed rounded-md border border-white/10 bg-zinc-900 px-4 py-2.5 text-sm font-semibold uppercase tracking-widest text-zinc-500"
+                  className="cursor-not-allowed rounded-md border border-line bg-background-alt px-4 py-2.5 text-sm font-semibold uppercase tracking-widest text-subtle"
                   title="Envoi email (Brevo) à brancher"
                 >
                   Envoyer (bientôt)
@@ -607,10 +607,10 @@ export function MessagesInbox({
             </div>
           </div>
         ) : (
-          <div className="hidden min-h-[420px] items-center justify-center rounded-xl border border-dashed border-white/10 bg-zinc-950/40 p-8 text-center lg:flex">
+          <div className="hidden min-h-[420px] items-center justify-center rounded-xl border border-dashed border-line-strong bg-surface/60 p-8 text-center lg:flex">
             <div>
-              <Mail className="mx-auto mb-3 text-zinc-600" size={28} />
-              <p className="text-sm text-zinc-500">
+              <Mail className="mx-auto mb-3 text-subtle" size={28} />
+              <p className="text-sm text-subtle">
                 Sélectionne un message pour le lire.
               </p>
             </div>
@@ -619,21 +619,21 @@ export function MessagesInbox({
       </div>
 
       {confirmDeleteIds ? (
-        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/70 p-4 sm:items-center">
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-sm p-4 sm:items-center">
           <div
             role="dialog"
             aria-modal="true"
             aria-labelledby="delete-title"
-            className="w-full max-w-sm rounded-xl border border-white/10 bg-zinc-950 p-5 shadow-2xl"
+            className="w-full max-w-sm rounded-xl border border-line bg-surface p-5 shadow-2xl"
           >
-            <h3 id="delete-title" className="text-lg font-medium text-white">
+            <h3 id="delete-title" className="text-lg font-medium text-foreground">
               Supprimer{" "}
               {confirmDeleteIds.length > 1
                 ? `ces ${confirmDeleteIds.length} messages`
                 : "ce message"}{" "}
               ?
             </h3>
-            <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+            <p className="mt-2 text-sm leading-relaxed text-muted">
               Cette action est définitive. Les messages sélectionnés seront
               retirés de la boîte de réception.
             </p>
@@ -641,7 +641,7 @@ export function MessagesInbox({
               <button
                 type="button"
                 onClick={() => setConfirmDeleteIds(null)}
-                className="rounded-md border border-white/10 px-4 py-2.5 text-sm text-zinc-300 transition-colors hover:text-white"
+                className="rounded-md border border-line-strong px-4 py-2.5 text-sm text-muted transition-colors hover:text-foreground"
               >
                 Annuler
               </button>

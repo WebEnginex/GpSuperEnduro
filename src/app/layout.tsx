@@ -49,7 +49,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className="dark">
+    <html lang="fr">
       <body
         className={`${bebasNeue.variable} ${inter.variable} font-sans antialiased bg-background text-foreground`}
       >

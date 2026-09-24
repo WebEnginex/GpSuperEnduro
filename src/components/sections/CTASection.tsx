@@ -10,7 +10,7 @@ export function CTASection() {
   const isMounted = useIsMounted();
 
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden">
+    <section className="theme-dark bg-black py-24 md:py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-brand-red/25 via-black to-zinc-950" />
       <div
         aria-hidden

@@ -54,8 +54,8 @@ export default async function AdminMessagesPage() {
         title="Messages"
         description="Messages reçus via le formulaire contact"
         meta={
-          <AdminMetaBadge className="border-violet-500/25 bg-violet-500/5 text-violet-200/90">
-            <span className="font-semibold tabular-nums text-violet-300">
+          <AdminMetaBadge className="border-violet-500/30 bg-violet-50 text-violet-800">
+            <span className="font-semibold tabular-nums text-violet-700">
               {messages.length}
             </span>{" "}
             message{messages.length > 1 ? "s" : ""}

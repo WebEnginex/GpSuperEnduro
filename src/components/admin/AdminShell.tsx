@@ -63,14 +63,14 @@ export function AdminShell({
   };
 
   return (
-    <div className="relative min-h-[100dvh] bg-black text-zinc-100">
+    <div className="relative min-h-[100dvh] bg-background text-foreground">
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(227,6,19,0.07),_transparent_45%),radial-gradient(ellipse_at_bottom_right,_rgba(56,189,248,0.05),_transparent_40%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(227,6,19,0.05),_transparent_45%),radial-gradient(ellipse_at_bottom_right,_rgba(56,189,248,0.05),_transparent_40%)]"
         aria-hidden="true"
       />
 
       <div className="relative flex min-h-[100dvh] flex-col">
-        <header className="sticky top-0 z-40 border-b border-white/10 bg-black/90 backdrop-blur-xl">
+        <header className="theme-dark sticky top-0 z-40 border-b border-white/10 bg-black/95 backdrop-blur-xl shadow-lg">
           <div className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-3 px-4 sm:h-16 sm:gap-4 sm:px-6">
             <div className="min-w-0">
               <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-red">
@@ -145,7 +145,7 @@ export function AdminShell({
         </main>
 
         <nav
-          className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-black/95 backdrop-blur-xl md:hidden safe-pb"
+          className="theme-dark fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-black/95 backdrop-blur-xl md:hidden safe-pb"
           aria-label="Admin mobile"
         >
           <ul className="mx-auto grid max-w-5xl grid-cols-3 gap-1 px-2 py-1.5">

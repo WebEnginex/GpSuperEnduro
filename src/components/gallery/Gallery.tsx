@@ -53,7 +53,7 @@ export function Gallery({ images }: GalleryProps) {
             transition={{ delay: index * 0.05 }}
             onClick={() => setSelectedId(image.id)}
             className={cn(
-              "relative w-full break-inside-avoid rounded-lg overflow-hidden group cursor-pointer border border-white/5",
+              "relative w-full break-inside-avoid rounded-lg overflow-hidden group cursor-pointer border border-line",
               aspectClasses[image.aspectRatio]
             )}
             aria-label={`${galleryLabels.viewImage} ${image.alt}`}

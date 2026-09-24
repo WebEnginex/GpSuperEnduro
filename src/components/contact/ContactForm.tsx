@@ -61,7 +61,7 @@ export function ContactForm() {
   };
 
   const inputClasses =
-    "w-full bg-surface border border-white/10 rounded-sm px-4 py-3 text-white placeholder:text-zinc-500 focus:outline-none focus:border-brand-red/50 transition-colors";
+    "w-full bg-background border border-line-strong rounded-sm px-4 py-3 text-foreground placeholder:text-subtle focus:outline-none focus:border-brand-red/50 transition-colors";
 
   return (
     <motion.form
@@ -73,7 +73,7 @@ export function ContactForm() {
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
-          <label htmlFor="name" className="block text-sm text-zinc-400 mb-2">
+          <label htmlFor="name" className="block text-sm text-muted mb-2">
             {labels.name}
           </label>
           <input
@@ -88,7 +88,7 @@ export function ContactForm() {
           />
         </div>
         <div>
-          <label htmlFor="email" className="block text-sm text-zinc-400 mb-2">
+          <label htmlFor="email" className="block text-sm text-muted mb-2">
             {labels.email}
           </label>
           <input
@@ -105,7 +105,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="subject" className="block text-sm text-zinc-400 mb-2">
+        <label htmlFor="subject" className="block text-sm text-muted mb-2">
           {labels.subject}
         </label>
         <input
@@ -121,7 +121,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="category" className="block text-sm text-zinc-400 mb-2">
+        <label htmlFor="category" className="block text-sm text-muted mb-2">
           {labels.category}
         </label>
         <select
@@ -140,7 +140,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm text-zinc-400 mb-2">
+        <label htmlFor="message" className="block text-sm text-muted mb-2">
           {labels.message}
         </label>
         <textarea
@@ -174,7 +174,7 @@ export function ContactForm() {
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-green-400 text-sm"
+          className="text-green-700 text-sm"
         >
           {labels.success}
         </motion.p>

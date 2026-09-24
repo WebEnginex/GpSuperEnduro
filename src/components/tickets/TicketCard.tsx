@@ -48,13 +48,13 @@ export function TicketCard({ ticket, className }: TicketCardProps) {
   return (
     <article
       className={cn(
-        "relative flex flex-col h-full rounded-lg overflow-hidden border bg-surface",
-        isFeatured ? "border-brand-red/40" : "border-white/8",
+        "relative flex flex-col h-full rounded-lg overflow-hidden border bg-surface shadow-card",
+        isFeatured ? "border-brand-red/40" : "border-line",
         className
       )}
     >
       <div
-        className={cn("h-0.5 w-full", isFeatured ? "bg-brand-red" : "bg-white/10")}
+        className={cn("h-0.5 w-full", isFeatured ? "bg-brand-red" : "bg-line")}
         aria-hidden="true"
       />
 
@@ -67,23 +67,23 @@ export function TicketCard({ ticket, className }: TicketCardProps) {
           <div className="hidden md:block h-[1.125rem] mb-3" aria-hidden="true" />
         )}
 
-        <h3 className="font-display text-2xl sm:text-[1.65rem] font-bold text-white tracking-tight">
+        <h3 className="font-display text-2xl sm:text-[1.65rem] font-bold text-foreground tracking-tight">
           {ticket.name}
         </h3>
 
-        <p className="mt-2 text-zinc-400 text-sm leading-relaxed">
+        <p className="mt-2 text-muted text-sm leading-relaxed">
           {ticket.description}
         </p>
 
         <div className="mt-6 mb-5">
-          <div className="flex items-end justify-between gap-3 border-b border-white/8 pb-4">
-            <span className="text-xs uppercase tracking-widest text-zinc-500">
+          <div className="flex items-end justify-between gap-3 border-b border-line pb-4">
+            <span className="text-xs uppercase tracking-widest text-subtle">
               {priceLabels.normal}
             </span>
             <span
               className={cn(
                 "font-display text-3xl sm:text-4xl font-bold tabular-nums leading-none",
-                isFeatured ? "text-brand-red" : "text-white"
+                isFeatured ? "text-brand-red" : "text-foreground"
               )}
             >
               {formatPrice(ticket.prices.normal)}
@@ -94,15 +94,15 @@ export function TicketCard({ ticket, className }: TicketCardProps) {
             {secondaryPrices.map((row) => (
               <li
                 key={row.key}
-                className="flex items-baseline justify-between gap-3 py-2.5 border-b border-white/[0.04] last:border-0"
+                className="flex items-baseline justify-between gap-3 py-2.5 border-b border-line last:border-0"
               >
                 <span className="min-w-0">
-                  <span className="block text-sm text-zinc-300">{row.label}</span>
-                  <span className="block text-xs text-zinc-500 mt-0.5">
+                  <span className="block text-sm text-foreground/85">{row.label}</span>
+                  <span className="block text-xs text-subtle mt-0.5">
                     {row.note}
                   </span>
                 </span>
-                <span className="font-display text-lg font-semibold text-white tabular-nums shrink-0">
+                <span className="font-display text-lg font-semibold text-foreground tabular-nums shrink-0">
                   {formatPrice(row.amount)}
                 </span>
               </li>
@@ -120,7 +120,7 @@ export function TicketCard({ ticket, className }: TicketCardProps) {
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red focus-visible:ring-offset-2 focus-visible:ring-offset-background",
             isFeatured
               ? "bg-brand-red text-white hover:bg-brand-red-dark"
-              : "border border-white/15 text-white hover:border-white/30 hover:bg-white/[0.04]"
+              : "border border-line-strong text-foreground hover:border-foreground/50 hover:bg-foreground/[0.04]"
           )}
           aria-label={`${cta} ${ticket.name}`}
         >

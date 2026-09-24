@@ -7,7 +7,7 @@ export function PartnersSection() {
   const { partners: partnersSection } = eventConfig.sections;
 
   return (
-    <section className="py-20 md:py-28 bg-surface">
+    <section className="theme-dark py-20 md:py-28 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle title={partnersSection.title} subtitle={partnersSection.subtitle} />
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">

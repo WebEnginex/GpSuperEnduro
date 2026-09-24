@@ -5,31 +5,31 @@ const accentStyles = {
   red: {
     card: "border-brand-red/25 hover:border-brand-red/40",
     icon: "border-brand-red/30 bg-brand-red/10 text-brand-red",
-    value: "text-white",
+    value: "text-foreground",
     glow: "from-brand-red/15",
   },
   sky: {
-    card: "border-sky-500/25 hover:border-sky-500/40",
-    icon: "border-sky-500/30 bg-sky-500/10 text-sky-300",
-    value: "text-white",
+    card: "border-sky-500/30 hover:border-sky-500/50",
+    icon: "border-sky-500/30 bg-sky-500/10 text-sky-700",
+    value: "text-foreground",
     glow: "from-sky-500/15",
   },
   amber: {
-    card: "border-amber-500/25 hover:border-amber-500/40",
-    icon: "border-amber-500/30 bg-amber-500/10 text-amber-300",
-    value: "text-white",
+    card: "border-amber-500/30 hover:border-amber-500/50",
+    icon: "border-amber-500/30 bg-amber-500/10 text-amber-700",
+    value: "text-foreground",
     glow: "from-amber-500/15",
   },
   violet: {
-    card: "border-violet-500/25 hover:border-violet-500/40",
-    icon: "border-violet-500/30 bg-violet-500/10 text-violet-300",
-    value: "text-white",
+    card: "border-violet-500/30 hover:border-violet-500/50",
+    icon: "border-violet-500/30 bg-violet-500/10 text-violet-700",
+    value: "text-foreground",
     glow: "from-violet-500/15",
   },
   emerald: {
-    card: "border-emerald-500/25 hover:border-emerald-500/40",
-    icon: "border-emerald-500/30 bg-emerald-500/10 text-emerald-300",
-    value: "text-white",
+    card: "border-emerald-500/30 hover:border-emerald-500/50",
+    icon: "border-emerald-500/30 bg-emerald-500/10 text-emerald-700",
+    value: "text-foreground",
     glow: "from-emerald-500/15",
   },
 } as const;
@@ -48,12 +48,12 @@ export function AdminPageHeader({
   return (
     <div className="mb-6 flex flex-col gap-3 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
       <div>
-        <h1 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
+        <h1 className="font-display text-3xl tracking-tight text-foreground sm:text-4xl">
           {title}
         </h1>
         <div className="mt-2 h-1 w-12 rounded-full bg-brand-red" />
         {description ? (
-          <p className="mt-3 max-w-xl text-sm leading-relaxed text-zinc-500">
+          <p className="mt-3 max-w-xl text-sm leading-relaxed text-subtle">
             {description}
           </p>
         ) : null}
@@ -81,7 +81,7 @@ export function AdminStatCard({
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-xl border bg-zinc-950 p-4 sm:p-5 transition-colors",
+        "relative overflow-hidden rounded-xl border bg-surface p-4 shadow-card sm:p-5 transition-colors",
         styles.card
       )}
     >
@@ -93,7 +93,7 @@ export function AdminStatCard({
         aria-hidden="true"
       />
       <div className="relative flex items-start justify-between gap-3">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-zinc-500">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-subtle">
           {label}
         </p>
         {icon ? (
@@ -116,7 +116,7 @@ export function AdminStatCard({
         {value}
       </p>
       {hint ? (
-        <p className="relative mt-2 text-xs text-zinc-500">{hint}</p>
+        <p className="relative mt-2 text-xs text-subtle">{hint}</p>
       ) : null}
     </div>
   );
@@ -132,12 +132,12 @@ export function AdminEmptyState({
   icon?: React.ReactNode;
 }) {
   return (
-    <div className="rounded-xl border border-dashed border-white/15 bg-zinc-950/60 px-5 py-10 text-center sm:px-6 sm:py-12">
+    <div className="rounded-xl border border-dashed border-line-strong bg-surface/70 px-5 py-10 text-center sm:px-6 sm:py-12">
       <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-brand-red/25 bg-brand-red/10 text-brand-red">
         {icon ?? <BarChart3 size={22} />}
       </div>
-      <p className="text-base font-medium text-white">{title}</p>
-      <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-zinc-500">
+      <p className="text-base font-medium text-foreground">{title}</p>
+      <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-subtle">
         {description}
       </p>
     </div>
@@ -154,7 +154,7 @@ export function AdminMetaBadge({
   return (
     <p
       className={cn(
-        "inline-flex items-center rounded-full border border-white/10 bg-zinc-950 px-3 py-1.5 text-xs text-zinc-400",
+        "inline-flex items-center rounded-full border border-line bg-surface px-3 py-1.5 text-xs text-muted shadow-card",
         className
       )}
     >

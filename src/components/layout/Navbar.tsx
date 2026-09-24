@@ -44,9 +44,9 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+        "theme-dark fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         showSolidBackground
-          ? "bg-black/80 backdrop-blur-xl border-b border-white/5 shadow-2xl"
+          ? "bg-black/95 backdrop-blur-xl border-b border-white/5 shadow-2xl"
           : "bg-transparent"
       )}
     >

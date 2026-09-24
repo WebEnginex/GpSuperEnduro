@@ -34,10 +34,10 @@ export function NewsletterSection() {
   };
 
   return (
-    <section className="py-20 md:py-28 bg-surface">
+    <section className="py-20 md:py-28 bg-background-alt">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <SectionTitle title={newsletter.title} subtitle={newsletter.subtitle} />
-        <p className="text-zinc-400 mb-8 -mt-8">{newsletter.description}</p>
+        <p className="text-muted mb-8 -mt-8">{newsletter.description}</p>
         <motion.form
           initial={isMounted ? { opacity: 0, y: 20 } : false}
           whileInView={{ opacity: 1, y: 0 }}
@@ -50,7 +50,7 @@ export function NewsletterSection() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={newsletter.placeholder}
-            className="flex-1 bg-background border border-white/10 rounded-sm px-4 py-3 text-white placeholder:text-zinc-500 focus:outline-none focus:border-brand-red/50"
+            className="flex-1 bg-surface border border-line-strong rounded-sm px-4 py-3 text-foreground placeholder:text-subtle focus:outline-none focus:border-brand-red/50"
             required
           />
           <EventButton type="submit" size="md">

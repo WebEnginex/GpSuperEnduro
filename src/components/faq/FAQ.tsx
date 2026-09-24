@@ -26,15 +26,15 @@ export function FAQ({ items }: FAQProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.05 }}
-            className="border border-white/5 rounded-lg overflow-hidden bg-surface"
+            className="border border-line rounded-lg overflow-hidden bg-surface shadow-card"
           >
             <button
               type="button"
               onClick={() => setOpenId(isOpen ? null : item.id)}
-              className="w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left hover:bg-white/5 transition-colors"
+              className="w-full flex items-center justify-between gap-4 p-5 md:p-6 text-left hover:bg-foreground/[0.03] transition-colors"
               aria-expanded={isOpen}
             >
-              <span className="text-white font-medium pr-4">{item.question}</span>
+              <span className="text-foreground font-medium pr-4">{item.question}</span>
               <ChevronDown
                 size={20}
                 className={cn(
@@ -51,7 +51,7 @@ export function FAQ({ items }: FAQProps) {
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <p className="px-5 md:px-6 pb-5 md:pb-6 text-zinc-400 text-sm leading-relaxed border-t border-white/5 pt-4">
+                  <p className="px-5 md:px-6 pb-5 md:pb-6 text-muted text-sm leading-relaxed border-t border-line pt-4">
                     {item.answer}
                   </p>
                 </motion.div>

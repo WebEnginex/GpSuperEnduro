@@ -31,10 +31,10 @@ export function BilleterieContent() {
         </div>
 
         <div className="mt-10 md:mt-12 max-w-2xl mx-auto text-center space-y-4">
-          <p className="text-xs sm:text-sm text-zinc-500 tracking-wide">
+          <p className="text-xs sm:text-sm text-subtle tracking-wide">
             {ticketsPageLabels.trustItems.join(" · ")}
           </p>
-          <p className="text-zinc-500 text-sm leading-relaxed px-2">
+          <p className="text-subtle text-sm leading-relaxed px-2">
             {ticketsPageLabels.externalNote}
           </p>
         </div>

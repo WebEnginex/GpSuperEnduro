@@ -13,34 +13,34 @@ const schemaHelp =
 
 const rankAccents = [
   {
-    bar: "bg-brand-red/20",
+    bar: "bg-brand-red/10",
     edge: "bg-brand-red",
-    badge: "border-brand-red/40 bg-brand-red/15 text-brand-red",
+    badge: "border-brand-red/40 bg-brand-red/10 text-brand-red",
     value: "text-brand-red",
   },
   {
-    bar: "bg-amber-500/15",
-    edge: "bg-amber-400",
-    badge: "border-amber-500/40 bg-amber-500/10 text-amber-300",
-    value: "text-amber-300",
+    bar: "bg-amber-500/10",
+    edge: "bg-amber-500",
+    badge: "border-amber-500/40 bg-amber-500/10 text-amber-700",
+    value: "text-amber-700",
   },
   {
-    bar: "bg-sky-500/15",
-    edge: "bg-sky-400",
-    badge: "border-sky-500/40 bg-sky-500/10 text-sky-300",
-    value: "text-sky-300",
+    bar: "bg-sky-500/10",
+    edge: "bg-sky-500",
+    badge: "border-sky-500/40 bg-sky-500/10 text-sky-700",
+    value: "text-sky-700",
   },
   {
-    bar: "bg-violet-500/15",
-    edge: "bg-violet-400",
-    badge: "border-violet-500/40 bg-violet-500/10 text-violet-300",
-    value: "text-violet-300",
+    bar: "bg-violet-500/10",
+    edge: "bg-violet-500",
+    badge: "border-violet-500/40 bg-violet-500/10 text-violet-700",
+    value: "text-violet-700",
   },
   {
-    bar: "bg-emerald-500/15",
-    edge: "bg-emerald-400",
-    badge: "border-emerald-500/40 bg-emerald-500/10 text-emerald-300",
-    value: "text-emerald-300",
+    bar: "bg-emerald-500/10",
+    edge: "bg-emerald-500",
+    badge: "border-emerald-500/40 bg-emerald-500/10 text-emerald-700",
+    value: "text-emerald-700",
   },
 ] as const;
 
@@ -91,8 +91,8 @@ export default async function AdminTicketsPage() {
         description="Répartition des clics sur les offres"
         meta={
           rows.length > 0 ? (
-            <AdminMetaBadge className="border-amber-500/25 bg-amber-500/5 text-amber-200/90">
-              <span className="font-semibold tabular-nums text-amber-300">
+            <AdminMetaBadge className="border-amber-500/30 bg-amber-50 text-amber-800">
+              <span className="font-semibold tabular-nums text-amber-700">
                 {totalClicks}
               </span>{" "}
               clic{totalClicks > 1 ? "s" : ""} au total
@@ -115,7 +115,7 @@ export default async function AdminTicketsPage() {
             return (
               <li
                 key={row.ticketId}
-                className="relative overflow-hidden rounded-xl border border-white/10 bg-zinc-950 px-4 py-4 sm:px-5"
+                className="relative overflow-hidden rounded-xl border border-line bg-surface shadow-card px-4 py-4 sm:px-5"
               >
                 <div
                   className={cn(
@@ -143,10 +143,10 @@ export default async function AdminTicketsPage() {
                       {index + 1}
                     </span>
                     <div className="min-w-0">
-                      <p className="truncate font-medium text-white">
+                      <p className="truncate font-medium text-foreground">
                         {row.ticketName}
                       </p>
-                      <p className="mt-0.5 truncate text-xs text-zinc-500">
+                      <p className="mt-0.5 truncate text-xs text-subtle">
                         {row.ticketId}
                       </p>
                     </div>

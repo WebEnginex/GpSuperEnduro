@@ -3,5 +3,9 @@ export default function AdminRootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <div className="min-h-[100dvh] bg-background text-foreground">
+      {children}
+    </div>
+  );
 }

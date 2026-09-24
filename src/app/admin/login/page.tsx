@@ -19,7 +19,7 @@ export default function AdminLoginPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-[100dvh] bg-background flex items-center justify-center text-zinc-500 text-sm">
+        <div className="min-h-[100dvh] bg-background flex items-center justify-center text-subtle text-sm">
           Chargement…
         </div>
       }

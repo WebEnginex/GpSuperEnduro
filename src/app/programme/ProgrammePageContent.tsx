@@ -23,7 +23,7 @@ export function ProgrammePageContent() {
             className="text-brand-red shrink-0 mt-0.5"
             aria-hidden="true"
           />
-          <p className="text-zinc-400 text-sm leading-relaxed">
+          <p className="text-muted text-sm leading-relaxed">
             {programmePageLabels.disclaimer}
           </p>
         </div>

@@ -1,10 +1,44 @@
 @import "tailwindcss";
 
+:root {
+  --bg: #f6f5f2;
+  --bg-alt: #ecebe6;
+  --surface: #ffffff;
+  --surface-2: #fafaf8;
+  --fg: #111111;
+  --muted: #4b4b53;
+  --subtle: #66666e;
+  --line: rgba(17, 17, 17, 0.09);
+  --line-strong: rgba(17, 17, 17, 0.22);
+  --card-shadow: 0 1px 2px rgba(17, 17, 17, 0.04), 0 8px 24px -16px rgba(17, 17, 17, 0.12);
+}
+
+.theme-dark {
+  --bg: #0a0a0a;
+  --bg-alt: #141414;
+  --surface: #141414;
+  --surface-2: #1a1a1a;
+  --fg: #fafafa;
+  --muted: #a1a1aa;
+  --subtle: #8a8a93;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.25);
+  --card-shadow: none;
+  color-scheme: dark;
+  color: var(--fg);
+}
+
 @theme inline {
-  --color-background: #0a0a0a;
-  --color-foreground: #fafafa;
-  --color-surface: #141414;
-  --color-surface-light: #1a1a1a;
+  --color-background: var(--bg);
+  --color-background-alt: var(--bg-alt);
+  --color-foreground: var(--fg);
+  --color-surface: var(--surface);
+  --color-surface-light: var(--surface-2);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --shadow-card: var(--card-shadow);
   --color-brand-red: #E30613;
   --color-brand-red-dark: #b8050f;
   --font-sans: var(--font-sans), system-ui, sans-serif;
@@ -19,15 +53,15 @@
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   body {
     overflow-x: hidden;
     min-height: 100vh;
     min-height: 100dvh;
-    background-color: #0a0a0a;
-    color: #fafafa;
+    background-color: var(--bg);
+    color: var(--fg);
   }
 
   ::selection {

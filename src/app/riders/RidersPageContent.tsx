@@ -38,7 +38,7 @@ export function RidersPageContent() {
           role="tablist"
           aria-label="Catégories de pilotes"
         >
-          <div className="inline-flex w-full max-w-md sm:w-auto sm:max-w-none p-1 border border-white/10 bg-black/40 backdrop-blur-sm">
+          <div className="inline-flex w-full max-w-md sm:w-auto sm:max-w-none p-1 border border-line bg-surface shadow-card">
             {riderCategories.map((category) => {
               const isActive = activeCategory === category.id;
               return (
@@ -51,7 +51,7 @@ export function RidersPageContent() {
                   className={cn(
                     "relative flex-1 sm:flex-none min-w-0 sm:min-w-[8rem] px-4 sm:px-6 py-2.5 sm:py-3",
                     "text-xs sm:text-sm font-semibold uppercase tracking-[0.14em] sm:tracking-[0.18em] transition-colors",
-                    isActive ? "text-white" : "text-zinc-500 hover:text-zinc-200"
+                    isActive ? "text-white" : "text-subtle hover:text-foreground"
                   )}
                 >
                   {isActive && (
@@ -69,7 +69,7 @@ export function RidersPageContent() {
         </div>
 
         {visibleRiders.length === 0 ? (
-          <p className="text-center text-zinc-400 py-16">
+          <p className="text-center text-muted py-16">
             {ridersPageLabels.emptyState}
           </p>
         ) : (

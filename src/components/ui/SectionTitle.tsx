@@ -38,7 +38,7 @@ export function SectionTitle({
           {subtitle}
         </p>
       )}
-      <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight">
+      <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight">
         {title}
       </h2>
       <div
@@ -50,7 +50,7 @@ export function SectionTitle({
       {description && (
         <p
           className={cn(
-            "mt-6 text-zinc-400 max-w-2xl leading-relaxed",
+            "mt-6 text-muted max-w-2xl leading-relaxed",
             align === "center" ? "mx-auto" : ""
           )}
         >

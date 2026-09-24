@@ -32,10 +32,10 @@ export default function ContactPage() {
                 <User size={20} className="text-brand-red" />
               </div>
               <div>
-                <h3 className="text-white font-semibold mb-1">
+                <h3 className="text-foreground font-semibold mb-1">
                   {contactPageLabels.organizer}
                 </h3>
-                <p className="text-zinc-400">{organizerInfo.name}</p>
+                <p className="text-muted">{organizerInfo.name}</p>
               </div>
             </div>
 
@@ -44,10 +44,10 @@ export default function ContactPage() {
                 <Mail size={20} className="text-brand-red" />
               </div>
               <div>
-                <h3 className="text-white font-semibold mb-1">
+                <h3 className="text-foreground font-semibold mb-1">
                   {contactPageLabels.email}
                 </h3>
-                <p className="text-zinc-400">{organizerInfo.email}</p>
+                <p className="text-muted">{organizerInfo.email}</p>
               </div>
             </div>
 
@@ -56,13 +56,13 @@ export default function ContactPage() {
                 <MapPin size={20} className="text-brand-red" />
               </div>
               <div>
-                <h3 className="text-white font-semibold mb-1">
+                <h3 className="text-foreground font-semibold mb-1">
                   {contactPageLabels.venue}
                 </h3>
-                <p className="text-white font-medium mb-1">
+                <p className="text-foreground font-medium mb-1">
                   {organizerInfo.venueName}
                 </p>
-                <p className="text-zinc-400">{organizerInfo.address}</p>
+                <p className="text-muted">{organizerInfo.address}</p>
                 <a
                   href={organizerInfo.mapsUrl}
                   target="_blank"
@@ -74,7 +74,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="aspect-video bg-surface border border-white/5 rounded-lg overflow-hidden">
+            <div className="aspect-video bg-surface border border-line shadow-card rounded-lg overflow-hidden">
               <iframe
                 title={`${organizerInfo.venueName} - carte`}
                 src="https://www.google.com/maps?q=Arena+Grand+Paris,+1+Avenue+de+la+Traversi%C3%A8re,+93290+Tremblay-en-France&output=embed"
@@ -86,8 +86,8 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="bg-surface border border-white/5 rounded-lg p-6 md:p-8">
-            <h3 className="text-white font-display text-xl font-bold mb-6">
+          <div className="bg-surface border border-line shadow-card rounded-lg p-6 md:p-8">
+            <h3 className="text-foreground font-display text-xl font-bold mb-6">
               {contactPageLabels.sendMessage}
             </h3>
             <ContactForm />

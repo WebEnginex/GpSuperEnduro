@@ -11,7 +11,7 @@ export function Hero() {
   const isMounted = useIsMounted();
 
   return (
-    <section className="relative min-h-screen min-h-[100dvh] w-full overflow-hidden">
+    <section className="theme-dark relative min-h-screen min-h-[100dvh] w-full overflow-hidden">
       <div className="absolute inset-0">
         <video
           autoPlay

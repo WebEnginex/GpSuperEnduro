@@ -15,7 +15,7 @@ export function ScheduleTimeline({ items }: ScheduleTimelineProps) {
 
   return (
     <div className="relative max-w-3xl mx-auto">
-      <div className="absolute left-6 md:left-8 top-0 bottom-0 w-px bg-white/10" />
+      <div className="absolute left-6 md:left-8 top-0 bottom-0 w-px bg-line-strong" />
 
       <div className="space-y-6">
         {items.map((item, index) => (
@@ -32,13 +32,13 @@ export function ScheduleTimeline({ items }: ScheduleTimelineProps) {
                 "absolute left-3 md:left-5 top-6 w-6 h-6 rounded-full border-2 flex items-center justify-center",
                 item.highlight
                   ? "border-brand-red bg-brand-red/20"
-                  : "border-white/20 bg-surface"
+                  : "border-line-strong bg-surface"
               )}
             >
               <span
                 className={cn(
                   "w-2 h-2 rounded-full",
-                  item.highlight ? "bg-brand-red" : "bg-white/40"
+                  item.highlight ? "bg-brand-red" : "bg-foreground/40"
                 )}
               />
             </div>
@@ -47,8 +47,8 @@ export function ScheduleTimeline({ items }: ScheduleTimelineProps) {
               className={cn(
                 "bg-surface border rounded-lg p-5 md:p-6 transition-colors",
                 item.highlight
-                  ? "border-brand-red/30 shadow-lg shadow-brand-red/5"
-                  : "border-white/5 hover:border-white/10"
+                  ? "border-brand-red/30 shadow-lg shadow-brand-red/10"
+                  : "border-line shadow-card hover:border-line-strong"
               )}
             >
               <div className="flex flex-wrap items-center gap-3 mb-3">
@@ -57,10 +57,10 @@ export function ScheduleTimeline({ items }: ScheduleTimelineProps) {
                   {item.time}
                 </span>
               </div>
-              <h3 className="font-display text-xl md:text-2xl font-bold text-white mb-2">
+              <h3 className="font-display text-xl md:text-2xl font-bold text-foreground mb-2">
                 {item.title}
               </h3>
-              <p className="text-zinc-400 text-sm leading-relaxed">
+              <p className="text-muted text-sm leading-relaxed">
                 {item.description}
               </p>
             </div>

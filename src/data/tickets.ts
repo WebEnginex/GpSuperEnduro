@@ -31,6 +31,9 @@ export const ticketsPreviewLabels = {
   viewAll: "Voir les tarifs",
 } as const;
 
+const ARENA_TICKETING_URL =
+  "https://billetterie.arenagrandparis.fr/fr/product/189/arena_grand_paris_hall_1/championnat_du_monde_de_superenduro";
+
 export const tickets: Ticket[] = [
   {
     id: "ticket-cat-1",
@@ -41,7 +44,7 @@ export const tickets: Ticket[] = [
       group: 48,
       child: 46,
     },
-    purchaseUrl: "https://www.billetterie-partenaire-placeholder.com/categorie-1",
+    purchaseUrl: ARENA_TICKETING_URL,
     tier: "category1",
     featured: true,
     badge: "Meilleure vue",
@@ -55,7 +58,7 @@ export const tickets: Ticket[] = [
       group: 39,
       child: 38,
     },
-    purchaseUrl: "https://www.billetterie-partenaire-placeholder.com/categorie-2",
+    purchaseUrl: ARENA_TICKETING_URL,
     tier: "category2",
   },
   {
@@ -67,7 +70,7 @@ export const tickets: Ticket[] = [
       group: 30,
       child: 29,
     },
-    purchaseUrl: "https://www.billetterie-partenaire-placeholder.com/categorie-3",
+    purchaseUrl: ARENA_TICKETING_URL,
     tier: "category3",
   },
 ];

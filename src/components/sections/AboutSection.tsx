@@ -48,14 +48,14 @@ export function AboutSection() {
               {about.paragraphs.map((paragraph, i) => (
                 <p
                   key={i}
-                  className="text-zinc-400 leading-relaxed text-sm sm:text-base md:text-[1.05rem] md:leading-7"
+                  className="text-muted leading-relaxed text-sm sm:text-base md:text-[1.05rem] md:leading-7"
                 >
                   {paragraph}
                 </p>
               ))}
             </div>
 
-            <div className="relative w-full overflow-hidden rounded-sm bg-surface ring-1 ring-white/5 aspect-[16/11] sm:aspect-[16/10]">
+            <div className="relative w-full overflow-hidden rounded-sm bg-surface ring-1 ring-line shadow-card aspect-[16/11] sm:aspect-[16/10]">
               <Image
                 src={about.image.src}
                 alt={about.image.alt}
@@ -98,14 +98,14 @@ export function AboutSection() {
                         {details.map((detail) => (
                           <li
                             key={detail}
-                            className="text-zinc-400 text-xs sm:text-sm leading-snug px-1"
+                            className="text-muted text-xs sm:text-sm leading-snug px-1"
                           >
                             {detail}
                           </li>
                         ))}
                       </ul>
                     ) : (
-                      <p className="text-zinc-400 text-xs sm:text-sm uppercase tracking-widest">
+                      <p className="text-muted text-xs sm:text-sm uppercase tracking-widest">
                         {stat.label}
                       </p>
                     )}
@@ -124,7 +124,7 @@ export function EventInfoSection() {
   const isMounted = useIsMounted();
 
   return (
-    <section id="informations" className="py-20 md:py-28 bg-surface">
+    <section id="informations" className="py-20 md:py-28 bg-background-alt">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
           title={eventConfig.sections.eventInfo.title}
@@ -146,11 +146,11 @@ export function EventInfoSection() {
                   <div className="w-10 h-10 rounded-sm bg-brand-red/10 flex items-center justify-center mb-4">
                     <Icon size={20} className="text-brand-red" />
                   </div>
-                  <h3 className="text-white font-semibold mb-2">{card.title}</h3>
-                  <p className="text-white text-lg font-display mb-2">
+                  <h3 className="text-foreground font-semibold mb-2">{card.title}</h3>
+                  <p className="text-foreground text-lg font-display mb-2">
                     {card.value}
                   </p>
-                  <p className="text-zinc-500 text-sm">{card.description}</p>
+                  <p className="text-subtle text-sm">{card.description}</p>
                 </SurfaceCard>
               </motion.div>
             );
