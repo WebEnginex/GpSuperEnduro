@@ -22,7 +22,7 @@ export const siteConfig = {
   tagline: "Championnat du monde Super Enduro 2027 à Paris",
   description:
     "GP SuperEnduro Paris — Championnat du monde 2027. Le 27 février 2027 à l'Arena Grand Paris (Tremblay-en-France). Courses indoor, pilotes Prestige, billetterie et programme.",
-  url: "https://www.gpsuperenduroparis.fr",
+  url: "https://gpsuperenduroparis.fr",
   locale: "fr_FR",
   language: "fr",
   themeColor: "#E30613",
