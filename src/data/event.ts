@@ -30,7 +30,7 @@ export const eventConfig = {
       "De l'ouverture des portes à 17h30 jusqu'aux finales à 22h00, le programme enchaîne dédicaces, cérémonie d'ouverture, SuperPole et courses toutes catégories. Une expérience complète, pensée pour les fans comme pour ceux qui découvrent la discipline.",
     ],
     image: {
-      src: "/images/pages/action-02.webp",
+      src: "/images/pages/banniere-programme.webp",
       alt: "Ambiance course Super Enduro indoor",
     },
     stats: [

@@ -1,18 +1,18 @@
 export const pageMedia = {
   programme: {
-    src: "/images/pages/action-02.webp",
+    src: "/images/pages/banniere-programme.webp",
     alt: "Départ de course Super Enduro indoor",
   },
   billeterie: {
-    src: "/images/pages/action-01.webp",
-    alt: "Pilote Super Enduro devant les tribunes",
+    src: "/images/pages/banniere-billetterie.webp",
+    alt: "Pilote Super Enduro en plein saut entre les flammes de l'Arena",
   },
   contact: {
-    src: "/images/pages/action-05.webp",
-    alt: "Ambiance Arena Super Enduro",
+    src: "/images/pages/banniere-contact.webp",
+    alt: "Pilote Super Enduro en saut devant les tribunes",
   },
   pilotes: {
-    src: "/images/pages/action-03.webp",
-    alt: "Peloton Super Enduro sur obstacle",
+    src: "/images/pages/banniere-pilotes.webp",
+    alt: "Pilotes Super Enduro franchissant rochers et rondins",
   },
 } as const;
