@@ -150,7 +150,17 @@ export function EventInfoSection() {
                   <p className="text-foreground text-lg font-display mb-2">
                     {card.value}
                   </p>
-                  <p className="text-subtle text-sm">{card.description}</p>
+                  {Array.isArray(card.description) ? (
+                    <div className="space-y-1.5">
+                      {card.description.map((line) => (
+                        <p key={line} className="text-subtle text-sm leading-snug">
+                          {line}
+                        </p>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-subtle text-sm">{card.description}</p>
+                  )}
                 </SurfaceCard>
               </motion.div>
             );

@@ -10,7 +10,8 @@ export const ridersPageLabels = {
 
 export const riderCategories: { id: RiderCategory; label: string }[] = [
   { id: "prestige", label: ridersPageLabels.prestige },
-  { id: "junior", label: ridersPageLabels.junior },
+  // Junior temporairement masqué (données / pilotes incomplets)
+  // { id: "junior", label: ridersPageLabels.junior },
 ];
 
 /**

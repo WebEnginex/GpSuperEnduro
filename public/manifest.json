@@ -1,16 +1,30 @@
 {
   "name": "GP SuperEnduro Paris",
   "short_name": "GP SuperEnduro",
-  "description": "L'expérience Super Enduro indoor ultime",
+  "description": "Championnat du monde Super Enduro 2027 — Arena Grand Paris, 27 février 2027.",
+  "lang": "fr-FR",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#0a0a0a",
   "theme_color": "#E30613",
   "icons": [
     {
-      "src": "/images/og-placeholder.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
+      "src": "/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
     }
   ]
 }

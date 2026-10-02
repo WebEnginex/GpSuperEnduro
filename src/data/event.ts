@@ -7,6 +7,7 @@ export const eventConfig = {
   countdownTargetDate: "2027-02-27T17:30:00+01:00",
   hero: {
     title: "GP SUPER ENDURO PARIS",
+    titleAccent: "Championnat du monde 2027",
     subtitle: "27 février 2027 · Arena Grand Paris",
     description:
       "Une soirée indoor explosive : les meilleurs pilotes du monde, un circuit technique, et l'ambiance d'une Arena à pleine charge. Préparez-vous à vibrer.",
@@ -18,15 +19,16 @@ export const eventConfig = {
       label: "Voir le programme",
       href: "/programme",
     },
-    videoSrc: "/video/SuperEnduroPoland2023.webm",
-    posterSrc: "/images/hero-poster.svg",
+    videoSrc: "/video/hero-superenduro.webm",
+    videoSrcMp4: "/video/hero-superenduro.mp4",
+    posterSrc: "/images/hero-poster.webp",
     scrollLabel: "Défiler",
   },
   about: {
     title: "À propos de l'événement",
     subtitle: "Le Super Enduro s'installe à Paris",
     paragraphs: [
-      "Le GP SuperEnduro Paris réunit le plateau international pour une soirée hors normes à l'Arena Grand Paris. Entre sauts, passages techniques et bagarres de positions, chaque course pousse les pilotes et le public dans le rouge.",
+      "Le GP SuperEnduro Championnat du monde 2027 Paris réunit le plateau international pour une soirée hors normes à l'Arena Grand Paris. Entre sauts, passages techniques et bagarres de positions, chaque course pousse les pilotes et le public dans le rouge.",
       "De l'ouverture des portes à 17h30 jusqu'aux finales à 22h00, le programme enchaîne dédicaces, cérémonie d'ouverture, SuperPole et courses toutes catégories. Une expérience complète, pensée pour les fans comme pour ceux qui découvrent la discipline.",
     ],
     image: {
@@ -38,7 +40,7 @@ export const eventConfig = {
         value: "3 catégories",
         label: "Catégories",
         details: [
-          "SuperEnduro Prestige",
+          "GP SuperEnduro Prestige",
           "SuperEnduro Junior",
           "SuperEnduro 125cc - de 18 ans",
         ],
@@ -68,7 +70,7 @@ export const eventConfig = {
     },
     ridersPreview: {
       title: "Pilotes",
-      subtitle: "Prestige & Junior",
+      subtitle: "Catégorie Prestige",
       viewAll: "Voir tous les pilotes",
     },
     countdown: {
@@ -110,7 +112,10 @@ export const eventInfoCards: EventInfoCard[] = [
     id: "venue",
     title: "Lieu",
     value: "Arena Grand Paris",
-    description: "1 Av. Traversière, 93290 Tremblay-en-France",
+    description: [
+      "1 Av. Traversière, 93290 Tremblay-en-France",
+      "À 1 minute du Parc Expo Paris Nord Villepinte",
+    ],
     icon: "map-pin",
   },
   {

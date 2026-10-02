@@ -2,7 +2,11 @@
 
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { getRidersByCategory, riderCategories, ridersPageLabels } from "@/data/riders";
+import {
+  getRidersByCategory,
+  riderCategories,
+  ridersPageLabels,
+} from "@/data/riders";
 import { pageMedia } from "@/data/pageMedia";
 import type { RiderCategory } from "@/types";
 import { RiderCard } from "@/components/riders/RiderCard";
@@ -12,7 +16,10 @@ import { cn } from "@/lib/cn";
 import { useIsMounted } from "@/hooks/useIsMounted";
 
 export function RidersPageContent() {
-  const [activeCategory, setActiveCategory] = useState<RiderCategory>("prestige");
+  const showCategoryTabs = riderCategories.length > 1;
+  const [activeCategory, setActiveCategory] = useState<RiderCategory>(
+    riderCategories[0]?.id ?? "prestige"
+  );
   const isMounted = useIsMounted();
 
   const visibleRiders = useMemo(
@@ -33,40 +40,42 @@ export function RidersPageContent() {
           subtitle={ridersPageLabels.subtitle}
         />
 
-        <div
-          className="flex justify-center mb-8 sm:mb-10 md:mb-14"
-          role="tablist"
-          aria-label="Catégories de pilotes"
-        >
-          <div className="inline-flex w-full max-w-md sm:w-auto sm:max-w-none p-1 border border-line bg-surface shadow-card">
-            {riderCategories.map((category) => {
-              const isActive = activeCategory === category.id;
-              return (
-                <button
-                  key={category.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={isActive}
-                  onClick={() => setActiveCategory(category.id)}
-                  className={cn(
-                    "relative flex-1 sm:flex-none min-w-0 sm:min-w-[8rem] px-4 sm:px-6 py-2.5 sm:py-3",
-                    "text-xs sm:text-sm font-semibold uppercase tracking-[0.14em] sm:tracking-[0.18em] transition-colors",
-                    isActive ? "text-white" : "text-subtle hover:text-foreground"
-                  )}
-                >
-                  {isActive && (
-                    <motion.span
-                      layoutId="rider-category-pill"
-                      className="absolute inset-0 bg-brand-red"
-                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                    />
-                  )}
-                  <span className="relative z-10">{category.label}</span>
-                </button>
-              );
-            })}
+        {showCategoryTabs ? (
+          <div
+            className="flex justify-center mb-8 sm:mb-10 md:mb-14"
+            role="tablist"
+            aria-label="Catégories de pilotes"
+          >
+            <div className="inline-flex w-full max-w-md sm:w-auto sm:max-w-none p-1 border border-line bg-surface shadow-card">
+              {riderCategories.map((category) => {
+                const isActive = activeCategory === category.id;
+                return (
+                  <button
+                    key={category.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={isActive}
+                    onClick={() => setActiveCategory(category.id)}
+                    className={cn(
+                      "relative flex-1 sm:flex-none min-w-0 sm:min-w-[8rem] px-4 sm:px-6 py-2.5 sm:py-3",
+                      "text-xs sm:text-sm font-semibold uppercase tracking-[0.14em] sm:tracking-[0.18em] transition-colors",
+                      isActive ? "text-white" : "text-subtle hover:text-foreground"
+                    )}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="rider-category-pill"
+                        className="absolute inset-0 bg-brand-red"
+                        transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                      />
+                    )}
+                    <span className="relative z-10">{category.label}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        ) : null}
 
         {visibleRiders.length === 0 ? (
           <p className="text-center text-muted py-16">

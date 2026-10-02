@@ -1,4 +1,4 @@
-const PRODUCTION_URL = "https://www.gpsuperenduroparis.com";
+const PRODUCTION_URL = "https://www.gpsuperenduroparis.fr";
 
 export function getSiteUrl(): string {
   const explicitUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");

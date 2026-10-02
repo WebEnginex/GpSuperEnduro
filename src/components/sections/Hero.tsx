@@ -23,6 +23,7 @@ export function Hero() {
           aria-hidden="true"
         >
           <source src={hero.videoSrc} type="video/webm" />
+          <source src={hero.videoSrcMp4} type="video/mp4" />
         </video>
       </div>
 
@@ -38,9 +39,12 @@ export function Hero() {
           <p className="text-brand-red text-sm md:text-base font-semibold tracking-[0.3em] uppercase mb-4">
             {hero.subtitle}
           </p>
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-none mb-6">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-none mb-3">
             {hero.title}
           </h1>
+          <p className="font-display text-xl sm:text-2xl md:text-3xl text-white/90 tracking-wide leading-none mb-6">
+            {hero.titleAccent}
+          </p>
           <p className="text-zinc-300 text-base md:text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
             {hero.description}
           </p>

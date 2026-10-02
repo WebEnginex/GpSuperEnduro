@@ -1,19 +1,14 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { createMetadata } from "@/lib/seo";
 import LoginForm from "./LoginForm";
 
-export const metadata: Metadata = {
-  title: "Connexion",
-  robots: {
-    index: false,
-    follow: false,
-    nocache: true,
-    googleBot: {
-      index: false,
-      follow: false,
-    },
-  },
-};
+export const metadata: Metadata = createMetadata({
+  title: "Connexion admin",
+  description: "Connexion à l'espace d'administration.",
+  path: "/admin/login",
+  noIndex: true,
+});
 
 export default function AdminLoginPage() {
   return (

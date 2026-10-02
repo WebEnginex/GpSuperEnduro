@@ -5,10 +5,14 @@ import { PartnersSection } from "@/components/sections/PartnersSection";
 import { FAQSection, NewsletterSection } from "@/components/sections/FAQSection";
 import { CTASection } from "@/components/sections/CTASection";
 import { Hero } from "@/components/sections/Hero";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { getFaqJsonLd, getSportsEventJsonLd } from "@/lib/structured-data";
 
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={getSportsEventJsonLd()} />
+      <JsonLd data={getFaqJsonLd()} />
       <Hero />
       <AboutSection />
       <EventInfoSection />

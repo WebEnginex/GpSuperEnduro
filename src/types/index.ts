@@ -14,7 +14,7 @@ export interface EventInfoCard {
   id: string;
   title: string;
   value: string;
-  description: string;
+  description: string | readonly string[];
   icon: string;
 }
 
