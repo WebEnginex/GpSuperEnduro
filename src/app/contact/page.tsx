@@ -61,7 +61,14 @@ export default function ContactPage() {
                   <h3 className="text-foreground font-semibold mb-1">
                     {contactPageLabels.email}
                   </h3>
-                  <p className="text-muted">{organizerInfo.email}</p>
+                  <p className="text-muted">
+                    <a
+                      href={`mailto:${organizerInfo.email}`}
+                      className="hover:text-brand-red transition-colors"
+                    >
+                      {organizerInfo.email}
+                    </a>
+                  </p>
                 </div>
               </div>
 
