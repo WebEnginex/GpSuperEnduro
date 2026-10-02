@@ -1,8 +1,7 @@
 import type { Rider, RiderCategory } from "@/types";
 
 export const ridersPageLabels = {
-  title: "Pilotes",
-  subtitle: "Le plateau",
+  title: "Super Enduro GP Prestige",
   prestige: "Prestige",
   junior: "Junior",
   emptyState: "Aucun pilote dans cette catégorie pour le moment.",

@@ -1,4 +1,3 @@
-import { Info } from "lucide-react";
 import { programmePageLabels, scheduleItems } from "@/data/programme";
 import { pageMedia } from "@/data/pageMedia";
 import { SectionTitle } from "@/components/ui/SectionTitle";
@@ -16,17 +15,6 @@ export function ProgrammePageContent() {
           title={programmePageLabels.title}
           subtitle={programmePageLabels.subtitle}
         />
-
-        <div className="max-w-3xl mx-auto mb-12 p-4 md:p-5 bg-brand-red/5 border border-brand-red/20 rounded-lg flex gap-3">
-          <Info
-            size={20}
-            className="text-brand-red shrink-0 mt-0.5"
-            aria-hidden="true"
-          />
-          <p className="text-muted text-sm leading-relaxed">
-            {programmePageLabels.disclaimer}
-          </p>
-        </div>
 
         <ScheduleTimeline items={scheduleItems} />
 

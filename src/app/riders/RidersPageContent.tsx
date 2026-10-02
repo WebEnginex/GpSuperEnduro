@@ -35,10 +35,7 @@ export function RidersPageContent() {
       <PageBanner {...pageMedia.pilotes} />
 
       <div className="relative pt-10 md:pt-12 pb-16 sm:pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle
-          title={ridersPageLabels.title}
-          subtitle={ridersPageLabels.subtitle}
-        />
+        <SectionTitle title={ridersPageLabels.title} />
 
         {showCategoryTabs ? (
           <div
