@@ -115,7 +115,10 @@ export function MessagesInbox({
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
   const [sortBy, setSortBy] = useState<SortValue>("newest");
   const [error, setError] = useState<string | null>(null);
+  const [replyError, setReplyError] = useState<string | null>(null);
+  const [replySuccess, setReplySuccess] = useState(false);
   const [pending, startTransition] = useTransition();
+  const [replyPending, startReplyTransition] = useTransition();
   const [confirmDeleteIds, setConfirmDeleteIds] = useState<string[] | null>(
     null
   );
@@ -240,6 +243,8 @@ export function MessagesInbox({
     setSelectedId(id);
     setReply("");
     setError(null);
+    setReplyError(null);
+    setReplySuccess(false);
     markAsRead(id);
   };
 
@@ -261,6 +266,39 @@ export function MessagesInbox({
         filteredIds.forEach((id) => next.add(id));
       }
       return next;
+    });
+  };
+
+  const sendReply = () => {
+    if (!selectedId || !reply.trim() || replyPending) return;
+    setReplyError(null);
+    setReplySuccess(false);
+    const body = reply.trim();
+    const messageId = selectedId;
+
+    startReplyTransition(async () => {
+      try {
+        const response = await fetch("/api/admin/messages/reply", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id: messageId, reply: body }),
+        });
+        const data = (await response.json()) as { error?: string };
+        if (!response.ok) {
+          throw new Error(data.error || "Envoi impossible.");
+        }
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === messageId ? { ...m, status: "replied" } : m
+          )
+        );
+        setReply("");
+        setReplySuccess(true);
+      } catch (err) {
+        setReplyError(
+          err instanceof Error ? err.message : "Envoi impossible."
+        );
+      }
     });
   };
 
@@ -586,22 +624,34 @@ export function MessagesInbox({
               <textarea
                 id="admin-reply"
                 value={reply}
-                onChange={(e) => setReply(e.target.value)}
+                onChange={(e) => {
+                  setReply(e.target.value);
+                  setReplySuccess(false);
+                  setReplyError(null);
+                }}
                 rows={4}
                 placeholder="Écrire une réponse…"
                 className="w-full resize-y rounded-md border border-line-strong bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-subtle focus:border-brand-red/50 focus:outline-none"
               />
+              {replyError ? (
+                <p className="text-xs text-brand-red">{replyError}</p>
+              ) : null}
+              {replySuccess ? (
+                <p className="text-xs text-emerald-700">
+                  Réponse envoyée.
+                </p>
+              ) : null}
               <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <p className="text-[11px] text-subtle">
-                  Envoi email via Brevo à brancher ensuite.
+                  Envoi depuis contact@gpsuperenduroparis.fr via Brevo.
                 </p>
                 <button
                   type="button"
-                  disabled
-                  className="cursor-not-allowed rounded-md border border-line bg-background-alt px-4 py-2.5 text-sm font-semibold uppercase tracking-widest text-subtle"
-                  title="Envoi email (Brevo) à brancher"
+                  disabled={replyPending || !reply.trim()}
+                  onClick={sendReply}
+                  className="rounded-md bg-brand-red px-4 py-2.5 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-brand-red-dark disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  Envoyer (bientôt)
+                  {replyPending ? "Envoi…" : "Envoyer"}
                 </button>
               </div>
             </div>

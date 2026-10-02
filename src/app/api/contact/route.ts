@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSupabaseAdmin, isDatabaseConfigured } from "@/lib/db/client";
+import { isMailConfigured } from "@/lib/email/config";
+import { sendContactInboundEmail } from "@/lib/email/brevo";
 
 export async function POST(request: Request) {
   try {
@@ -49,6 +51,23 @@ export async function POST(request: Request) {
     });
 
     if (error) throw error;
+
+    // Mail « normal » vers contact@ (Reply-To = visiteur). Ne bloque pas le succès si Brevo échoue.
+    if (isMailConfigured()) {
+      try {
+        await sendContactInboundEmail({
+          name,
+          email,
+          subject,
+          category,
+          message,
+        });
+      } catch (mailError) {
+        console.error("[contact] Brevo inbound failed:", mailError);
+      }
+    } else {
+      console.info("[contact] BREVO_API_KEY absente — pas d’envoi email.");
+    }
 
     return NextResponse.json({ ok: true, stored: true });
   } catch (error) {

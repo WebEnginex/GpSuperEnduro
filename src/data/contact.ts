@@ -3,7 +3,7 @@ import { siteConfig, venueConfig } from "@/data/site";
 
 export const organizerInfo = {
   name: siteConfig.name,
-  email: "gpsuperenduroparis@proton.me",
+  email: "contact@gpsuperenduroparis.fr",
   venueName: venueConfig.name,
   address: venueConfig.fullAddress,
   addressLines: venueConfig.displayLines,
