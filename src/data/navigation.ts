@@ -19,8 +19,19 @@ export const footerNavLinks: FooterLink[] = [
 export const legalLinks: FooterLink[] = [];
 
 export const socialLinks: SocialLink[] = [
-  { id: "instagram", label: "Instagram", href: "#instagram" },
-  { id: "facebook", label: "Facebook", href: "#facebook" },
-  { id: "youtube", label: "YouTube", href: "#youtube" },
-  { id: "twitter", label: "X / Twitter", href: "#twitter" },
+  {
+    id: "tiktok",
+    label: "TikTok",
+    href: "https://www.tiktok.com/@gpsuperenduroparis",
+  },
+  {
+    id: "instagram",
+    label: "Instagram",
+    href: "https://www.instagram.com/parissuperendurogp2027/",
+  },
+  {
+    id: "facebook",
+    label: "Facebook",
+    href: "https://www.facebook.com/ParisSuperEnduroChampionnatduMonde?locale=fr_FR",
+  },
 ];

@@ -28,7 +28,7 @@ export const eventConfig = {
     title: "À propos de l'événement",
     subtitle: "Le Super Enduro s'installe à Paris",
     paragraphs: [
-      "Le GP SuperEnduro Championnat du monde 2027 Paris réunit le plateau international pour une soirée hors normes à l'Arena Grand Paris. Entre sauts, passages techniques et bagarres de positions, chaque course pousse les pilotes et le public dans le rouge.",
+      "Le championnat du monde SuperEnduro 2027 à l'Arena Grand Paris réunit les meilleurs pilotes mondiaux pour une soirée hors normes ! Entre sauts, passages techniques et bagarres de positions, chaque course pousse les pilotes et le public dans le rouge.",
       "De l'ouverture des portes à 17h30 jusqu'aux finales à 22h00, le programme enchaîne dédicaces, cérémonie d'ouverture, SuperPole et courses toutes catégories. Une expérience complète, pensée pour les fans comme pour ceux qui découvrent la discipline.",
     ],
     image: {
