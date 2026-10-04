@@ -3,7 +3,7 @@ import { siteConfig, venueConfig } from "@/data/site";
 
 export const organizerInfo = {
   name: siteConfig.name,
-  email: "contact@gpsuperenduroparis.fr",
+  email: "gpsuperenduroparis@proton.me",
   venueName: venueConfig.name,
   address: venueConfig.fullAddress,
   addressLines: venueConfig.displayLines,
@@ -24,9 +24,13 @@ export const contactCategories: ContactCategory[] = [
 export const contactPageLabels = {
   title: "Contact",
   subtitle: "Nous contacter",
+  description:
+    "Retrouvez nos coordonnées et les réponses aux questions les plus fréquentes sur l’événement.",
   organizer: "Organisateur",
   email: "E-mail",
+  emailHint: "Écrivez-nous, on vous répond dès que possible.",
   venue: "Lieu",
+  mapTitle: "Arena Grand Paris",
   sendMessage: "Envoyer un message",
   form: {
     name: "Nom et prénom",
