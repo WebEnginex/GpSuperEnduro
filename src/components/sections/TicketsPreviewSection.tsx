@@ -5,7 +5,7 @@ import { EventButton } from "@/components/ui/EventButton";
 
 export function TicketsPreviewSection() {
   return (
-    <section id="billeterie" className="py-20 md:py-28 bg-background">
+    <section id="billetterie" className="py-20 md:py-28 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
           title={ticketsPreviewLabels.title}
@@ -27,7 +27,7 @@ export function TicketsPreviewSection() {
         </div>
 
         <div className="text-center mt-12">
-          <EventButton href="/billeterie" variant="outline" size="lg">
+          <EventButton href="/billetterie" variant="outline" size="lg">
             {ticketsPreviewLabels.viewAll}
           </EventButton>
         </div>

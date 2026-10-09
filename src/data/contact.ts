@@ -28,7 +28,6 @@ export const contactPageLabels = {
     "Retrouvez nos coordonnées et les réponses aux questions les plus fréquentes sur l’événement.",
   organizer: "Organisateur",
   email: "E-mail",
-  emailHint: "Écrivez-nous, on vous répond dès que possible.",
   venue: "Lieu",
   mapTitle: "Arena Grand Paris",
   sendMessage: "Envoyer un message",

@@ -13,7 +13,7 @@ export const eventConfig = {
       "Une soirée indoor explosive : les meilleurs pilotes du monde, un circuit technique, et l'ambiance d'une Arena à pleine charge. Préparez-vous à vibrer.",
     primaryButton: {
       label: "Acheter des billets",
-      href: "/billeterie",
+      href: "/billetterie",
     },
     secondaryButton: {
       label: "Voir le programme",
@@ -56,7 +56,7 @@ export const eventConfig = {
       "Places limitées à l'Arena Grand Paris. Choisissez votre catégorie, réservez dès maintenant et soyez là le 27 février 2027.",
     primaryButton: {
       label: "Acheter des billets",
-      href: "/billeterie",
+      href: "/billetterie",
     },
     secondaryButton: {
       label: "Nous contacter",
@@ -88,14 +88,6 @@ export const eventConfig = {
     faq: {
       title: "Questions fréquentes",
       subtitle: "Bon à savoir",
-    },
-    newsletter: {
-      title: "Restez dans la boucle",
-      subtitle: "Infolettre",
-      description:
-        "Infos billets, annonces pilotes et actus de la soirée, directement dans votre boîte mail.",
-      placeholder: "Adresse e-mail",
-      button: "S'inscrire",
     },
   },
 } as const;

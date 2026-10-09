@@ -10,7 +10,7 @@ import { SectionTitle } from "@/components/ui/SectionTitle";
 import { PageBanner } from "@/components/ui/PageBanner";
 import { FAQ } from "@/components/faq/FAQ";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { getBreadcrumbJsonLd, getFaqJsonLd } from "@/lib/structured-data";
+import { getBreadcrumbJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = createMetadata({
   title: "Contact",
@@ -35,7 +35,6 @@ export default function ContactPage() {
           { name: "Contact", path: "/contact" },
         ])}
       />
-      <JsonLd data={getFaqJsonLd()} />
 
       <div className="bg-background min-h-screen">
         <PageBanner {...pageMedia.contact} />
@@ -49,11 +48,8 @@ export default function ContactPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
             <div className="lg:col-span-5 space-y-4 sm:space-y-5">
-              <a
-                href={`mailto:${organizerInfo.email}`}
-                className="group flex items-start gap-4 rounded-xl border border-line bg-surface p-4 sm:p-5 shadow-card transition-colors hover:border-brand-red/35"
-              >
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-brand-red/10 text-brand-red transition-colors group-hover:bg-brand-red group-hover:text-white">
+              <div className="flex items-start gap-4 rounded-xl border border-line bg-surface p-4 sm:p-5 shadow-card">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-brand-red/10 text-brand-red">
                   <Mail size={20} />
                 </div>
                 <div className="min-w-0">
@@ -63,11 +59,8 @@ export default function ContactPage() {
                   <p className="mt-1 break-all text-base font-medium text-foreground sm:text-lg">
                     {organizerInfo.email}
                   </p>
-                  <p className="mt-2 text-sm text-muted">
-                    {contactPageLabels.emailHint}
-                  </p>
                 </div>
-              </a>
+              </div>
 
               <div className="flex items-start gap-4 rounded-xl border border-line bg-surface p-4 sm:p-5 shadow-card">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-brand-red/10 text-brand-red">

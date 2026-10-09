@@ -2,7 +2,7 @@ import { AboutSection, EventInfoSection } from "@/components/sections/AboutSecti
 import { TicketsPreviewSection } from "@/components/sections/TicketsPreviewSection";
 import { CountdownSection } from "@/components/sections/CountdownSection";
 import { PartnersSection } from "@/components/sections/PartnersSection";
-import { FAQSection, NewsletterSection } from "@/components/sections/FAQSection";
+import { FAQSection } from "@/components/sections/FAQSection";
 import { CTASection } from "@/components/sections/CTASection";
 import { Hero } from "@/components/sections/Hero";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -20,7 +20,6 @@ export default function HomePage() {
       <CountdownSection />
       <PartnersSection />
       <FAQSection />
-      <NewsletterSection />
       <CTASection />
     </>
   );

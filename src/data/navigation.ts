@@ -4,7 +4,7 @@ export const navLinks: NavLink[] = [
   { label: "Accueil", href: "/" },
   { label: "Programme", href: "/programme" },
   { label: "Pilotes", href: "/pilotes" },
-  { label: "Billetterie", href: "/billeterie", highlight: true },
+  { label: "Billetterie", href: "/billetterie", highlight: true },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -12,11 +12,14 @@ export const footerNavLinks: FooterLink[] = [
   { label: "Accueil", href: "/" },
   { label: "Programme", href: "/programme" },
   { label: "Pilotes", href: "/pilotes" },
-  { label: "Billetterie", href: "/billeterie" },
+  { label: "Billetterie", href: "/billetterie" },
   { label: "Contact", href: "/contact" },
 ];
 
-export const legalLinks: FooterLink[] = [];
+export const legalLinks: FooterLink[] = [
+  { label: "Mentions légales", href: "/mentions-legales" },
+  { label: "Confidentialité", href: "/confidentialite" },
+];
 
 export const socialLinks: SocialLink[] = [
   {

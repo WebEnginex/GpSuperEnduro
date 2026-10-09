@@ -19,7 +19,7 @@ export function ProgrammePageContent() {
         <ScheduleTimeline items={scheduleItems} />
 
         <div className="text-center mt-16">
-          <EventButton href="/billeterie" size="lg">
+          <EventButton href="/billetterie" size="lg">
             {programmePageLabels.billetterieCta}
           </EventButton>
         </div>

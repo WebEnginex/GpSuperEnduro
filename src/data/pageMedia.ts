@@ -3,7 +3,7 @@ export const pageMedia = {
     src: "/images/pages/banniere-programme.webp",
     alt: "Départ de course Super Enduro indoor",
   },
-  billeterie: {
+  billetterie: {
     src: "/images/pages/banniere-billetterie.webp",
     alt: "Pilote Super Enduro en plein saut entre les flammes de l'Arena",
   },
