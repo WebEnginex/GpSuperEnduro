@@ -1,0 +1,14 @@
+# Assets statiques versionnés par deploy Netlify — cache navigateur long.
+# Réduit fortement les re-téléchargements (retour home, navigation interne).
+
+/video/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/icons/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon.ico
+  Cache-Control: public, max-age=31536000, immutable
